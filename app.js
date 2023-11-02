@@ -5,10 +5,14 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user')
 
 const ExpressError = require('./utils/ExpressError');
 
-const statements = require('./routes/statements');
+const statementRoutes = require('./routes/statements');
+const userRoutes = require('./routes/users')
 
 mongoose.connect('mongodb://127.0.0.1:27017/oecd-case-law');
 
@@ -42,6 +46,10 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()))
+
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -50,8 +58,8 @@ app.use((req, res, next) => {
 
 
 //Route handlers:
-
-app.use('/statements', statements)
+app.use('/', userRoutes)
+app.use('/statements', statementRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
