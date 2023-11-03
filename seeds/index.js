@@ -20,8 +20,8 @@ const seedDB = async () => {
             actors: `${sample(actors)}`,
             analysisOfNCP: `${sample(analysisOfNCP)}`,
             summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique vero ad fuga voluptas in vel culpa sit ab quisquam inventore dicta perferendis esse, debitis voluptates maxime voluptatum consectetur expedita illo.",
-            location: "Netherlands"
-
+            location: "Netherlands",
+            author: "6543d6b221c5a1521954535b"
         })
         await statement.save()
     }

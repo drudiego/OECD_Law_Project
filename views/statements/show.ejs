@@ -9,9 +9,14 @@
                     <h2 class="card-title">
                         <%= statement.title %>
                     </h2>
-                    <p class="card-text">
-                        <%= statement.summary %>
-                    </p>
+                    <% if(currentUser) { %>
+                        <p class="card-text">
+                            Included in the database by <%= statement.author.username %>
+                        </p>
+                        <% } %>
+                            <p class="card-text">
+                                <%= statement.summary %>
+                            </p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Location: <%= statement.location %>
@@ -21,12 +26,14 @@
                     <li class="list-group-item">A third item</li>
                 </ul>
                 <div class="card-body">
-                    <a class="btn btn-info" href="/statements/<%= statement._id %>/edit">Edit</a>
+                    <% if(currentUser) { %>
+                        <a class="btn btn-info" href="/statements/<%= statement._id %>/edit">Edit</a>
 
-                    <form class="d-inline" action="/statements/<%= statement._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete Statement</button>
-                    </form>
-                    <div class="mt-3"><a href="/statements">Back to All Statements</a></div>
+                        <form class="d-inline" action="/statements/<%= statement._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete Statement</button>
+                        </form>
+                        <% } %>
+                            <div class="mt-3"><a href="/statements">Back to All Statements</a></div>
                 </div>
 
             </div>
