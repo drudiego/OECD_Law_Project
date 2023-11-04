@@ -76,10 +76,10 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err
 
-    if (err) {
-        req.flash('error', "Cannot find Statement")
-        res.redirect('/statements')
-    }
+    // if (err) {
+    //     req.flash('error', "Cannot find Statement")
+    //     res.redirect('/statements')
+    // }
 
     if (!err.message) err.message = 'Oh no, something went wrong!'
     res.status(statusCode).render('error', { err })

@@ -2,22 +2,9 @@ const express = require(`express`);
 const router = express.Router();
 
 const catchAsync = require('../utils/catchAsync');
-const ExpressError = require('../utils/ExpressError')
 
-const { isLoggedIn } = require('../middleware.js')
-const { statementSchema } = require('../schemas.js')
+const { isLoggedIn, validateCampground } = require('../middleware.js')
 const Statement = require('../models/statement');
-
-
-const validateCampground = (req, res, next) => {
-    const { error } = statementSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(', ')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
 
 
 router.get('/', catchAsync(async (req, res) => {
@@ -40,7 +27,6 @@ router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res) => 
 
 router.get('/:id', catchAsync(async (req, res) => {
     const statement = await Statement.findById(req.params.id).populate("author");
-    console.log(statement.author)
     if (!statement) {
         req.flash('error', 'Cannot find that Statement')
         return res.redirect('/statements')
