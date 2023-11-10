@@ -29,21 +29,219 @@
                     <div class="invalid-feedback">Summary can't be empty</div>
                 </div>
 
+                <!-- //FILTERS START HERE -->
+
+                <!-- //Linked Human Rights -->
+                <div class="mb-3">
+                    <label class="form-label" for="linkedHumanRightsIssue">Linked Human Rights Issue</label>
+                    <select class="form-select" aria-label="Default select example" id="linkedHumanRightsIssue"
+                        name="statement[linkedHumanRightsIssue]" required>
+
+                        <% for (subfilter of filters.linkedHumanRightsIssue) { %>
+                            <option value="<%=subfilter %>" <%=statement.linkedHumanRightsIssue===subfilter ? 'selected'
+                                : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Corporate Involvement To The Harms And Abuses -->
+                <div class="mb-3">
+                    <label class="form-label" for="corporateInvolvementToTheHarmsAndAbuses">Corporate Involvement To The
+                        Harms And Abuses</label>
+                    <select class="form-select" aria-label="Default select example"
+                        id="corporateInvolvementToTheHarmsAndAbuses"
+                        name="statement[corporateInvolvementToTheHarmsAndAbuses]" required>
+
+                        <% for (subfilter of filters.corporateInvolvementToTheHarmsAndAbuses) { %>
+                            <option value="<%=subfilter %>"
+                                <%=statement.corporateInvolvementToTheHarmsAndAbuses===subfilter ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Corporate Involvement To The Harms And Abuses -->
+                <!-- AINDA FALTA INCLUIR DEPENDENDO DO QUE A OTGONTUYA DISSER SOBRE ESSE FILTRO -->
+
+                <!-- //Corporate Responsibility In UNGP's Framework -->
+                <div class="mb-3">
+                    <label class="form-label" for="corporateResponsibilityInUNGPsFramework">Corporate Responsibility In
+                        UNGP's Framework</label>
+                    <select class="form-select" aria-label="Default select example"
+                        id="corporateResponsibilityInUNGPsFramework"
+                        name="statement[corporateResponsibilityInUNGPsFramework]" required>
+
+                        <% for (subfilter of filters.corporateResponsibilityInUNGPsFramework) { %>
+                            <option value="<%=subfilter %>"
+                                <%=statement.corporateResponsibilityInUNGPsFramework===subfilter ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Specific Corporate Human Rights Responsibilities -->
+                <div class="mb-3">
+                    <label class="form-label" for="specificCorporateHumanRightsResponsibilities">Specific Corporate
+                        Human Rights Responsibilities</label>
+                    <select class="form-select" aria-label="Default select example"
+                        id="specificCorporateHumanRightsResponsibilities"
+                        name="statement[specificCorporateHumanRightsResponsibilities]" required>
+
+                        <% for (subfilter of filters.specificCorporateHumanRightsResponsibilities) { %>
+                            <option value="<%=subfilter %>"
+                                <%=statement.specificCorporateHumanRightsResponsibilities===subfilter ? 'selected' : ''
+                                %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Actors -->
                 <div class="mb-3">
                     <label class="form-label" for="actors">Actors</label>
                     <select class="form-select" aria-label="Default select example" id="actors" name="statement[actors]"
                         required>
-                        <option value="" disabled selected>--Choose Actors--</option>
-                        <option value="Investor/financial institutions">Investor/financial institutions
-                        </option>
-                        <option value="SMEs">SMEs</option>
-                        <option value="Parent Group/Company">Parent Group/Company</option>
-                        <option value="State responsibility/involvement">State responsibility/involvement</option>
+
+                        <% for (subfilter of filters.actors) { %>
+                            <option value="<%=subfilter %>" <%=statement.actors===subfilter ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
 
                     </select>
                     <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Please select an actor</div>
+                    <div class="invalid-feedback">Please select an option</div>
                 </div>
+
+                <!-- //Other Substantial Matters -->
+                <div class="mb-3">
+                    <label class="form-label" for="otherSubstantialMatters">Other Substantial Matters</label>
+                    <select class="form-select" aria-label="Default select example" id="otherSubstantialMatters"
+                        name="statement[otherSubstantialMatters]" required>
+
+                        <% for (subfilter of filters.otherSubstantialMatters) { %>
+                            <option value="<%=subfilter %>" <%=statement.otherSubstantialMatters===subfilter
+                                ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //NCP's Efforts To Resolve The Cases -->
+                <div class="mb-3">
+                    <label class="form-label" for="NCPsEffortsToResolveTheCases">NCP's Efforts To Resolve The
+                        Cases</label>
+                    <select class="form-select" aria-label="Default select example" id="NCPsEffortsToResolveTheCases"
+                        name="statement[NCPsEffortsToResolveTheCases]" required>
+
+                        <% for (subfilter of filters.NCPsEffortsToResolveTheCases) { %>
+                            <option value="<%=subfilter %>" <%=statement.NCPsEffortsToResolveTheCases===subfilter
+                                ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //NCP Good Offices -->
+                <div class="mb-3">
+                    <label class="form-label" for="NCPGoodOffices">NCP Good Offices</label>
+                    <select class="form-select" aria-label="Default select example" id="NCPGoodOffices"
+                        name="statement[NCPGoodOffices]" required>
+
+                        <% for (subfilter of filters.NCPGoodOffices) { %>
+                            <option value="<%=subfilter %>" <%=statement.NCPGoodOffices===subfilter ? 'selected' : '' %>
+                                ><%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Challenges During The Good Office -->
+                <div class="mb-3">
+                    <label class="form-label" for="challengesDuringTheGoodOffice">Challenges During The Good
+                        Office</label>
+                    <select class="form-select" aria-label="Default select example" id="challengesDuringTheGoodOffice"
+                        name="statement[challengesDuringTheGoodOffice]" required>
+
+                        <% for (subfilter of filters.challengesDuringTheGoodOffice) { %>
+                            <option value="<%=subfilter %>" <%=statement.challengesDuringTheGoodOffice===subfilter
+                                ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Outcomes Result Of The Mediation -->
+                <div class="mb-3">
+                    <label class="form-label" for="outcomesResultOfTheMediation">Outcomes Result Of The
+                        Mediation</label>
+                    <select class="form-select" aria-label="Default select example" id="outcomesResultOfTheMediation"
+                        name="statement[outcomesResultOfTheMediation]" required>
+
+                        <% for (subfilter of filters.outcomesResultOfTheMediation) { %>
+                            <option value="<%=subfilter %>" <%=statement.outcomesResultOfTheMediation===subfilter
+                                ? 'selected' : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //Analysis On Statement -->
+                <div class="mb-3">
+                    <label class="form-label" for="analysisOnStatement">Analysis On Statement</label>
+                    <select class="form-select" aria-label="Default select example" id="analysisOnStatement"
+                        name="statement[analysisOnStatement]" required>
+
+                        <% for (subfilter of filters.analysisOnStatement) { %>
+                            <option value="<%=subfilter %>" <%=statement.analysisOnStatement===subfilter ? 'selected'
+                                : '' %>>
+                                <%= subfilter %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Please select an option</div>
+                </div>
+
+                <!-- //FILTERS END HERE -->
+
                 <div class="mb-3"><button class="btn btn-info">Update Statement</button></div>
 
             </form>

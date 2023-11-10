@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { filterCategories } = require('../utils/filters')
 
 
 const StatementSchema = new Schema({
@@ -10,11 +11,11 @@ const StatementSchema = new Schema({
     location: String,
     linkedHumanRightsIssue: {
         type: String,
-        enum: ["Child labour", "Labour rights violation", "Forced labour", "Land grabbing", "Gender harassment"]
+        enum: filterCategories.linkedHumanRightsIssue
     },
     corporateInvolvementToTheHarmsAndAbuses: {
         type: String,
-        enum: ["Caused", "Contributed", "Directly linked"]
+        enum: filterCategories.corporateInvolvementToTheHarmsAndAbuses
     },
     //check this one if there's gonna be selectors
     // definingRisksHarmsAndAbuse: {
@@ -23,39 +24,39 @@ const StatementSchema = new Schema({
     // },
     corporateResponsibilityInUNGPsFramework: {
         type: String,
-        enum: ["HRDD", "Human rights policy", "Stakeholder engagement", "Mitigations", "Remediation", "Transparency/communication"]
+        enum: filterCategories.corporateResponsibilityInUNGPsFramework
     },
     specificCorporateHumanRightsResponsibilities: {
         type: String,
-        enum: ["Conflict-affected zones", "Supply chain", "Climate change/environment"]
+        enum: filterCategories.specificCorporateHumanRightsResponsibilities
     },
     actors: {
         type: String,
-        enum: ["Consulting company", "Audits", "SMEs", "Tech companies", "Parent companies", "Investors/Financial Institutions", "State responsibility"]
+        enum: filterCategories.actors
     },
     otherSubstantialMatters: {
         type: String,
-        enum: ["Conflict with domestic laws", "Corporate governance", "Gaps in OECD guidelines", "SLAPP"]
+        enum: filterCategories.otherSubstantialMatters
     },
     NCPsEffortsToResolveTheCases: {
         type: String,
-        enum: ["Hired independent mediator", "Hired external consultants", "Sought advice from other parties", "Hired translators", "Involved victims in the process", "Monitored and followed the companies actions"]
+        enum: filterCategories.NCPsEffortsToResolveTheCases
     },
     NCPGoodOffices: {
         type: String,
-        enum: ["Mediation", "Conciliation"]
+        enum: filterCategories.NCPGoodOffices
     },
-    challengesDurigTheGoodOffice: {
+    challengesDuringTheGoodOffice: {
         type: String,
-        enum: ["Delay", "Breach of confidentiality", "Language barriers", "No cooperation between NCPs", "Parallel proceedings"]
+        enum: filterCategories.challengesDuringTheGoodOffice
     },
     outcomesResultOfTheMediation: {
         type: String,
-        enum: ["Changes/updates of the company policy", "Written agreement between parties", "Financial compensations", "Disengagement/Case of operation", "Acknowledgements"]
+        enum: filterCategories.outcomesResultOfTheMediation
     },
     analysisOnStatement: {
         type: String,
-        enum: ["Determination of compliance/non-compliance", "Referred instruments", "Referred other NCP decisions", "Analysed OECD Guidelines"]
+        enum: filterCategories.analysisOnStatement
     },
 
 

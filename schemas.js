@@ -15,7 +15,7 @@ module.exports.statementSchema = Joi.object({
         otherSubstantialMatters: Joi.string().required(),
         NCPsEffortsToResolveTheCases: Joi.string().required(),
         NCPGoodOffices: Joi.string().required(),
-        challengesDurigTheGoodOffice: Joi.string().required(),
+        challengesDuringTheGoodOffice: Joi.string().required(),
         outcomesResultOfTheMediation: Joi.string().required(),
         analysisOnStatement: Joi.string().required(),
 

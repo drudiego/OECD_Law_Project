@@ -1,5 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
+const { filterCategories } = require('../utils/filters.js')
 
 const catchAsync = require('../utils/catchAsync');
 
@@ -13,8 +14,8 @@ router.get('/', catchAsync(async (req, res) => {
 }))
 
 router.get('/new', isLoggedIn, (req, res) => {
-
-    res.render('statements/new')
+    const filters = filterCategories
+    res.render('statements/new', { filters })
 })
 
 router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res) => {
@@ -35,12 +36,14 @@ router.get('/:id', catchAsync(async (req, res) => {
 }))
 
 router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
+
     const statement = await Statement.findById(req.params.id);
+    const filters = filterCategories
     if (!statement) {
         req.flash('error', 'Cannot find that Statement')
         return res.redirect('/statements')
     }
-    res.render('statements/edit', { statement })
+    res.render('statements/edit', { statement, filters })
 }))
 
 router.put('/:id', isLoggedIn, validateCampground, catchAsync(async (req, res) => {
