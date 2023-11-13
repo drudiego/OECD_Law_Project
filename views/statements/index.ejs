@@ -4,6 +4,35 @@
     <div class="mb-5 offset-1">
         <h1>All Statements</h1>
         <a href="/statements/new">Create new Statement</a>
+
+        <form action="/statements/search" method="POST">
+            <label class="form-label" for="searchTerm">Search</label>
+            <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Search...">
+            <label class="form-label" for="selectedFilters">Filter</label>
+
+            <select class="form-select" aria-label="Default select example" id="selectedFilters"
+                name="selectedFilters[actors]">
+                <% for (subfilter of filters.actors) { %>
+                    <option value="<%=subfilter %>">
+                        <%= subfilter %>
+                    </option>
+                    <% } %>
+                        <!-- Add other filter options -->
+            </select>
+
+            <select class="form-select" aria-label="Default select example" id="selectedFilters"
+                name="selectedFilters[NCPGoodOffices]">
+                <% for (subfilter of filters.NCPGoodOffices) { %>
+                    <option value="<%=subfilter %>">
+                        <%= subfilter %>
+                    </option>
+                    <% } %>
+                        <!-- Add other filter options -->
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+
         <% for (let statement of statements){ %>
             <div class="card w-50 mt-3 ">
                 <div class="card-header">
