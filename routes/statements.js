@@ -36,35 +36,28 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('statements/show', { statement })
 }))
 
-// TESTANDO CÓDIGO DO GPT PARA FUNCIONALIDADE DE BUSCA
+// TESTANDO FUNCIONALIDADE DE BUSCA
 router.post('/search', catchAsync(async (req, res, next) => {
     const searchTerm = req.body.searchTerm; // Get the search term from the form
     const selectedFilters = req.body.selectedFilters; // Get selected filter options
-    console.log(selectedFilters)
-
-    // Query the MongoDB database using the searchTerm and filters
-    // Use a MongoDB library like Mongoose or native driver to perform the database query
-    // Perform a find operation based on the searchTerm and selectedFilters
-    // Return the results to the front-end
-
-    const results = await Statement.find({
-
+    const baseQuery = {
         $or: [
             { title: { $regex: `\\b${searchTerm}\\b`, $options: 'i' } }, // Search by name
-            { summary: { $regex: `\\b${searchTerm}\\b`, $options: 'i' } } // Search by summary
-        ],
+            { summary: { $regex: `\\b${searchTerm}\\b`, $options: 'i' } }, // Search by summary
+        ]
+    };
 
-        // Apply filters
-        actors: { $in: selectedFilters.actors },
-        NCPGoodOffices: { $in: selectedFilters.NCPGoodOffices }
-    }).exec()
-    // Add more conditions for other filters as needed
-    // Send the results back to the front-end
-    // console.log(results)
+    for (let filter in selectedFilters) {
+        if (selectedFilters[filter].length > 0) {
+            baseQuery[filter] = { $in: selectedFilters[filter] }
+        }
+    };
+
+    const results = await Statement.find(baseQuery).exec()
     res.render('statements/searchResults', { results });
 }));
 
-// FIM DO CÓDIGO DO GPT PARA FUNCIONALIDADE DE BUSCA
+// FIM DO CÓDIGO PARA FUNCIONALIDADE DE BUSCA
 
 router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
 
