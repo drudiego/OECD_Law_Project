@@ -19,38 +19,15 @@
                             </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Location: <%= statement.location %>
+                    <li class="list-group-item"><strong>Location</strong>: <%= statement.location %>
                     </li>
-                    <li class="list-group-item">Linked Human Rights Issue: <%= statement.linkedHumanRightsIssue %>
-                    </li>
-                    <li class="list-group-item">Corporate Involvement To The Harms And Abuses: <%=
-                            statement.corporateInvolvementToTheHarmsAndAbuses %>
-                    </li>
-                    <!-- //Corporate Involvement To The Harms And Abuses -->
-                    <!-- AINDA FALTA INCLUIR DEPENDENDO DO QUE A OTGONTUYA DISSER SOBRE ESSE FILTRO -->
-                    <li class="list-group-item">Corporate Responsibility In UNGP's Framework: <%=
-                            statement.corporateResponsibilityInUNGPsFramework %>
-                    </li>
-                    <li class="list-group-item">Specific Corporate Human Rights Responsibilities: <%=
-                            statement.specificCorporateHumanRightsResponsibilities %>
-                    </li>
-                    <li class="list-group-item">Actors: <%= statement.actors %>
-                    </li>
-                    <li class="list-group-item">Other Substantial Matters: <%= statement.otherSubstantialMatters %>
-                    </li>
-                    <li class="list-group-item">NCP's Efforts To Resolve The Cases: <%=
-                            statement.NCPsEffortsToResolveTheCases %>
-                    </li>
-                    <li class="list-group-item">NCP Good Offices: <%= statement.NCPGoodOffices %>
-                    </li>
-                    <li class="list-group-item">Challenges During The Good Office: <%=
-                            statement.challengesDuringTheGoodOffice %>
-                    </li>
-                    <li class="list-group-item">Outcomes Result Of The Mediation: <%=
-                            statement.outcomesResultOfTheMediation %>
-                    </li>
-                    <li class="list-group-item">Analysis On Statement: <%= statement.analysisOnStatement %>
-                    </li>
+                    <% for (filter in filters) {%>
+                        <li class="list-group-item"><strong>
+                                <%= filters[filter].filterName %>
+                            </strong>: <%= statement[filter] %>
+                        </li>
+                        <% } %>
+
                 </ul>
                 <div class="card-body">
                     <% if(currentUser) { %>

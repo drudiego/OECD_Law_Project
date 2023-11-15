@@ -1,57 +1,63 @@
 <% layout('layouts/boilerplate') %>
 
 
-    <div class="mb-5 offset-1">
+    <div class="mb-5">
         <h1>All Statements</h1>
-        <a href="/statements/new">Create new Statement</a>
-        <div class="w-50 mb-3">
-            <form action="/statements/search" method="POST">
-                <label class="form-label" for="searchTerm">Search</label>
-                <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Search...">
 
-                <label class="form-label" for="actors">Actors</label>
+        <div class="container-fluid d-flex flex-row">
 
-                <select class="form-select" aria-label="Default select example" id="actors"
-                    name="selectedFilters[actors]">
-                    <option value="" selected></option>
-                    <% for (subfilter of filters.actors) { %>
-                        <option value="<%=subfilter %>">
-                            <%= subfilter %>
-                        </option>
-                        <% } %>
-                            <!-- Add other filter options -->
-                </select>
-
-                <label class="form-label" for="NCPGoodOffices">NCP Good Offices</label>
-                <select class="form-select" aria-label="Default select example" id="NCPGoodOffices"
-                    name="selectedFilters[NCPGoodOffices]">
-                    <option value="" selected></option>
-                    <% for (subfilter of filters.NCPGoodOffices) { %>
-                        <option value="<%=subfilter %>">
-                            <%= subfilter %>
-                        </option>
-                        <% } %>
-                            <!-- Add other filter options -->
-                </select>
-
-                <button class="btn btn-info mt-3" type="submit">Search</button>
-            </form>
-        </div>
-
-        <% for (let statement of statements){ %>
-            <div class="card w-50 mt-3 ">
-                <div class="card-header">
-                    <%= statement.location %>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <%= statement.title %>
-                    </h5>
-                    <p class="card-text">
-                        <%= statement.summary %>
-                    </p>
-                    <a href="/statements/<%= statement._id %>" class="btn btn-outline-primary">Show Statement</a>
-                </div>
+            <div class=" col-6">
+                <% for (let statement of statements){ %>
+                    <div class="card mt-3 ">
+                        <div class="card-header">
+                            <%= statement.location %>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= statement.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= statement.summary %>
+                            </p>
+                            <a href="/statements/<%= statement._id %>" class="btn btn-outline-primary">Show
+                                Statement</a>
+                        </div>
+                    </div>
+                    <% } %>
             </div>
-            <% } %>
+
+            <div class="col-5 ms-auto mb-3">
+                <form action="/statements/search" method="GET">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="searchTerm">Search</label>
+                        <input class="form-control" id="searchTerm" type="text" name="searchTerm"
+                            placeholder="Search...">
+                    </div>
+                    <div class="container-fluid d-flex flex-row flex-wrap">
+
+                        <% for (filter in filters) { %>
+                            <div class="col-5 me-3 mb-3">
+
+                                <label class="form-label" for=<%=filter%> ><strong>
+                                        <%= filters[filter].filterName%>
+                                    </strong> </label>
+                                <select class="form-select" aria-label="Default select example" id="<%= filter%>"
+                                    name="selectedFilters[<%= filter%>]">
+                                    <option value="" selected></option>
+                                    <% for (subfilter of filters[filter].subfilters) { %>
+                                        <option value="<%=subfilter %>">
+                                            <%= subfilter %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <% } %>
+
+                    </div>
+
+
+                    <button class="btn btn-info mt-3" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
     </div>

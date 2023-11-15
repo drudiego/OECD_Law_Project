@@ -10,7 +10,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     next()
 }
 
-module.exports.validateCampground = (req, res, next) => {
+module.exports.validateStatement = (req, res, next) => {
     const { error } = statementSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ')

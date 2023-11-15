@@ -1,32 +1,78 @@
 <% layout('layouts/boilerplate') %>
 
-    <div class="mb-5 offset-1">
+    <div class="mb-5 ">
         <h1>Search Results</h1>
-        <% if (results.length> 0) { %>
-            <% for (let result of results){ %>
-                <div class="card w-50 mt-3 ">
-                    <div class="card-header">
-                        <%= result.location %>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <%= result.title %>
-                        </h5>
-                        <p class="card-text">
-                            <b>Actors : </b>
-                            <%= result.actors %>
-                        </p>
-                        <p class="card-text">
-                            <b>NCP Good Offices : </b>
-                            <%= result.NCPGoodOffices %>
-                        </p>
-                        <p class="card-text">
-                            <%= result.summary %>
-                        </p>
-                        <a href="/statements/<%= result._id %>" class="btn btn-outline-primary">Show Statement</a>
-                    </div>
-                </div>
-                <% } %>
-                    <% } else { %>
-                        <p>No results found.</p>
+
+        <div class="container-fluid d-flex flex-row">
+            <div class=" col-6">
+                <% if (results.length> 0) { %>
+                    <% for (let result of results){ %>
+                        <div class="card mt-3 ">
+                            <div class="card-header">
+                                <%= result.item.location %>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= result.item.title %>
+                                </h5>
+                                <p class="card-text">
+                                    <b>Actors : </b>
+                                    <%= result.item.actors %>
+                                </p>
+                                <p class="card-text">
+                                    <b>NCP Good Offices : </b>
+                                    <%= result.item.NCPGoodOffices %>
+                                </p>
+                                <p class="card-text">
+                                    <%= result.item.summary %>
+                                </p>
+                                <a href="/statements/<%= result.item._id %>" class="btn btn-outline-primary">Show
+                                    Statement</a>
+                            </div>
+                        </div>
+
                         <% } %>
+                            <% } else { %>
+                                <p>No results found.</p>
+                                <% } %>
+            </div>
+            <div class="col-5 ms-auto mb-3">
+                <div>
+                    <a class="btn btn-info" href="/statements">Reset search</a>
+                </div>
+
+                <form action="/statements/search" method="GET">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="searchTerm">Search</label>
+                        <input class="form-control" id="searchTerm" type="text" name="searchTerm"
+                            value="<%= searchTerm%>" placeholder="Search...">
+                    </div>
+                    <div class="container-fluid d-flex flex-row flex-wrap">
+
+                        <% for (filter in filters) { %>
+                            <div class="col-5 me-3 mb-3">
+
+                                <label class="form-label" for=<%=filter%> ><strong>
+                                        <%= filters[filter].filterName%>
+                                    </strong> </label>
+                                <select class="form-select" aria-label="Default select example" id="<%= filter%>"
+                                    name="selectedFilters[<%= filter%>]">
+                                    <option value=""></option>
+                                    <% for (subfilter of filters[filter].subfilters) { %>
+                                        <option value="<%=subfilter %>" <%=selectedFilters[filter]===subfilter
+                                            ? 'selected' : '' %>>
+                                            <%= subfilter %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                            </div>
+                            <% } %>
+
+                    </div>
+
+
+                    <button class="btn btn-info mt-3" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>

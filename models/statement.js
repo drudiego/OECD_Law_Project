@@ -11,52 +11,54 @@ const StatementSchema = new Schema({
     location: String,
     linkedHumanRightsIssue: {
         type: String,
-        enum: filterCategories.linkedHumanRightsIssue
+        enum: filterCategories.linkedHumanRightsIssue.subfilters
     },
     corporateInvolvementToTheHarmsAndAbuses: {
         type: String,
-        enum: filterCategories.corporateInvolvementToTheHarmsAndAbuses
+        enum: filterCategories.corporateInvolvementToTheHarmsAndAbuses.subfilters
     },
+
     //check this one if there's gonna be selectors
     // definingRisksHarmsAndAbuse: {
     //     type: String,
-
+    //     enum: filterCategories.definingRisksHarmsAndAbuse.subfilters
     // },
+
     corporateResponsibilityInUNGPsFramework: {
         type: String,
-        enum: filterCategories.corporateResponsibilityInUNGPsFramework
+        enum: filterCategories.corporateResponsibilityInUNGPsFramework.subfilters
     },
     specificCorporateHumanRightsResponsibilities: {
         type: String,
-        enum: filterCategories.specificCorporateHumanRightsResponsibilities
+        enum: filterCategories.specificCorporateHumanRightsResponsibilities.subfilters
     },
     actors: {
         type: String,
-        enum: filterCategories.actors
+        enum: filterCategories.actors.subfilters
     },
     otherSubstantialMatters: {
         type: String,
-        enum: filterCategories.otherSubstantialMatters
+        enum: filterCategories.otherSubstantialMatters.subfilters
     },
     NCPsEffortsToResolveTheCases: {
         type: String,
-        enum: filterCategories.NCPsEffortsToResolveTheCases
+        enum: filterCategories.NCPsEffortsToResolveTheCases.subfilters
     },
     NCPGoodOffices: {
         type: String,
-        enum: filterCategories.NCPGoodOffices
+        enum: filterCategories.NCPGoodOffices.subfilters
     },
     challengesDuringTheGoodOffice: {
         type: String,
-        enum: filterCategories.challengesDuringTheGoodOffice
+        enum: filterCategories.challengesDuringTheGoodOffice.subfilters
     },
     outcomesResultOfTheMediation: {
         type: String,
-        enum: filterCategories.outcomesResultOfTheMediation
+        enum: filterCategories.outcomesResultOfTheMediation.subfilters
     },
     analysisOnStatement: {
         type: String,
-        enum: filterCategories.analysisOnStatement
+        enum: filterCategories.analysisOnStatement.subfilters
     },
 
 
