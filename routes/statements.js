@@ -32,11 +32,10 @@ router.post('/', isLoggedIn, validateStatement, catchAsync(async (req, res) => {
 router.get('/search', catchAsync(async (req, res, next) => {
 
     const searchTerm = req.query.searchTerm;// Get the search term from the form
-    const searchTermArray = searchTerm.split(' ').join('|')
-
     const selectedFilters = req.query.selectedFilters; // Get selected filter options
     const filters = filterCategories;
     const baseQuery = {};
+    const results = [];
 
     for (let filter in selectedFilters) {
         if (selectedFilters[filter].length > 0) {
@@ -45,25 +44,34 @@ router.get('/search', catchAsync(async (req, res, next) => {
     };
 
     const entries = await Statement.find(baseQuery).lean();
-    const fuse = new Fuse(entries, {
-        keys: [
-            {
-                name: 'title',
-                weight: 2
-            },
-            {
-                name: 'summary',
-                weight: 1
-            }
-        ], // Specify which fields to search
-        useExtendedSearch: true,
-        includeScore: true,
-        ignoreLocation: true,
-        threshold: 0.3, // Adjust the threshold as needed (0 to 1)
-    });
 
-    const results = fuse.search(searchTermArray)
-    console.log(results)
+    if (searchTerm !== "") {
+        const searchTermArray = searchTerm.split(' ').join('|');
+        const fuse = new Fuse(entries, {
+            keys: [
+                {
+                    name: 'title',
+                    weight: 2
+                },
+                {
+                    name: 'summary',
+                    weight: 1
+                }
+            ], // Specify which fields to search
+            useExtendedSearch: true,
+            includeScore: true,
+            ignoreLocation: true,
+            threshold: 0.3, // Adjust the threshold as needed (0 to 1)
+        });
+        results.push(...fuse.search(searchTermArray));
+    } else {
+        entries.forEach((entry) => {
+            results.push({
+                item: entry
+            })
+        });
+    }
+
     res.render('statements/searchResults', { results, filters, selectedFilters, searchTerm });
 }));
 
