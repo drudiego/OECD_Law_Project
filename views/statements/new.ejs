@@ -3,7 +3,7 @@
 
     <div class="row">
         <h1 class="text-center">New Statement</h1>
-        <div class="col-6 offset-3">
+        <div class="col-12">
 
             <form action="/statements" method="POST" novalidate class="validated-form">
                 <div class="mb-3">
@@ -13,8 +13,15 @@
                     <div class="invalid-feedback">Title can't be empty</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="statement[location]" required>
+                    <label class="form-label" for="description">Description (max 300 char)</label>
+                    <textarea class="form-control" type="text" id="description" name="statement[description]"
+                        maxlength="300" required></textarea>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">Summary can't be empty</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="year">Year</label>
+                    <input class="form-control" type="text" id="year" name="statement[year]" required>
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Location can't be empty</div>
                 </div>
@@ -27,26 +34,37 @@
                 </div>
 
                 <!-- //FILTERS START HERE -->
-                <!-- The options in the select field for each filter are being pulled from the utils/filters.ejs file. This is the only file that contain the subfilters. I could make a for loop for the entire div of each select filter, but I think it would be worse for readability. -->
+
                 <div class="container-fluid d-flex flex-row flex-wrap">
                     <% for (filter in filters) { %>
-                        <div class="col-5 me-5 mb-3">
+                        <div class="col-5 me-3 mb-3 accordion" id="accordion-<%= filter %>">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse<%= filter %>" aria-expanded="false"
+                                        aria-controls="collapse<%= filter %>">
 
-                            <label class="form-label" for=<%=filter%> ><strong>
-                                    <%= filters[filter].filterName%>
-                                </strong> </label>
-                            <select class="form-select" aria-label="Default select example" id="<%= filter%>"
-                                name="statement[<%= filter%>]" required>
-                                <option value="" disabled selected>--Choose Option--</option>
-                                <% for (subfilter of filters[filter].subfilters) { %>
-                                    <option value="<%=subfilter %>">
-                                        <%= subfilter %>
-                                    </option>
-                                    <% } %>
-                            </select>
-                            <div class="valid-feedback">Looks good!
+                                        <%= filters[filter].filterName%>
+                                    </button>
+
+                                </h2>
+                                <div id="collapse<%= filter %>" class="accordion-collapse collapse "
+                                    data-bs-parent="#<%= filter %>">
+                                    <div class="accordion-body">
+                                        <% for (subfilter of filters[filter].subfilters) { %>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    name="statement[<%= filter%>]" value="<%=subfilter %>"
+                                                    id="subfilter-<%=subfilter %>">
+                                                <label class="form-check-label" for="subfilter-<%=subfilter %>">
+                                                    <%= subfilter %>
+                                                </label>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="invalid-feedback">Please select an option</div>
                         </div>
                         <% } %>
                 </div>

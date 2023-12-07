@@ -14,6 +14,7 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createStatement = async (req, res) => {
+    // console.log(req.body.statement)
     const statement = new Statement(req.body.statement);
     statement.author = req.user._id;
     await statement.save();
