@@ -11,8 +11,9 @@ const User = require('./models/user')
 
 const ExpressError = require('./utils/ExpressError');
 
+const userRoutes = require('./routes/users');
 const statementRoutes = require('./routes/statements');
-const userRoutes = require('./routes/users')
+const segmentRoutes = require('./routes/segments');
 
 mongoose.connect('mongodb://127.0.0.1:27017/oecd-case-law');
 
@@ -64,6 +65,7 @@ app.use((req, res, next) => {
 //Route handlers:
 app.use('/', userRoutes)
 app.use('/statements', statementRoutes)
+app.use("/statements/:id/segments", segmentRoutes);
 
 app.get('/', (req, res) => {
     res.render('home')

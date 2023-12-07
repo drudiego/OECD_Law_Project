@@ -68,7 +68,7 @@ module.exports.search = async (req, res, next) => {
 };
 
 module.exports.showStatement = async (req, res) => {
-    const statement = await Statement.findById(req.params.id).populate("author");
+    const statement = await Statement.findById(req.params.id).populate("segments").populate("author");
     const filters = filterCategories;
     if (!statement) {
         req.flash('error', 'Cannot find that Statement');

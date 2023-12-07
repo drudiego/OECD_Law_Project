@@ -2,7 +2,7 @@
 
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-6">
             <div class="card mb-3">
 
                 <div class="card-body">
@@ -15,18 +15,16 @@
                         </p>
                         <% } %>
                             <p class="card-text">
+                                <%= statement.description %>
+                            </p>
+                            <br>
+                            <p class="card-text">
                                 <%= statement.summary %>
                             </p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Location</strong>: <%= statement.location %>
+                    <li class="list-group-item"><strong>Year</strong>: <%= statement.year %>
                     </li>
-                    <% for (filter in filters) {%>
-                        <li class="list-group-item"><strong>
-                                <%= filters[filter].filterName %>
-                            </strong>: <%= statement[filter] %>
-                        </li>
-                        <% } %>
 
                 </ul>
                 <div class="card-body">
@@ -42,4 +40,76 @@
 
             </div>
         </div>
+        <div class="col-6">
+
+            <% if(currentUser) {%>
+                <h2>Add a Segment</h2>
+                <form action="/statements/<%= statement._id %>/segments" method="POST" class="mb-3 validated-form"
+                    novalidate>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Segment text:</label>
+                        <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="3"
+                            required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label" for="filter"><strong>Filter:</strong></label>
+                        <select class="form-select" aria-label="Default select example" id="filter"
+                            name="segment[filter]">
+                            <option value="" selected></option>
+                            <% for (filter in filters) { %>
+                                <option value="<%= filters[filter].filterName %>" filter-key="<%= filter %>">
+                                    <%= filters[filter].filterName %>
+                                </option>
+                                <% } %>
+                        </select>
+
+
+                    </div>
+                    <div class="mb-3">
+
+                        <label class="form-label" for="subfilter"><strong>Sub-Filter:</strong></label>
+                        <select class="form-select" aria-label="Default select example" id="subfilter"
+                            name="segment[subfilter]">
+                            <!-- Options will be dynamically populated based on user selection -->
+                        </select>
+                    </div>
+
+                    <button class="btn btn-success">Submit</button>
+                </form>
+                <% } %>
+                    <% for(let segment of statement.segments){ %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+
+
+
+                                <p class="card-text">
+                                    Segment: <%= segment.body %>
+                                </p>
+
+                                <% if(currentUser) { %>
+                                    <form
+                                        action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE"
+                                        method="POST">
+                                        <button class="btn btn-sm btn-danger">DELETE SEGMENT</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+
+                        </div>
+                        <% } %>
+
+        </div>
     </div>
+
+    <script>
+        const filters = `<%- JSON.stringify(filters).replace(/'/g, "\\'") %>`;
+        console.log('Filters:', filters);
+
+    </script>
+
+    <!-- JavaScript to handle dynamic options in the second select field -->
+    <script src="/javascripts/populateSubfilters.js"></script>

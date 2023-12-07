@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const segmentSchema = new Schema({
     body: String,
+    filter: String,
     subfilter: String
 })
 

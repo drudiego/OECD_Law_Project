@@ -1,4 +1,4 @@
-const { statementSchema } = require('./schemas.js')
+const { statementSchema, segmentSchema } = require('./schemas.js')
 const ExpressError = require('./utils/ExpressError')
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -42,4 +42,14 @@ module.exports.storeReturnTo = (req, res, next) => {
         res.locals.returnTo = req.session.returnTo;
     }
     next();
+}
+
+module.exports.validateSegment = (req, res, next) => {
+    const { error } = segmentSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(', ')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
 }
