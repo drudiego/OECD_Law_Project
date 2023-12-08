@@ -1,9 +1,11 @@
 
+
+
 const goodFilters = JSON.parse(filters)
+
 
 // console.log(oi + " de dentro")
 
-console.log('dentro: ', goodFilters)
 
 // Get references to the select fields
 const filterSelect = document.getElementById('filter');

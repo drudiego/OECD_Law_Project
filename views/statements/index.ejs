@@ -44,18 +44,7 @@
                                     </div>
 
                                 </div>
-                                <!-- <label class="form-label" for=<%=filter%> ><strong>
-                                        <%= filters[filter].filterName%>
-                                    </strong> </label>
-                                <select class="form-select" aria-label="Default select example" id="<%= filter%>"
-                                    name="selectedFilters[<%= filter%>]">
-                                    <option value="" selected></option>
-                                    <% for (subfilter of filters[filter].subfilters) { %>
-                                        <option value="<%=subfilter %>">
-                                            <%= subfilter %>
-                                        </option>
-                                        <% } %>
-                                </select> -->
+
                             </div>
                             <% } %>
 
@@ -76,8 +65,9 @@
                             <h5 class="card-title">
                                 <%= statement.title %>
                             </h5>
+                            <p><b>ISSUE</b></p>
                             <p class="card-text">
-                                <%= statement.summary %>
+                                <%= statement.description %>
                             </p>
                             <a href="/statements/<%= statement._id %>" class="btn btn-outline-primary">Show
                                 Statement</a>

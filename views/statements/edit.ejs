@@ -17,7 +17,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
                     <textarea class="form-control" type="text" id="description" name="statement[description]"
-                        required><%= statement.description  %></textarea>
+                        maxlength="300" required><%= statement.description  %></textarea>
                     <div class="valid-feedback">Looks good!</div>
                     <div class="invalid-feedback">Summary can't be empty</div>
                 </div>
