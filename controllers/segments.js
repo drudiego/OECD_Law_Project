@@ -3,6 +3,7 @@ const Segment = require("../models/segment.js")
 
 module.exports.createSegment = async (req, res) => {
     const statement = await Statement.findById(req.params.id);
+
     const segment = new Segment(req.body.segment);
     // review.author = req.user._id;
     statement.segments.push(segment);
@@ -12,6 +13,14 @@ module.exports.createSegment = async (req, res) => {
     res.redirect(`/statements/${statement._id}`);
 
 }
+
+module.exports.updateSegment = async (req, res) => {
+    const { segmentId, id } = req.params;
+    const statement = await Statement.findById(id);
+    const segment = await Segment.findByIdAndUpdate(segmentId, { ...req.body.segment });
+    req.flash('success', 'Successfully updated the Statement');
+    res.redirect(`/statements/${statement._id}`)
+};
 
 module.exports.deleteSegment = async (req, res) => {
     const { segmentId, id } = req.params;

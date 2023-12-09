@@ -78,7 +78,6 @@ module.exports.showStatement = async (req, res) => {
 };
 
 module.exports.renderEditForm = async (req, res) => {
-
     const statement = await Statement.findById(req.params.id);
     const filters = filterCategories;
     if (!statement) {
@@ -86,6 +85,18 @@ module.exports.renderEditForm = async (req, res) => {
         return res.redirect('/statements')
     }
     res.render('statements/edit', { statement, filters })
+};
+
+module.exports.renderEditSegmentsForm = async (req, res) => {
+    console.log("Your params:", req.params)
+
+    const statement = await Statement.findById(req.params.id).populate("segments").populate("author");
+    const filters = filterCategories;
+    if (!statement) {
+        req.flash('error', 'Cannot find that Statement');
+        return res.redirect('/statements')
+    }
+    res.render('statements/editSegments', { statement, filters })
 };
 
 module.exports.updateStatement = async (req, res) => {

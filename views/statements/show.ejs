@@ -91,11 +91,7 @@
                 <form action="/statements/<%= statement._id %>/segments" method="POST" class="mb-3 validated-form"
                     novalidate>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="body">Segment text:</label>
-                        <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="3"
-                            required></textarea>
-                    </div>
+
 
                     <div class="mb-3">
 
@@ -121,8 +117,15 @@
                         </select>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Segment text:</label>
+                        <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="10"
+                            required></textarea>
+                    </div>
+
                     <button class="btn btn-success">Submit</button>
                 </form>
+                <a class="btn btn-sm btn-info" href="/statements/<%= statement._id %>/editSegments">Edit Segments</a>
                 <% } %>
 
 

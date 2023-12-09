@@ -1,0 +1,169 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <div class="row">
+        <div class="col-9">
+            <div class="card mb-3">
+
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%= statement.title %>
+                    </h2>
+                    <% if(currentUser) { %>
+                        <p class="card-text text-body-secondary">
+                            Included in the database by <%= statement.author.username %>
+                        </p>
+                        <% } %>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- teste accordion com filtros juntos -->
+        <div class="col-9 my-5">
+            <h3>Edit the existing segments for this statement</h3>
+
+
+
+
+            <% for(filter in filters){ %>
+                <div class="accordion mb-3" id="segments-accordion">
+                    <div class="accordion-item" hidden filter-name="<%= filters[filter].filterName %>">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse<%= filter%>" aria-expanded="false"
+                                aria-controls="collapse<%= filter%>">
+                                <%= filters[filter].filterName %>
+                            </button>
+                        </h2>
+                        <% for(let segment of statement.segments){ %>
+                            <% if(segment.filter===filters[filter].filterName) {%>
+                                <div id="collapse<%= filter%>" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+
+                                        <form
+                                            action="/statements/<%= statement._id %>/segments/<%= segment._id%>?_method=PUT"
+                                            method="POST" class="mb-3 validated-form" novalidate>
+
+
+                                            <div class="mb-3">
+
+                                                <label class="form-label" for="filter"><strong>Filter:</strong></label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    id="filter-<%= segment._id%>" name="segment[filter]">
+
+                                                    <% for (f in filters) { %>
+                                                        <option value="<%= filters[f].filterName %>"
+                                                            filter-key="<%= filter %>"
+                                                            <%=filters[f].filterName===segment.filter ? 'selected' : ''
+                                                            %>>
+                                                            <%= filters[f].filterName %>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <label class="form-label"
+                                                    for="subfilter"><strong>Sub-Filter:</strong></label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    id="subfilter-<%= segment._id%>" name="segment[subfilter]">
+                                                    <!-- Options will be dynamically populated based on user selection -->
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="body">Segment text:</label>
+                                                <textarea class="form-control" name="segment[body]" id="body" cols="60"
+                                                    rows="10" required><%= segment.body%></textarea>
+                                            </div>
+
+                                            <button class="btn btn-success">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- <div id="collapse<%= filter%>" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <h5>
+                                            <%= segment.subfilter %>
+                                        </h5>
+                                        <p><i>
+                                                <%= segment.body %>
+                                            </i></p>
+
+                                        <% if(currentUser) { %>
+                                            <form
+                                                action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE"
+                                                method="POST">
+                                                <button class="btn btn-sm btn-danger">DELETE SEGMENT</button>
+                                            </form>
+                                            <% } %>
+                                    </div>
+                                </div> -->
+                                <% } %>
+                                    <% } %>
+                    </div>
+                </div>
+                <% } %>
+
+
+
+
+
+
+                    <% if(currentUser) {%>
+                        <h2>Add a Segment</h2>
+                        <form action="/statements/<%= statement._id %>/segments" method="POST"
+                            class="mb-3 validated-form" novalidate>
+
+
+
+                            <div class="mb-3">
+
+                                <label class="form-label" for="filter"><strong>Filter:</strong></label>
+                                <select class="form-select" aria-label="Default select example" id="filter"
+                                    name="segment[filter]">
+                                    <option value="" selected></option>
+                                    <% for (filter in filters) { %>
+                                        <option value="<%= filters[filter].filterName %>" filter-key="<%= filter %>">
+                                            <%= filters[filter].filterName %>
+                                        </option>
+                                        <% } %>
+                                </select>
+
+
+                            </div>
+                            <div class="mb-3">
+
+                                <label class="form-label" for="subfilter"><strong>Sub-Filter:</strong></label>
+                                <select class="form-select" aria-label="Default select example" id="subfilter"
+                                    name="segment[subfilter]">
+                                    <!-- Options will be dynamically populated based on user selection -->
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="body">Segment text:</label>
+                                <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="3"
+                                    required></textarea>
+                            </div>
+
+                            <button class="btn btn-success">Submit</button>
+                        </form>
+                        <% } %>
+
+
+        </div>
+    </div>
+
+    <script>
+        const filters = `<%- JSON.stringify(filters).replace(/'/g, "\\'") %>`;
+        const statement = `<%- JSON.stringify(statement)%>`;
+
+    </script>
+
+    <!-- JavaScript to handle dynamic options in the second select field -->
+    <script src="/javascripts/hideUnusedAccordion.js"></script>
+    <script src="/javascripts/populateSubfiltersEdit.js"></script>

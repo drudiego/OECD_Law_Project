@@ -20,4 +20,7 @@ router.route('/:id')
 
 router.get('/:id/edit', isLoggedIn, catchAsync(statements.renderEditForm));
 
+router.get('/:id/editSegments', isLoggedIn, catchAsync(statements.renderEditSegmentsForm))
+
+
 module.exports = router
