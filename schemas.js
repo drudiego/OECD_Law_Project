@@ -27,6 +27,7 @@ module.exports.statementSchema = Joi.object({
 
 module.exports.segmentSchema = Joi.object({
     segment: Joi.object({
+        statementTitle: Joi.string(),
         body: Joi.string().required(),
         filter: Joi.string().required(),
         subfilter: Joi.string().required()

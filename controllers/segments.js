@@ -6,6 +6,9 @@ module.exports.createSegment = async (req, res) => {
 
     const segment = new Segment(req.body.segment);
     // review.author = req.user._id;
+    console.log(segment)
+    segment.statementTitle = statement.title;
+    console.log(segment)
     statement.segments.push(segment);
     await segment.save();
     await statement.save();

@@ -7,28 +7,28 @@ module.exports.filterCategories = {
             "Racism",
             "Consumer interest",
             "Corruption",
-            "Living condition / Inadequate standard of living",
+            "Living condition/Inadequate standard of living",
             "Security issues",
             "No stakeholder consultation",
             "Social audit",
-            "Child / Forced / Modern slavery",
-            "Gender - based violence and harassment",
-            "Failed to conduct HRDD / address environmental and social harms",
+            "Child/Forced/Modern slavery",
+            "Gender-based violence and harassment",
+            "Failed to conduct HRDD/address environmental and social harms",
             "Disclosure",
-            "Death / killings",
-            "Violence / abuse / physicalharm",
-            "Misuse of products / linked to conflict / armed conflict",
+            "Death/killings",
+            "Violence/abuse/physicalharm",
+            "Misuse of products/linked to conflict/armed conflict",
             "Environmental harm",
-            "Forcible displacement / Land grabbing / FPIC",
-            "Collective bargain / Union rights",
-            "Indigenous people / Aboriginal people",
-            "Cultural heritage / Aboriginal site /",
+            "Misuse of products/linked to conflict/armed conflict",
+            "Collective bargain/Union rights",
+            "Indigenous people/Aboriginal people",
+            "Cultural heritage/Aboriginal site/",
             "Fossil fuel investment",
-            "Distribution of personal data / reputation",
+            "Distribution of personal data/reputation",
             "Migration and detention of migrants",
-            "Climate change / greenwashing",
+            "Climate change/greenwashing",
             "Social and environmental risks to local community",
-            "Human rights abuses during the war / Colonial",
+            "Human rights abuses during the war/Colonial",
             "Labour rights, health risks to employees"
         ]
     },
@@ -63,7 +63,7 @@ module.exports.filterCategories = {
     specificCorporateHumanRightsResponsibilities: {
         filterName: "Other specific responsibilities for human rights/environment",
         subfilters: [
-            "Parent companies managerial responsibility",
+            "parent companies managerial responsibility",
             "Responsibility regarding the domestic laws",
             "Responsibility in conflict-affected areas",
             "Responsibility in supply chain",
@@ -76,7 +76,7 @@ module.exports.filterCategories = {
     actors: {
         filterName: "Actors - Human rights responsibility",
         subfilters: [
-            "Consultant companies",
+            "Consultant cpmpanies",
             "Audit",
             "SMEs",
             "Non-profit organisations",
@@ -89,7 +89,7 @@ module.exports.filterCategories = {
     },
 
     otherSubstantialMatters: {
-        filterName: "Other Substantial Matters",
+        filterName: "Other substantial matters",
         subfilters: [
             "Conflict between the legislations/regulations",
             "Corporate governance",
@@ -205,7 +205,7 @@ module.exports.filterCategories = {
     statusOfTheCase: {
         filterName: "Status of the case",
         subfilters: [
-            "Conclusion without participation",
+            "conclusion without participation",
             "Rejected (apply to cases with only initial statement)",
             "Completed without agreement",
             "Completed (company withdrawn its participation)",
@@ -214,13 +214,13 @@ module.exports.filterCategories = {
     },
 
     NCPsEffortsToResolveTheCases: {
-        filterName: "NCP's Efforts To Resolve The Cases",
+        filterName: "NCPs efforts to resolve the case",
         subfilters: [
             "Hired professional external mediator",
             "Included workers/victims in the mediation process",
             "Independent fact-finding",
             "Hired translators",
-            "Hired legal expert/consultant",
+            "hired legal expert/consultant",
             "NCP provided advice to government",
             "Approaches/penalties for non-participation",
             "Cooperation between NCPs",
@@ -230,7 +230,7 @@ module.exports.filterCategories = {
     },
 
     NCPGoodOffices: {
-        filterName: "NCP Good Offices",
+        filterName: "Good office types",
         subfilters: [
             "Conciliation approaches",
             "Mediation approaches",
@@ -239,7 +239,7 @@ module.exports.filterCategories = {
     },
 
     challengesDuringTheGoodOffice: {
-        filterName: "Challenges During The Good Office",
+        filterName: "Challenges in NCP proceeding",
         subfilters: [
             "Inability of NCPs to determine the link, evidence",
             "No cooperation between the NCPs",
@@ -251,7 +251,7 @@ module.exports.filterCategories = {
     },
 
     outcomesResultOfTheMediation: {
-        filterName: "Outcomes/Result Of The Mediation",
+        filterName: "Outcome/result of the NCP mediation",
         subfilters: [
             "No agreement",
             "Acknowledgements/Apologies",
@@ -265,11 +265,11 @@ module.exports.filterCategories = {
 
 
     analysisOnStatement: {
-        filterName: "Analysis On NCP's Statement",
+        filterName: "Analysis of NCP statement",
         subfilters: [
             "Determination of compliance/non-compliance",
             "Referred instruments in the statement",
-            "Referred other NCP decisions",
+            "Refers other NCP decisions",
             "About OECD Guidelines in the NCP statements"
         ]
     }

@@ -1,4 +1,5 @@
 const Statement = require('../models/statement');
+const Segment = require('../models/segment');
 const Fuse = require('fuse.js');
 const { filterCategories } = require('../utils/filters.js')
 
@@ -26,16 +27,35 @@ module.exports.search = async (req, res, next) => {
     const searchTerm = req.query.searchTerm;// Get the search term from the form
     const selectedFilters = req.query.selectedFilters; // Get selected filter options
     const filters = filterCategories;
-    const baseQuery = {};
+    const baseQuery = { subfilter: [] };
+
     const results = [];
 
     for (let filter in selectedFilters) {
         if (selectedFilters[filter].length > 0) {
-            baseQuery[filter] = { $in: selectedFilters[filter] }
+            if (typeof selectedFilters[filter] === 'string') {
+                selectedFilters[filter] = [selectedFilters[filter]]
+            }
+            baseQuery.subfilter.push(...selectedFilters[filter])
         }
     };
+    console.log("baseQuery is: ", baseQuery)
+    let entries
+    if (baseQuery.subfilter.length > 0) {
+        const matchingSegments = await Segment.find({
+            subfilter: { $in: baseQuery.subfilter }
+        }).lean();
+        console.log("the match: ", matchingSegments)
+        const matchingSegmentIds = matchingSegments.map(segment => segment._id)
+        console.log("the ids: ", matchingSegmentIds)
+        entries = await Statement.find({
+            'segments': { $in: matchingSegmentIds }
+        }).lean();
+    } else {
+        entries = await Statement.find().lean()
+    }
+    console.log("entries is: ", entries)
 
-    const entries = await Statement.find(baseQuery).lean();
 
     if (searchTerm !== "") {
         const searchTermArray = searchTerm.split(' ').join('|'); // used to make it possible to search for more than 1 word in the search field, using OR operator
