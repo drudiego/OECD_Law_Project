@@ -1,0 +1,81 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <div class="mb-5">
+        <h1>All Statements</h1>
+
+        <div class="container-fluid ">
+
+            <div class="col-12 ms-auto mb-3">
+                <form action="/statements/search" method="GET">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="searchTerm">Search</label>
+                        <input class="form-control" id="searchTerm" type="text" name="searchTerm"
+                            placeholder="Search...">
+                    </div>
+                    <div class="container-fluid d-flex flex-row flex-wrap">
+
+                        <% for (filter in filters) { %>
+                            <div class="col-5 me-5 mb-3 accordion" id="accordion-<%= filter %>">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse<%= filter %>"
+                                            aria-expanded="false" aria-controls="collapse<%= filter %>">
+
+                                            <%= filters[filter].filterName%>
+                                        </button>
+
+                                    </h2>
+                                    <div id="collapse<%= filter %>" class="accordion-collapse collapse "
+                                        data-bs-parent="#<%= filter %>">
+                                        <div class="accordion-body">
+                                            <% for (subfilter of filters[filter].subfilters) { %>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        name="selectedFilters[<%= filter%>]" value="<%=subfilter %>"
+                                                        id="subfilter-<%=subfilter %>">
+                                                    <label class="form-check-label" for="subfilter-<%=subfilter %>">
+                                                        <%= subfilter %>
+                                                    </label>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <% } %>
+
+                    </div>
+
+
+                    <button class="btn btn-info mt-3" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="container-fluid d-flex flex-row flex-wrap">
+
+                <% for (let statement of statements){ %>
+                    <div class="card mt-3 col-5 me-3">
+                        <div class="card-header">
+                            <%= statement.location %>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= statement.title %>
+                            </h5>
+                            <p><b>ISSUE</b></p>
+                            <p class="card-text">
+                                <%= statement.description %>
+                            </p>
+                            <a href="/statements/<%= statement._id %>" class="btn btn-outline-primary">Show
+                                Statement</a>
+                        </div>
+                    </div>
+                    <% } %>
+
+            </div>
+
+        </div>
+    </div>

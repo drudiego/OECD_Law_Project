@@ -28,7 +28,7 @@ module.exports.search = async (req, res, next) => {
     const selectedFilters = req.query.selectedFilters; // Get selected filter options
     const filters = filterCategories;
     const baseQuery = { subfilter: [] };
-
+    console.log("filtros selecionados: ", selectedFilters)
     const results = [];
 
     for (let filter in selectedFilters) {
@@ -39,22 +39,22 @@ module.exports.search = async (req, res, next) => {
             baseQuery.subfilter.push(...selectedFilters[filter])
         }
     };
-    console.log("baseQuery is: ", baseQuery)
+    // console.log("baseQuery is: ", baseQuery)
     let entries
     if (baseQuery.subfilter.length > 0) {
         const matchingSegments = await Segment.find({
             subfilter: { $in: baseQuery.subfilter }
         }).lean();
-        console.log("the match: ", matchingSegments)
+        // console.log("the match: ", matchingSegments)
         const matchingSegmentIds = matchingSegments.map(segment => segment._id)
-        console.log("the ids: ", matchingSegmentIds)
+        // console.log("the ids: ", matchingSegmentIds)
         entries = await Statement.find({
             'segments': { $in: matchingSegmentIds }
         }).lean();
     } else {
         entries = await Statement.find().lean()
     }
-    console.log("entries is: ", entries)
+    // console.log("entries is: ", entries)
 
 
     if (searchTerm !== "") {
