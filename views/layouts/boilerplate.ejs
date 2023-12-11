@@ -25,8 +25,61 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
             <script src="/javascripts/tomSelectFilters.js"></script>
             <script src="/javascripts/validateForms.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.querySelector('form').addEventListener('submit', function (event) {
+                        event.preventDefault(); // Prevent form submission
+
+                        // Collect form data
+                        var searchTerm = document.getElementById('searchTerm').value;
+
+                        // Use document.querySelectorAll to select all Tom Select elements with the class "select"
+                        var selectElements = document.querySelectorAll('.select');
+
+                        // Initialize an array to store selected values from all select elements
+                        var selectedFilters = [];
+
+                        // Iterate through each Tom Select element
+                        selectElements.forEach(function (selectElement) {
+                            // Get selected values from Tom Select
+                            var selectedValues = Array.from(selectElement.querySelectorAll('.item'))
+                                .filter(item => !item.classList.contains('remove'))
+                                .map(item => item.firstChild.nodeValue.trim());
+
+                            // Add selected values to the array
+                            selectedFilters = selectedFilters.concat(selectedValues);
+                        });
+
+
+                        console.log("selectElements: ", selectElements)
+                        console.log("search term: ", searchTerm)
+                        console.log("selectedfilters: ", selectedFilters)
+                        // Create a FormData object to send the data
+
+
+                        try {
+                            // Use the fetch API to send the request
+                            const response = await fetch(`/statements/search?searchTerm=${encodeURIComponent(searchTerm)}&selectedFilters=${selectedFilters.join(',')}`);
+
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+
+                            // Parse the response as text
+                            const data = await response.text();
+
+                            // Update the DOM with the new results
+                            document.querySelector('.container-fluid.d-flex.flex-row.flex-wrap').innerHTML = data;
+                        } catch (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                });
+            </script>
+
 </body>
 
 </html>

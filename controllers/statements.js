@@ -24,6 +24,7 @@ module.exports.createStatement = async (req, res) => {
 };
 
 module.exports.search = async (req, res, next) => {
+    console.log(req.query)
     const searchTerm = req.query.searchTerm;// Get the search term from the form
     const selectedFilters = req.query.selectedFilters; // Get selected filter options
     const filters = filterCategories;
