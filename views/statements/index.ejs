@@ -20,7 +20,8 @@
                                 data-placeholder="<%= filters[filter].filterName%>"
                                 class="select form-select-sm col-6 p-1">
                                 <% for (subfilter of filters[filter].subfilters) { %>
-                                    <option value="<%=subfilter %>">
+                                    <option value="<%=subfilter %>" <%=selectedFilters && selectedFilters[filter] &&
+                                        selectedFilters[filter].includes(subfilter) ? 'selected' : '' %>>
                                         <%= subfilter %>
                                     </option>
 
@@ -36,24 +37,7 @@
             </div>
             <div class="container-fluid d-flex flex-row flex-wrap">
 
-                <% for (let statement of statements){ %>
-                    <div class="card mt-3 col-5 me-3">
-                        <div class="card-header">
-                            <%= statement.location %>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= statement.title %>
-                            </h5>
-                            <p><b>ISSUE</b></p>
-                            <p class="card-text">
-                                <%= statement.description %>
-                            </p>
-                            <a href="/statements/<%= statement._id %>" class="btn btn-outline-primary">Show
-                                Statement</a>
-                        </div>
-                    </div>
-                    <% } %>
+                <%- include('../partials/results', { statements: statements }) %>
 
             </div>
 

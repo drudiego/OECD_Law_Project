@@ -4,9 +4,11 @@ const Fuse = require('fuse.js');
 const { filterCategories } = require('../utils/filters.js')
 
 module.exports.index = async (req, res) => {
+    let selectedFilters;
+    let searchTerm
     const statements = await Statement.find({});
     const filters = filterCategories;
-    res.render('statements/index', { statements, filters })
+    res.render('statements/index', { statements, filters, selectedFilters, searchTerm })
 };
 
 module.exports.renderNewForm = (req, res) => {
@@ -84,8 +86,19 @@ module.exports.search = async (req, res, next) => {
             })
         });
     }
-
-    res.render('statements/searchResults', { results, filters, selectedFilters, searchTerm });
+    console.log(results)
+    finalResults = []
+    for (result of results) {
+        finalResults.push(result.item)
+    }
+    console.log(finalResults)
+    if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        // If it's an AJAX request, respond with JSON
+        res.json({ statements: results });
+    } else {
+        // If it's a regular page load, render the HTML
+        res.render('statements/index', { statements: finalResults, filters, selectedFilters, searchTerm });
+    }
 };
 
 module.exports.showStatement = async (req, res) => {

@@ -60,24 +60,49 @@
                         // Create a FormData object to send the data
 
 
-                        try {
-                            // Use the fetch API to send the request
-                            const response = await fetch(`/statements/search?searchTerm=${encodeURIComponent(searchTerm)}&selectedFilters=${selectedFilters.join(',')}`);
-
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! Status: ${response.status}`);
+                        const response = await fetch(`/statements/search?searchTerm=${encodeURIComponent(searchTerm)}&selectedFilters=${JSON.stringify(selectedFilters)}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
                             }
-
-                            // Parse the response as text
-                            const data = await response.text();
-
-                            // Update the DOM with the new results
-                            document.querySelector('.container-fluid.d-flex.flex-row.flex-wrap').innerHTML = data;
-                        } catch (error) {
-                            console.error('Error:', error);
+                        });
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
                         }
-                    });
+
+                        // Parse the response as text
+                        const data = await response.text();
+
+                        // Update the DOM with the new results
+                        document.querySelector('.container-fluid.d-flex.flex-row.flex-wrap').innerHTML = data;
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
                 });
+                });
+
+                function updateResults(statements) {
+                    // Clear the existing content
+                    var resultsContainer = document.querySelector('.container-fluid.d-flex.flex-row.flex-wrap');
+                    resultsContainer.innerHTML = '';
+
+                    // Add new content based on the filtered statements
+                    statements.forEach(function (statement) {
+                        // Create and append HTML elements for each statement
+                        var statementDiv = document.createElement('div');
+                        statementDiv.className = 'card mt-3 col-5 me-3';
+                        statementDiv.innerHTML = `
+                <div class="card-header">${statement.location}</div>
+                <div class="card-body">
+                    <h5 class="card-title">${statement.title}</h5>
+                    <p><b>ISSUE</b></p>
+                    <p class="card-text">${statement.description}</p>
+                    <a href="/statements/${statement._id}" class="btn btn-outline-primary">Show Statement</a>
+                </div>
+            `;
+                        resultsContainer.appendChild(statementDiv);
+                    });
+                }
             </script>
 
 </body>
