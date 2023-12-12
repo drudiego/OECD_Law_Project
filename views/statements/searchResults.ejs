@@ -3,8 +3,59 @@
     <div class="mb-5 ">
         <h1>Search Results</h1>
 
-        <div class="container-fluid d-flex flex-row">
-            <div class=" col-6">
+        <div class="col-12 ms-auto mb-3">
+            <div>
+                <a class="btn btn-info" href="/statements">Reset search</a>
+            </div>
+
+            <form action="/statements/search" method="GET">
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="searchTerm">Search</label>
+                    <input class="form-control" id="searchTerm" type="text" name="searchTerm" value="<%= searchTerm%>"
+                        placeholder="Search...">
+                </div>
+                <div class="container-fluid d-flex flex-row flex-wrap">
+
+                    <% for (filter in filters) { %>
+
+                        <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple
+                            data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-6 p-1">
+                            <% for (subfilter of filters[filter].subfilters) { %>
+                                <option value="<%=subfilter %>" <%=selectedFilters && selectedFilters[filter] &&
+                                    selectedFilters[filter].includes(subfilter) ? 'selected' : '' %>>
+                                    <%= subfilter %>
+                                </option>
+
+                                <% } %>
+                        </select>
+
+                        <% } %>
+
+
+
+                            <!-- <label class="form-label" for=<%=filter%> ><strong>
+                                    <%= filters[filter].filterName%>
+                                </strong> </label>
+                            <select class="form-select" aria-label="Default select example" id="<%= filter%>"
+                                name="selectedFilters[<%= filter%>]">
+                                <option value="" selected></option>
+                                <% for (subfilter of filters[filter].subfilters) { %>
+                                    <option value="<%=subfilter %>">
+                                        <%= subfilter %>
+                                    </option>
+                                    <% } %>
+                            </select> -->
+
+
+                </div>
+
+
+                <button class="btn btn-info mt-3" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="container-fluid d-flex flex-row flex-wrap">
+            <div class=" col-8">
                 <% if (results.length> 0) { %>
                     <% for (let result of results){ %>
                         <div class="card mt-3 ">
@@ -37,72 +88,7 @@
                                 <% } %>
             </div>
 
-            <div class="col-6 ms-auto mb-3">
-                <div>
-                    <a class="btn btn-info" href="/statements">Reset search</a>
-                </div>
 
-                <form action="/statements/search" method="GET">
-                    <div class="mb-3">
-                        <label class="form-label fw-bold" for="searchTerm">Search</label>
-                        <input class="form-control" id="searchTerm" type="text" name="searchTerm"
-                            value="<%= searchTerm%>" placeholder="Search...">
-                    </div>
-                    <div class="container-fluid d-flex flex-row flex-wrap">
-
-                        <% for (filter in filters) { %>
-                            <div class="col-5 me-5 mb-3 accordion" id="accordion-<%= filter %>">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse<%= filter %>"
-                                            aria-expanded="false" aria-controls="collapse<%= filter %>">
-
-                                            <%= filters[filter].filterName%>
-                                        </button>
-
-                                    </h2>
-                                    <div id="collapse<%= filter %>" class="accordion-collapse collapse "
-                                        data-bs-parent="#<%= filter %>">
-                                        <div class="accordion-body">
-                                            <% for (subfilter of filters[filter].subfilters) { %>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        name="selectedFilters[<%= filter%>]" value="<%=subfilter %>"
-                                                        id="subfilter-<%=subfilter %>" <%=selectedFilters &&
-                                                        selectedFilters[filter] &&
-                                                        selectedFilters[filter].includes(subfilter) ? 'checked' : '' %>
-                                                    >
-                                                    <label class="form-check-label" for="subfilter-<%=subfilter %>">
-                                                        <%= subfilter %>
-                                                    </label>
-                                                </div>
-                                                <% } %>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- <label class="form-label" for=<%=filter%> ><strong>
-                                        <%= filters[filter].filterName%>
-                                    </strong> </label>
-                                <select class="form-select" aria-label="Default select example" id="<%= filter%>"
-                                    name="selectedFilters[<%= filter%>]">
-                                    <option value="" selected></option>
-                                    <% for (subfilter of filters[filter].subfilters) { %>
-                                        <option value="<%=subfilter %>">
-                                            <%= subfilter %>
-                                        </option>
-                                        <% } %>
-                                </select> -->
-                            </div>
-                            <% } %>
-
-                    </div>
-
-
-                    <button class="btn btn-info mt-3" type="submit">Search</button>
-                </form>
-            </div>
 
 
 

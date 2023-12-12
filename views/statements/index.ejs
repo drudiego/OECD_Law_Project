@@ -16,7 +16,7 @@
                     <div class="container-fluid d-flex flex-row flex-wrap">
                         <% for (filter in filters) { %>
 
-                            <select id="select-<%= filter %>" name="selectedFilters[]" multiple
+                            <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple
                                 data-placeholder="<%= filters[filter].filterName%>"
                                 class="select form-select-sm col-6 p-1">
                                 <% for (subfilter of filters[filter].subfilters) { %>
