@@ -10,7 +10,8 @@ document.querySelectorAll('.select').forEach((el) => {
                     'checkedClassNames': ['ts-checked'],
                     'uncheckedClassNames': ['ts-unchecked'],
                 }
-            }
+            },
+
         ],
         persist: false,
         create: false,

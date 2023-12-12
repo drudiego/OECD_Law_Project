@@ -17,13 +17,13 @@ module.exports.createSegment = async (req, res) => {
 
 }
 
-module.exports.updateSegment = async (req, res) => {
-    const { segmentId, id } = req.params;
-    const statement = await Statement.findById(id);
-    const segment = await Segment.findByIdAndUpdate(segmentId, { ...req.body.segment });
-    req.flash('success', 'Successfully updated the Statement');
-    res.redirect(`/statements/${statement._id}`)
-};
+// module.exports.updateSegment = async (req, res) => {
+//     const { segmentId, id } = req.params;
+//     const statement = await Statement.findById(id);
+//     const segment = await Segment.findByIdAndUpdate(segmentId, { ...req.body.segment });
+//     req.flash('success', 'Successfully updated the Statement');
+//     res.redirect(`/statements/${statement._id}`)
+// };
 
 module.exports.deleteSegment = async (req, res) => {
     const { segmentId, id } = req.params;

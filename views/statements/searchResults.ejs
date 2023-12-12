@@ -1,64 +1,59 @@
 <% layout('layouts/boilerplate') %>
 
-    <div class="mb-5 ">
-        <h1>Search Results</h1>
 
-        <div class="col-12 ms-auto mb-3">
-            <div>
-                <a class="btn btn-info" href="/statements">Reset search</a>
+    <div class="container-fluid col-9 mx-auto mt-5 mb-5">
+        <h1><b>OECD Cases</b></h1>
+        <h3>Please scroll down and use the search box and/or filters below to find a specific Complaint.</h3>
+
+        <div class="mt-5 ">
+
+            <div class="mb-5">
+                <form action="/statements/search" method="GET">
+                    <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
+                    <div class=" d-flex flex-row flex-wrap mb-3">
+                        <div class="col-11 me-auto">
+
+                            <input class="form-control" id="searchTerm" type="text" name="searchTerm"
+                                placeholder="Search...">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                    <div class="card bg-light ">
+                        <button class="btn bg-primary-subtle" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
+                            Show/Hide Filters
+                        </button>
+                        <div class="collapse " id="collapsedFilters">
+                            <div class="d-flex flex-row flex-wrap">
+
+                                <% for (filter in filters) { %>
+
+                                    <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple
+                                        data-placeholder="<%= filters[filter].filterName%>"
+                                        class="select form-select-sm col-6 p-1">
+                                        <% for (subfilter of filters[filter].subfilters) { %>
+                                            <option value="<%=subfilter %>" <%=selectedFilters &&
+                                                selectedFilters[filter] && selectedFilters[filter].includes(subfilter)
+                                                ? 'selected' : '' %>>
+                                                <%= subfilter %>
+                                            </option>
+
+                                            <% } %>
+                                    </select>
+
+                                    <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <form action="/statements/search" method="GET">
-                <div class="mb-3">
-                    <label class="form-label fw-bold" for="searchTerm">Search</label>
-                    <input class="form-control" id="searchTerm" type="text" name="searchTerm" value="<%= searchTerm%>"
-                        placeholder="Search...">
-                </div>
-                <div class="container-fluid d-flex flex-row flex-wrap">
+            <div class="d-flex flex-row flex-wrap">
 
-                    <% for (filter in filters) { %>
-
-                        <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple
-                            data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-6 p-1">
-                            <% for (subfilter of filters[filter].subfilters) { %>
-                                <option value="<%=subfilter %>" <%=selectedFilters && selectedFilters[filter] &&
-                                    selectedFilters[filter].includes(subfilter) ? 'selected' : '' %>>
-                                    <%= subfilter %>
-                                </option>
-
-                                <% } %>
-                        </select>
-
-                        <% } %>
-
-
-
-                            <!-- <label class="form-label" for=<%=filter%> ><strong>
-                                    <%= filters[filter].filterName%>
-                                </strong> </label>
-                            <select class="form-select" aria-label="Default select example" id="<%= filter%>"
-                                name="selectedFilters[<%= filter%>]">
-                                <option value="" selected></option>
-                                <% for (subfilter of filters[filter].subfilters) { %>
-                                    <option value="<%=subfilter %>">
-                                        <%= subfilter %>
-                                    </option>
-                                    <% } %>
-                            </select> -->
-
-
-                </div>
-
-
-                <button class="btn btn-info mt-3" type="submit">Search</button>
-            </form>
-        </div>
-
-        <div class="container-fluid d-flex flex-row flex-wrap">
-            <div class=" col-8">
                 <% if (results.length> 0) { %>
                     <% for (let result of results){ %>
-                        <div class="card mt-3 ">
+                        <div class="card mt-3 col-10">
                             <div class="card-header">
                                 <%= result.item.location %>
                             </div>
@@ -81,17 +76,10 @@
                                     Statement</a>
                             </div>
                         </div>
-
                         <% } %>
                             <% } else { %>
                                 <p>No results found.</p>
                                 <% } %>
+
             </div>
-
-
-
-
-
-
         </div>
-    </div>
