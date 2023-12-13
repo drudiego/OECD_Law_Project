@@ -19,7 +19,7 @@ module.exports.filterCategories = {
             "Violence/abuse/physicalharm",
             "Misuse of products/linked to conflict/armed conflict",
             "Environmental harm",
-            "Misuse of products/linked to conflict/armed conflict",
+            "Forcible displacement/Land grabbing/FPIC",
             "Collective bargain/Union rights",
             "Indigenous people/Aboriginal people",
             "Cultural heritage/Aboriginal site/",
