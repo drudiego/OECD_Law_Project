@@ -42,44 +42,49 @@
         </div>
         <!-- teste accordion com filtros juntos -->
         <div class="col-9 mb-5">
-            <div class="accordion" id="segments-accordion">
+            <div class="accordion mb-5" id="segments-accordion">
+                <% const existingFilters=[]; %>
+                    <% for (let segment of statement.segments) { %>
+                        <% existingFilters.push(segment.filter) %>
+                            <% } %>
+                                <%- console.log(existingFilters) %>
+                                    <% for(filter in filters){ %>
 
+                                        <div class="accordion-item" filter-name="<%= filters[filter].filterName %>"
+                                            <%=existingFilters.includes(filters[filter].filterName) ? "" : "hidden" %>>
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapse<%= filter%>"
+                                                    aria-expanded="false" aria-controls="collapse<%= filter%>">
+                                                    <%= filters[filter].filterName %>
+                                                </button>
+                                            </h2>
+                                            <% for(let segment of statement.segments){ %>
+                                                <% if(segment.filter===filters[filter].filterName) {%>
+                                                    <div id="collapse<%= filter%>" class="accordion-collapse collapse">
+                                                        <div class="accordion-body">
+                                                            <h5>
+                                                                <%= segment.subfilter %>
+                                                            </h5>
+                                                            <p><i>
+                                                                    <%= segment.body %>
+                                                                </i></p>
 
-                <% for(filter in filters){ %>
+                                                            <% if(currentUser) { %>
+                                                                <form
+                                                                    action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE"
+                                                                    method="POST">
+                                                                    <button class="btn btn-sm btn-danger">DELETE
+                                                                        SEGMENT</button>
+                                                                </form>
+                                                                <% } %>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <% } %>
+                                        </div>
 
-                    <div class="accordion-item" hidden filter-name="<%= filters[filter].filterName %>">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse<%= filter%>" aria-expanded="false"
-                                aria-controls="collapse<%= filter%>">
-                                <%= filters[filter].filterName %>
-                            </button>
-                        </h2>
-                        <% for(let segment of statement.segments){ %>
-                            <% if(segment.filter===filters[filter].filterName) {%>
-                                <div id="collapse<%= filter%>" class="accordion-collapse collapse">
-                                    <div class="accordion-body">
-                                        <h5>
-                                            <%= segment.subfilter %>
-                                        </h5>
-                                        <p><i>
-                                                <%= segment.body %>
-                                            </i></p>
-
-                                        <% if(currentUser) { %>
-                                            <form
-                                                action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE"
-                                                method="POST">
-                                                <button class="btn btn-sm btn-danger">DELETE SEGMENT</button>
-                                            </form>
-                                            <% } %>
-                                    </div>
-                                </div>
-                                <% } %>
-                                    <% } %>
-                    </div>
-
-                    <% } %>
+                                        <% } %>
             </div>
 
 
@@ -125,7 +130,7 @@
 
                     <button class="btn btn-success">Submit</button>
                 </form>
-                <a class="btn btn-sm btn-info" href="/statements/<%= statement._id %>/editSegments">Edit Segments</a>
+
                 <% } %>
 
 
@@ -140,4 +145,4 @@
 
     <!-- JavaScript to handle dynamic options in the second select field -->
     <script src="/javascripts/populateSubfilters.js"></script>
-    <script src="/javascripts/hideUnusedAccordion.js"></script>
+    <!-- <script src="/javascripts/hideUnusedAccordion.js"></script> -->
