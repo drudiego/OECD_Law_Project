@@ -47,22 +47,23 @@
 
             <div class="d-flex flex-row flex-wrap">
                 <% for (let statement of statements){ %>
-                    <div class="card mt-3 col-10">
-                        <div class="card-header">
-                            <%= statement.location %>
+                    <a href="/statements/<%= statement._id %>" class="link-container">
+                        <div class="card mt-3 col-10">
+                            <div class="card-header">
+                                <%= statement.location %>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= statement.title %>
+                                </h5>
+                                <p class="issue-tag">ISSUE</p>
+                                <p class="card-text"><i>
+                                        <%= statement.description %>
+                                    </i></p>
+
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= statement.title %>
-                            </h5>
-                            <p><b>ISSUE</b></p>
-                            <p class="card-text">
-                                <%= statement.description %>
-                            </p>
-                            <a href="/statements/<%= statement._id %>" class="btn btn-outline-primary">Show
-                                Statement</a>
-                        </div>
-                    </div>
+                    </a>
                     <% } %>
             </div>
         </div>

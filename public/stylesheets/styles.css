@@ -1,3 +1,64 @@
-#map {
-    height: 180px;
+.link-container {
+    display: inline-block;
+    text-decoration: none;
+    /* Remove default underline from text */
+    color: #000;
+    /* Set the text color (customize as needed) */
+}
+
+.link-container h5 {
+    font-weight: 600;
+    /* Underline the h5 when the parent div is hovered */
+}
+
+/* Style the h5 element when the parent div is hovered */
+.link-container:hover h5 {
+    text-decoration: underline;
+    /* Underline the h5 when the parent div is hovered */
+}
+
+.issue-tag,
+.title-tag,
+.summary-tag {
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    color: rgb(53, 81, 207)
+}
+
+.return-link {
+    text-decoration: none;
+    /* Remove default underline from text */
+    color: #000;
+}
+
+.return-link:hover {
+    text-decoration: underline;
+    /* Underline the h5 when the parent div is hovered */
+}
+
+.statement-title {
+    font-weight: 700;
+    line-height: 35px;
+}
+
+.statement-description {
+    font-weight: 600;
+    line-height: 28px;
+}
+
+.statement-summary {
+    font-size: large;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.accordion-button {
+    font-weight: 500;
+    font-size: 20px
+}
+
+.subfilter-accordion-text {
+    font-weight: 600;
+    font-size: 18px
 }

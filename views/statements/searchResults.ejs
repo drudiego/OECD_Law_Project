@@ -53,30 +53,25 @@
 
                 <% if (results.length> 0) { %>
                     <% for (let result of results){ %>
-                        <div class="card mt-3 col-10">
-                            <div class="card-header">
-                                <%= result.item.location %>
+                        <a href="/statements/<%= result.item._id %>" class="link-container">
+                            <div class="card mt-3 col-10">
+                                <div class="card-header">
+                                    <%= result.item.location %>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= result.item.title %>
+                                    </h5>
+                                    <p class="issue-tag">ISSUE</p>
+                                    <p class="card-text"><i>
+                                            <%= result.item.description %>
+                                        </i></p>
+
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= result.item.title %>
-                                </h5>
-                                <p class="card-text">
-                                    <b>Actors : </b>
-                                    <%= result.item.actors %>
-                                </p>
-                                <p class="card-text">
-                                    <b>NCP Good Offices : </b>
-                                    <%= result.item.NCPGoodOffices %>
-                                </p>
-                                <p class="card-text">
-                                    <%= result.item.description %>
-                                </p>
-                                <a href="/statements/<%= result.item._id %>" class="btn btn-outline-primary">Show
-                                    Statement</a>
-                            </div>
-                        </div>
+                        </a>
                         <% } %>
+
                             <% } else { %>
                                 <p>No results found.</p>
                                 <% } %>
