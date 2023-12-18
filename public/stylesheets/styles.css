@@ -1,3 +1,11 @@
+body {
+    background-color: #04316a;
+}
+
+main {
+    border-radius: 10px;
+}
+
 .link-container {
     display: inline-block;
     text-decoration: none;
@@ -23,7 +31,7 @@
     font-weight: 700;
     margin-top: 20px;
     margin-bottom: 4px;
-    color: rgb(53, 81, 207)
+    color: #06489b
 }
 
 .return-link {
@@ -38,6 +46,7 @@
 }
 
 .statement-title {
+    color: #04316a;
     font-weight: 700;
     line-height: 35px;
 }
@@ -61,4 +70,65 @@
 .subfilter-accordion-text {
     font-weight: 600;
     font-size: 18px
+}
+
+#filters-container {
+    background-color: #cfe2ff;
+}
+
+.btn-dark-blue {
+    background-color: #06489b;
+    color: #fff
+}
+
+.btn-dark-blue:hover {
+    background-color: #04316a;
+    color: #fff
+}
+
+.btn-hide-filters {
+    color: #222222;
+    font-weight: 600;
+}
+
+.btn-hide-filters:hover {
+    text-decoration: underline;
+}
+
+p,
+h3,
+.statement-summary,
+.statement-description,
+.statement-title {
+    text-align: justify;
+}
+
+.ts-dropdown,
+.active {
+    border-radius: 6px;
+}
+
+.ts-control {
+    border-radius: 6px;
+}
+
+.ts-wrapper.multi .ts-control>div {
+    border-radius: 5px;
+    color: #fff;
+    background-color: #06489b;
+
+}
+
+.clear-button {
+    color: #04316a;
+}
+
+.leaflet-tile-pane {
+    background-color: blue;
+}
+
+@media (max-width: 767px) {
+    #map {
+        display: none;
+    }
 }
