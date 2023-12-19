@@ -127,6 +127,27 @@ h3,
     background-color: blue;
 }
 
+.info-box {
+    background-color: #dfeafd;
+    border: 1px solid #04316a;
+    border-radius: 10px;
+}
+
+.info-box-ul {
+    columns: 2;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: 30px;
+}
+
+li strong {
+    font-weight: bold;
+    display: block;
+}
+
 @media (max-width: 767px) {
     #map {
         display: none;
