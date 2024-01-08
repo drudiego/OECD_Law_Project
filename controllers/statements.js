@@ -24,89 +24,67 @@ module.exports.createStatement = async (req, res) => {
 };
 
 module.exports.search = async (req, res, next) => {
-    const searchTerm = req.query.searchTerm;// Get the search term from the form
-    const selectedFilters = req.query.selectedFilters; // Get selected filter options
-    // console.log(selectedFilters)
+    // Extract the search term and selected filters from the request query
+    const searchTerm = req.query.searchTerm;
+    const selectedFilters = req.query.selectedFilters;
+
+    // Define the filter categories
     const filters = filterCategories;
-    // const baseQuery = { subfilter: [] };
-    console.log("filtros selecionados: ", selectedFilters)
+
+    // Initialize arrays to store the results, matching segments, and matching segment IDs
     const results = [];
-    let matchingSegments = {}
-    let matchingSegmentIds = {}
-    for (let filter in selectedFilters) {
+    const matchingSegments = {};
+    const matchingSegmentIds = {};
+
+    // Iterate through the selected filters
+    for (const filter in selectedFilters) {
+        // Ensure that the selected filters are always an array
         if (selectedFilters[filter].length > 0) {
-            if (typeof selectedFilters[filter] === 'string') {
-                selectedFilters[filter] = [selectedFilters[filter]]
-            }
-            // baseQuery.subfilter.push(...selectedFilters[filter])   
+            selectedFilters[filter] = Array.isArray(selectedFilters[filter]) ? selectedFilters[filter] : [selectedFilters[filter]];
         }
-        matchingSegments[filter] = await Segment.find({
-            subfilter: { $in: selectedFilters[filter] }
-        }).lean();
-        matchingSegmentIds[filter] = matchingSegments[filter].map(segment => segment._id)
-    };
-    console.log('resultado matching: ', matchingSegments)
-    // console.log("baseQuery is: ", baseQuery)
-    // console.log("selectedFilters tratados: ", selectedFilters)
-    let entries
-
-    if (Object.keys(matchingSegments).length > 0) {
-
-        // matchingSegments = await Segment.find({
-        //     subfilter: { $in: baseQuery.subfilter }
-        // }).lean();
-        // console.log("the match: ", matchingSegments)
-        // let matchingSegmentIds = {}
-        // for (let matchingFilter in matchingSegments) {
-        //     console.log('listando matchingfilters: ', matchingFilter)
-        //     matchingSegmentIds[matchingFilter] = matchingSegments[matchingFilter].map(segment => segment._id)
-
-        // }
-        const finalQuery = []
-        for (let filter in matchingSegmentIds) {
-            finalQuery.push({ 'segments': { $in: matchingSegmentIds[filter] } })
-        }
-        console.log('este é o matchingSegmentsIds: ', matchingSegmentIds)
-        console.log('este é o finalQuery: ', finalQuery)
-        // const matchingSegmentIds = matchingSegments.map(segment => segment._id)
-        // console.log("the ids: ", matchingSegmentIds)
-        entries = await Statement.find({
-            // 'segments': { $in: matchingSegmentIds }
-            $and: finalQuery
-        }).lean();
-    } else {
-        entries = await Statement.find().lean()
+        // Find segments that match the selected filters and store them in the matchingSegments object separated by the filter
+        matchingSegments[filter] = await Segment.find({ subfilter: { $in: selectedFilters[filter] } }).lean();
+        // Extract the IDs of the matching segments and store them in the matchingSegmentIds object separated by the filter
+        matchingSegmentIds[filter] = matchingSegments[filter].map(segment => segment._id);
     }
-    // console.log("entries is: ", entries)
 
+    let entries;
 
+    // If there are matching segments, construct the final query using the matching segment IDs with different arrays for each filter
+    if (Object.keys(matchingSegments).length > 0) {
+        const finalQuery = Object.values(matchingSegmentIds).map(ids => ({ 'segments': { $in: ids } }));
+        // Find statements that match the final query using the $and operator to ensure that all filters are met
+        entries = await Statement.find({ $and: finalQuery }).lean();
+    } else {
+        // If there are no matching segments, find all statements
+        entries = await Statement.find().lean();
+    }
+
+    // If a search term is provided, perform a fuzzy search using Fuse.js
     if (searchTerm !== "") {
-        const searchTermArray = searchTerm.split(' ').join('|'); // used to make it possible to search for more than 1 word in the search field, using OR operator
+        // Split the search term into an array of individual terms
+        const searchTermArray = searchTerm.split(' ').join('|');
+        // Create a new instance of Fuse.js with the entries as the data source and specified search keys and options
         const fuse = new Fuse(entries, {
             keys: [
-                {
-                    name: 'title',
-                    weight: 2
-                },
-                {
-                    name: 'summary',
-                    weight: 1
-                }
-            ], // Specify which fields to search
+                { name: 'title', weight: 2 },
+                { name: 'summary', weight: 1 }
+            ],
             useExtendedSearch: true,
-            includeScore: true, // includes search score in the item
-            ignoreLocation: true, // ignore the location of the search term in the string. Good for long strings.
-            threshold: 0.3, // Adjust the threshold as needed (0 to 1)
+            includeScore: true,
+            ignoreLocation: true,
+            threshold: 0.3,
         });
+        // Perform the fuzzy search using the search term array and add the results to the results array
         results.push(...fuse.search(searchTermArray));
     } else {
-        entries.forEach((entry) => {
-            results.push({
-                item: entry
-            })
+        // If no search term is provided, simply add each entry to the results array
+        entries.forEach(entry => {
+            results.push({ item: entry });
         });
     }
 
+    // Render the search results page with the results, filters, selected filters, and search term
     res.render('statements/searchResults', { results, filters, selectedFilters, searchTerm });
 };
 
