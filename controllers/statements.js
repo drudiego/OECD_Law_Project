@@ -26,30 +26,53 @@ module.exports.createStatement = async (req, res) => {
 module.exports.search = async (req, res, next) => {
     const searchTerm = req.query.searchTerm;// Get the search term from the form
     const selectedFilters = req.query.selectedFilters; // Get selected filter options
+    // console.log(selectedFilters)
     const filters = filterCategories;
-    const baseQuery = { subfilter: [] };
+    // const baseQuery = { subfilter: [] };
     console.log("filtros selecionados: ", selectedFilters)
     const results = [];
-
+    let matchingSegments = {}
+    let matchingSegmentIds = {}
     for (let filter in selectedFilters) {
         if (selectedFilters[filter].length > 0) {
             if (typeof selectedFilters[filter] === 'string') {
                 selectedFilters[filter] = [selectedFilters[filter]]
             }
-            baseQuery.subfilter.push(...selectedFilters[filter])
+            // baseQuery.subfilter.push(...selectedFilters[filter])   
         }
-    };
-    // console.log("baseQuery is: ", baseQuery)
-    let entries
-    if (baseQuery.subfilter.length > 0) {
-        const matchingSegments = await Segment.find({
-            subfilter: { $in: baseQuery.subfilter }
+        matchingSegments[filter] = await Segment.find({
+            subfilter: { $in: selectedFilters[filter] }
         }).lean();
+        matchingSegmentIds[filter] = matchingSegments[filter].map(segment => segment._id)
+    };
+    console.log('resultado matching: ', matchingSegments)
+    // console.log("baseQuery is: ", baseQuery)
+    // console.log("selectedFilters tratados: ", selectedFilters)
+    let entries
+
+    if (Object.keys(matchingSegments).length > 0) {
+
+        // matchingSegments = await Segment.find({
+        //     subfilter: { $in: baseQuery.subfilter }
+        // }).lean();
         // console.log("the match: ", matchingSegments)
-        const matchingSegmentIds = matchingSegments.map(segment => segment._id)
+        // let matchingSegmentIds = {}
+        // for (let matchingFilter in matchingSegments) {
+        //     console.log('listando matchingfilters: ', matchingFilter)
+        //     matchingSegmentIds[matchingFilter] = matchingSegments[matchingFilter].map(segment => segment._id)
+
+        // }
+        const finalQuery = []
+        for (let filter in matchingSegmentIds) {
+            finalQuery.push({ 'segments': { $in: matchingSegmentIds[filter] } })
+        }
+        console.log('este é o matchingSegmentsIds: ', matchingSegmentIds)
+        console.log('este é o finalQuery: ', finalQuery)
+        // const matchingSegmentIds = matchingSegments.map(segment => segment._id)
         // console.log("the ids: ", matchingSegmentIds)
         entries = await Statement.find({
-            'segments': { $in: matchingSegmentIds }
+            // 'segments': { $in: matchingSegmentIds }
+            $and: finalQuery
         }).lean();
     } else {
         entries = await Statement.find().lean()
