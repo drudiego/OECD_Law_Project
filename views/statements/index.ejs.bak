@@ -1,0 +1,123 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <div class="container-fluid col-9 mx-auto mt-5 mb-5">
+        <h1><b>OECD Cases</b></h1>
+
+        <h3>Please scroll down and use the search box and/or filters below to find a specific Statement.</h3>
+        <div class="mt-5" id="map" style="height: 480px"></div>
+        <div class="mt-5 ">
+
+            <div class="mb-5">
+                <form action="/statements/search" method="GET">
+                    <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
+                    <div class=" d-flex flex-row flex-wrap mb-3">
+                        <div class="col-11 me-auto">
+
+                            <input class="form-control" id="searchTerm" type="text" name="searchTerm"
+                                placeholder="Search...">
+                        </div>
+                        <button class="btn btn-dark-blue" type="submit">Search</button>
+                    </div>
+                    <div class="card" id="filters-container">
+                        <button class="btn bg-primary-subtle btn-hide-filters" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
+                            Show/Hide Filters
+                        </button>
+                        <div class="collapse " id="collapsedFilters">
+                            <div class="d-flex flex-row flex-wrap">
+
+                                <% for (filter in filters) { %>
+                                    <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple
+                                        data-placeholder="<%= filters[filter].filterName%>"
+                                        class="select form-select-sm col-6 p-2">
+                                        <% for (subfilter of filters[filter].subfilters) { %>
+                                            <option value="<%=subfilter %>">
+                                                <%= subfilter %>
+                                            </option>
+
+                                            <% } %>
+                                    </select>
+                                    <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap" id="entriesContainer">
+
+
+                <div id="paginationContainer"></div>
+            </div>
+        </div>
+
+        <script>
+            const entriesPerPage = 2; // Number of entries to display per page
+            let currentPage = 1; // Current page number
+
+            const statements = <%- JSON.stringify(statements) %>; // Array of statements
+            console.log(statements);
+
+            // Function to display the entries for the current page
+            function displayEntries() {
+                const entriesContainer = document.getElementById('entriesContainer');
+                entriesContainer.innerHTML = ''; // Clear previous entries
+
+                // Calculate the starting and ending indexes for the current page
+                const start = (currentPage - 1) * entriesPerPage;
+                const end = start + entriesPerPage;
+
+                // Display entries for the current page
+                for (let i = start; i < end && i < statements.length; i++) {
+                    const statement = statements[i];
+
+                    // Create DOM elements to display the statement's content
+                    const statementElement = document.createElement('a');
+                    statementElement.href = `/statements/${statement._id}`;
+                    statementElement.classList.add('link-container');
+                    statementElement.innerHTML = `
+              <div class="card mt-3 col-10">
+                <div class="card-header">${statement.location}</div>
+                <div class="card-body">
+                  <h5 class="card-title">${statement.title}</h5>
+                  <p class="issue-tag">ISSUE</p>
+                  <p class="card-text"><i>${statement.description}</i></p>
+                </div>
+              </div>
+            `;
+
+                    entriesContainer.appendChild(statementElement);
+                }
+            }
+
+            // Function to update the pagination controls
+            function updatePagination() {
+                const paginationContainer = document.getElementById('paginationContainer');
+                paginationContainer.innerHTML = ''; // Clear previous pagination
+
+                // Calculate the total number of pages
+                const totalPages = Math.ceil(statements.length / entriesPerPage);
+
+                // Display pagination buttons/links
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageLink = document.createElement('a');
+                    pageLink.href = '#';
+                    pageLink.textContent = i;
+
+                    // Add an event listener to handle page clicks
+                    pageLink.addEventListener('click', () => {
+                        currentPage = i;
+                        displayEntries();
+                        updatePagination();
+                    });
+
+                    paginationContainer.appendChild(pageLink);
+                }
+            }
+
+            // Initial display
+            displayEntries();
+            updatePagination();
+        </script>

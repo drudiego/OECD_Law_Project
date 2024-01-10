@@ -4,9 +4,11 @@ const Fuse = require('fuse.js');
 const { filterCategories } = require('../utils/filters.js')
 
 module.exports.index = async (req, res) => {
-    const statements = await Statement.find({});
+    const statements = await Statement.find({}).populate("segments");
     const filters = filterCategories;
+    // console.log(statements)
     res.render('statements/index', { statements, filters })
+
 };
 
 module.exports.renderNewForm = (req, res) => {
