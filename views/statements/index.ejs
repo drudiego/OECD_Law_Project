@@ -45,10 +45,22 @@
     <div class="d-flex flex-row flex-wrap" id="entriesContainer">
 
     </div>
-    <div id="paginationContainer">
-
-
-    </div>
+    <div></div>
+    <nav class="mt-3" aria-label="page-navigation" id="paginationContainer">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#paginationContainer">1</a></li>
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">2</span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#paginationContainer">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#paginationContainer">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
   <script>
@@ -77,7 +89,7 @@
         statementElement.classList.add('link-container');
         statementElement.innerHTML = `
               <div class="card mt-3 col-10">
-                <div class="card-header">${statement.location}</div>
+                <div class="card-header"></div>
                 <div class="card-body">
                   <h5 class="card-title">${statement.title}</h5>
                   <p class="issue-tag">ISSUE</p>
@@ -90,32 +102,83 @@
       }
     }
 
-    // Function to update the pagination controls
-    function updatePagination() {
-      const paginationContainer = document.getElementById('paginationContainer');
-      paginationContainer.innerHTML = ''; // Clear previous pagination
-
-      // Calculate the total number of pages
-      const totalPages = Math.ceil(statements.length / entriesPerPage);
-
-      // Display pagination buttons/links
-      for (let i = 1; i <= totalPages; i++) {
-        const pageLink = document.createElement('a');
-        pageLink.href = '#entriesContainer';
-        pageLink.textContent = i;
-
-        // Add an event listener to handle page clicks
-        pageLink.addEventListener('click', () => {
-          currentPage = i;
-          displayEntries();
-          updatePagination();
-        });
-
-        paginationContainer.appendChild(pageLink);
+    // Function to handle pagination button clicks
+    // Function to handle pagination button clicks
+    function handlePaginationClick(page) {
+      if (page === 'Previous') {
+        if (currentPage > 1) {
+          currentPage--;
+        }
+      } else if (page === 'Next') {
+        if (currentPage < Math.ceil(statements.length / entriesPerPage)) {
+          currentPage++;
+        }
+      } else {
+        currentPage = page;
       }
+
+      displayEntries();
+      updatePagination();
     }
 
-    // Initial display
+    // Function to create a pagination button
+    function createPaginationButton(label, isCurrentPage) {
+      const listItem = document.createElement('li');
+      listItem.classList.add('page-item');
+      if (isCurrentPage) {
+        listItem.classList.add('active');
+        listItem.setAttribute('aria-current', 'page');
+      }
+
+      const link = document.createElement('a');
+      link.classList.add('page-link');
+      link.href = `#paginationContainer`;
+      link.textContent = label;
+      link.addEventListener('click', () => {
+        handlePaginationClick(label);
+      });
+
+      if (label === 'Previous' && currentPage === 1) {
+        listItem.classList.add('disabled');
+        link.removeAttribute('href');
+      }
+
+      const totalPages = Math.ceil(statements.length / entriesPerPage);
+      if (label === 'Next' && currentPage === totalPages) {
+        listItem.classList.add('disabled');
+        link.removeAttribute('href');
+      }
+
+      listItem.appendChild(link);
+      return listItem;
+    }
+
+    // Function to update the pagination buttons
+    function updatePagination() {
+      const paginationContainer = document.getElementById('paginationContainer');
+      paginationContainer.innerHTML = ''; // Clear the existing pagination buttons
+
+      const paginationList = document.createElement('ul');
+      paginationList.classList.add('pagination');
+
+      // Add "Previous" button
+      const previousButton = createPaginationButton('Previous', currentPage === 1);
+      paginationList.appendChild(previousButton);
+
+      // Add page buttons
+      for (let i = 1; i <= Math.ceil(statements.length / entriesPerPage); i++) {
+        const pageButton = createPaginationButton(i, i === currentPage);
+        paginationList.appendChild(pageButton);
+      }
+
+      // Add "Next" button
+      const nextButton = createPaginationButton('Next', currentPage === Math.ceil(statements.length / entriesPerPage));
+      paginationList.appendChild(nextButton);
+
+      paginationContainer.appendChild(paginationList);
+    }
+
+    // Initial display of entries and pagination buttons
     displayEntries();
     updatePagination();
   </script>
