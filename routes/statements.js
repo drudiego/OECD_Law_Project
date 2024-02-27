@@ -9,6 +9,10 @@ router.route('/')
     .get(catchAsync(statements.index))
     .post(isLoggedIn, validateStatement, catchAsync(statements.createStatement));
 
+router.get('/about', statements.renderAbout);
+
+router.get('/staff', statements.renderStaff);
+
 router.get('/new', isLoggedIn, statements.renderNewForm);
 
 router.get('/search', catchAsync(statements.search));

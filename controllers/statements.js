@@ -11,6 +11,14 @@ module.exports.index = async (req, res) => {
 
 };
 
+module.exports.renderAbout = (req, res) => {
+    res.render('statements/about')
+};
+
+module.exports.renderStaff = (req, res) => {
+    res.render('statements/staff')
+};
+
 module.exports.renderNewForm = (req, res) => {
     const filters = filterCategories;
     res.render('statements/new', { filters })
