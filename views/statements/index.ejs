@@ -86,9 +86,9 @@
         // Create DOM elements to display the statement's content
         const statementElement = document.createElement('a');
         statementElement.href = `/statements/${statement._id}`;
-        statementElement.classList.add('link-container');
+        statementElement.classList.add('link-container', 'col-10');
         statementElement.innerHTML = `
-              <div class="card mt-3 col-10">
+              <div class="card mt-3">
                 <div class="card-header"></div>
                 <div class="card-body">
                   <h5 class="card-title">${statement.title}</h5>
@@ -102,7 +102,6 @@
       }
     }
 
-    // Function to handle pagination button clicks
     // Function to handle pagination button clicks
     function handlePaginationClick(page) {
       if (page === 'Previous') {
