@@ -184,3 +184,15 @@ li strong {
     font-weight: 600;
 }
     
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-col {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+}
+
+.footer-container
