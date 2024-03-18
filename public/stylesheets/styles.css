@@ -148,11 +148,7 @@ li strong {
     display: block;
 }
 
-@media (max-width: 767px) {
-    #map {
-        display: none;
-    }
-}
+
 
 .staff-card {
     transition: box-shadow 0.3s ease;
@@ -190,9 +186,54 @@ li strong {
 }
 
 .footer-col {
-    height: 300px;
+    display: flex;
+    /* height: 300px; */
     width: 300px;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
 }
 
-.footer-container
+.footer-logo img{
+    display: block;
+    width: 50%;
+    height: auto;
+    margin-bottom: auto;
+    
+}
+
+.footer-menu {
+    color: white;
+}
+.footer-menu h5{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-menu ul{
+    list-style: none;
+    margin-left: 0;
+    padding: 0;
+}
+.footer-menu li{
+    list-style: none;
+    margin-bottom: 15px;
+    margin-left: 0;
+}
+.footer-menu li a{
+    text-decoration: none;
+    color: white;
+
+}
+
+.footer-menu li a:hover{
+    color: lightgray
+}
+/* .footer-container */
+
+
+
+
+@media (max-width: 767px) {
+    #map {
+        display: none;
+    }
+}
