@@ -13,8 +13,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user')
 const MongoStore = require('connect-mongo')
-// const dbUrl = process.env.DB_URL
-const dbUrl = 'mongodb://127.0.0.1:27017/oecd-case-law';
+const dbUrl = process.env.DB_URL
+// const dbUrl = 'mongodb://127.0.0.1:27017/oecd-case-law';
 
 const ExpressError = require('./utils/ExpressError');
 
