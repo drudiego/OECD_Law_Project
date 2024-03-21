@@ -1,13 +1,19 @@
 const Statement = require('../models/statement');
 const Segment = require('../models/segment');
 const Fuse = require('fuse.js');
+const countriesData = require('../utils/countries.json');
 const { filterCategories } = require('../utils/filters.js')
 
 module.exports.index = async (req, res) => {
     const statements = await Statement.find({}).populate("segments");
     const filters = filterCategories;
-    // console.log(statements)
-    res.render('statements/index', { statements, filters })
+    const data = countriesData
+    const countryCount = await Segment.aggregate([
+        { $match: { filter: 'Host country (Where the violations conducted)' } },
+        { $group: { _id: '$subfilter', count: { $sum: 1 } } },
+      ])
+    // console.log(countryCount)
+    res.render('statements/index', { statements, filters, countryCount, data })
 
 };
 
