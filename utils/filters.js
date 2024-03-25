@@ -202,16 +202,7 @@ module.exports.filterCategories = {
         ]
     },
 
-    statusOfTheCase: {
-        filterName: "Status of the case",
-        subfilters: [
-            "conclusion without participation",
-            "Rejected (apply to cases with only initial statement)",
-            "Completed without agreement",
-            "Completed (company withdrawn its participation)",
-            "Agreement"
-        ]
-    },
+    
 
     NCPsEffortsToResolveTheCases: {
         filterName: "NCPs efforts to resolve the case",
@@ -271,6 +262,17 @@ module.exports.filterCategories = {
             "Referred instruments in the statement",
             "Refers other NCP decisions",
             "About OECD Guidelines in the NCP statements"
+        ]
+    },
+
+    statusOfTheCase: {
+        filterName: "Status of the case",
+        subfilters: [
+            "conclusion without participation",
+            "Rejected (apply to cases with only initial statement)",
+            "Completed without agreement",
+            "Completed (company withdrawn its participation)",
+            "Agreement"
         ]
     }
 }

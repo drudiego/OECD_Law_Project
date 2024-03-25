@@ -1,5 +1,6 @@
 body {
     background-color: #04316a;
+    
 }
 
 main {
@@ -125,6 +126,15 @@ h3,
 
 .leaflet-tile-pane {
     background-color: blue;
+}
+
+.custom-tooltip {
+    background-color: #04306a00;
+    border: none;
+    color: #fff;
+    font-size: smaller;
+    font-weight: 600;
+    box-shadow: none;
 }
 
 .info-box {

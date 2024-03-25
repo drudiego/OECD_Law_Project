@@ -20,12 +20,29 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       const countryName = country._id.slice(5)
       console.log(countryName)
       data.forEach(item => {
-        console.log(item)
+        // console.log(item)
         if (item.properties.name === countryName) {
           // Add marker on the map at the centroid
-          L.marker(item.geometry.coordinates.reverse()) // Reverse coordinates for Leaflet
-            .bindTooltip(country._id + ": " + country.count)
-            .addTo(mymap);
+          
+          //OPTION 1, USING CIRCLE MARKERS
+          const circleMarker = L.circleMarker(item.geometry.coordinates.reverse(), {
+            color: '#0454bd', // Set the color of the circle marker
+            fillColor: '#0454bd', // Set the fill color of the circle marker
+            fillOpacity: 1, // Set the opacity of the fill color
+            radius: 8 // Set the radius of the circle marker
+          }).addTo(mymap);
+
+          circleMarker.bindTooltip(country.count.toString(), {
+            permanent: true, // Make the tooltip permanent
+            direction: 'center', // Center the tooltip inside the circle
+            className: 'custom-tooltip' // Add a custom CSS class for styling
+          });
+
+          
+          //OPTION 2, USING PINPOINTS WITH DIALOG BALLONS SHOWING COUNT AND COUNTRY NAMES:
+          // L.marker(item.geometry.coordinates.reverse()) // Reverse coordinates for Leaflet
+          //   .bindTooltip(country._id + ": " + country.count)
+          //   .addTo(mymap);
         }
       })
     });
