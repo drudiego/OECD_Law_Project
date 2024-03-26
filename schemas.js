@@ -7,6 +7,7 @@ module.exports.statementSchema = Joi.object({
         description: Joi.string(),
         summary: Joi.string(),
         year: Joi.number(),
+        pdfFile: Joi.string(),
         // statusOfTheCase: Joi.array().items(Joi.string()),
         // hostCountry: Joi.string(),
         // linkedHumanRightsIssue: Joi.array().items(Joi.string()),
@@ -22,7 +23,8 @@ module.exports.statementSchema = Joi.object({
         // outcomesResultOfTheMediation: Joi.array().items(Joi.string()),
         // analysisOnStatement: Joi.array().items(Joi.string()),
 
-    }).required()
+    }).required(),
+    deleteFiles: Joi.array()
 });
 
 module.exports.segmentSchema = Joi.object({

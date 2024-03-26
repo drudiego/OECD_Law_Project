@@ -17,9 +17,9 @@ module.exports.validateStatement = (req, res, next) => {
     // this is necessary in order to comply with the validation from the schemas.
     const reqBodyStatement = req.body.statement
     makeCheckboxArrays = function () {
-        console.log(reqBodyStatement)
+        // console.log(reqBodyStatement)
         for (element in reqBodyStatement) {
-            if (element !== "title" && element !== "year" && element !== "description" && element !== "summary" && element !== "hostCountry") {
+            if (element !== "title" && element !== "year" && element !== "description" && element !== "summary" && element !== "hostCountry" && element !== "pdfFile") {
                 if (typeof reqBodyStatement[element] === 'string') {
                     reqBodyStatement[element] = [reqBodyStatement[element]]
                 }

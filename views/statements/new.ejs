@@ -1,41 +1,53 @@
 <% layout('layouts/boilerplate') %>
 
 
-    <div class="row">
-        <h1 class="text-center">New Statement</h1>
-        <div class="col-8 offset-2">
+<div class="row">
+  <h1 class="text-center">New Statement</h1>
+  <div class="col-8 offset-2">
 
-            <form action="/statements" method="POST" novalidate class="validated-form">
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="statement[title]" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Title can't be empty</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description (max 300 char)</label>
-                    <textarea class="form-control" rows="4" type="text" id="description" name="statement[description]"
-                        maxlength="300" required></textarea>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Summary can't be empty</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="year">Year</label>
-                    <input class="form-control" type="text" id="year" name="statement[year]" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Location can't be empty</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="summary">Summary</label>
-                    <textarea class="form-control" rows="12" type="text" id="summary" name="statement[summary]"
-                        required></textarea>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Summary can't be empty</div>
-                </div>
+    <form action="/statements" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" id="title" name="statement[title]" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Title can't be empty</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description (max 300 char)</label>
+        <textarea class="form-control" rows="4" type="text" id="description" name="statement[description]" maxlength="300" required></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Summary can't be empty</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="year">Year</label>
+        <input class="form-control" type="text" id="year" name="statement[year]" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Location can't be empty</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="summary">Summary</label>
+        <textarea class="form-control" rows="12" type="text" id="summary" name="statement[summary]" required></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Summary can't be empty</div>
+      </div>
 
-                <div class="mb-3"><button class="btn btn-success">Add new Statement</button></div>
 
-            </form>
-            <a href="/statements">Back to All Statements</a>
-        </div>
-    </div>
+
+      <div class="mb-3 custom-file">
+        <label class="form-label" for="pdfFile">Upload Files</label>
+        <input class="form-control" type="file" id="pdfFile" name="pdfFile" multiple>
+        <label for="" class="custom-file-label"></label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Summary can't be empty</div>
+      </div>
+
+
+
+
+
+      <div class="mb-3"><button class="btn btn-success">Add new Statement</button></div>
+
+    </form>
+    <a href="/statements">Back to All Statements</a>
+  </div>
+</div>

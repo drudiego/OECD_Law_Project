@@ -1,6 +1,7 @@
 const Statement = require('../models/statement');
 const Segment = require('../models/segment');
 const Fuse = require('fuse.js');
+const { cloudinary } = require("../cloudinary");
 const countriesData = require('../utils/countries.json');
 const { filterCategories } = require('../utils/filters.js')
 
@@ -32,9 +33,15 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createStatement = async (req, res) => {
     // console.log(req.body.statement)
+    
     const statement = new Statement(req.body.statement);
     statement.author = req.user._id;
+    
+    console.log(req.files)
+    statement.pdfFile = req.files.map(f => ({url: f.path, filename: f.filename     
+    }))
     await statement.save();
+    // console.log(statement)
     req.flash('success', 'Successfully made a new Statement');
     res.redirect(`/statements/${statement._id}`)
 };
@@ -138,6 +145,24 @@ module.exports.renderEditSegmentsForm = async (req, res) => {
 
 module.exports.updateStatement = async (req, res) => {
     const statement = await Statement.findByIdAndUpdate(req.params.id, { ...req.body.statement });
+    console.log(req.body)
+    // console.log(req.files)
+    const files = req.files.map(f => (
+        {url: f.path, filename: f.filename, originalname: f.originalname   
+    }
+    ))
+    // console.log(files)
+    statement.pdfFile.push(...files)
+    await statement.save();
+    if(req.body.deleteFiles){
+        for (let filename of req.body.deleteFiles) {
+            if (filename){
+                await cloudinary.uploader.destroy(filename);
+            }
+        }
+        await statement.updateOne({ $pull: { pdfFile: { filename: { $in: req.body.deleteFiles } } }})
+        
+    };
     req.flash('success', 'Successfully updated the Statement');
     res.redirect(`/statements/${statement._id}`)
 };

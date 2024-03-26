@@ -1,176 +1,175 @@
 <% layout('layouts/boilerplate') %>
 
 
-    <div class="row col-10 offset-1">
-        <div class="mt-5 mb-3"><a href="/statements" class="return-link">
-                < Back to All Statements</a>
+<div class="row col-10 offset-1">
+  <div class="mt-5 mb-3"><a href="/statements" class="return-link">
+
+      < Back to All Statements</a>
+  </div>
+  <div class="col-9">
+    <div class="mb-3">
+
+      <div class="card-body">
+        <p class="title-tag">STATEMENT</p>
+        <h2 class="card-title mb-4 statement-title">
+          <%= statement.title %>
+        </h2>
+        <% if(currentUser) { %>
+        <p class="card-text text-body-secondary">
+          Included in the database by <%= statement.author.username %>
+        </p>
+        <% } %>
+        <h5 class="card-text statement-description">
+          <%= statement.description %>
+        </h5>
+
+        <% if(statement.pdfFile[0]) {%>
+        <% for (let i = 0; i < statement.pdfFile.length; i++) {%>
+        <a href="<%= statement.pdfFile[i].url %>" target="_blank">
+          <h6>Download statement - <%= statement.pdfFile[i].originalname %></h6>
+        </a>
+        <% }}%>
+
+        <div class="info-box p-3 p-3 my-5">
+          <ul class="mt-3 info-box-ul">
+
+
+            <% for (let segment of statement.segments) { %>
+            <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
+            <li><strong>Country</strong>
+              <%= segment.subfilter %>
+            </li>
+            <% } else if (segment.filter==='Linked human rights/issues' ) {%>
+            <li><strong>Linked human rights/issues</strong>
+              <%= segment.subfilter %>
+            </li>
+
+            <% } else if (segment.filter==='Status of the case' ) {%>
+            <li><strong>Status</strong>
+              <%= segment.subfilter %>
+            </li>
+            <% } %>
+            <% } %>
+
+            <li class=""><strong>Year</strong>
+              <%= statement.year %>
+            </li>
+
+          </ul>
         </div>
-        <div class="col-9">
-            <div class="mb-3">
 
-                <div class="card-body">
-                    <p class="title-tag">STATEMENT</p>
-                    <h2 class="card-title mb-4 statement-title">
-                        <%= statement.title %>
-                    </h2>
-                    <% if(currentUser) { %>
-                        <p class="card-text text-body-secondary">
-                            Included in the database by <%= statement.author.username %>
-                        </p>
-                        <% } %>
-                            <h5 class="card-text statement-description">
-                                <%= statement.description %>
-                            </h5>
-                            <div class="info-box p-3 p-3 my-5">
-                                <ul class="mt-3 info-box-ul">
+        <h4 class="summary-tag mb-3">Summary</h4>
+        <p class="card-text statement-summary">
+          <%= statement.summary %>
+        </p>
+      </div>
 
+      <div class="card-body">
+        <% if(currentUser) { %>
+        <a class="btn btn-info" href="/statements/<%= statement._id %>/edit">Edit</a>
 
-                                    <% for (let segment of statement.segments) { %>
-                                        <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
-                                            <li><strong>Country</strong>
-                                                <%= segment.subfilter %>
-                                            </li>
-                                            <% } else if (segment.filter==='Linked human rights/issues' ) {%>
-                                                <li><strong>Linked human rights/issues</strong>
-                                                    <%= segment.subfilter %>
-                                                </li>
+        <form class="d-inline" action="/statements/<%= statement._id %>?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete Statement</button>
+        </form>
+        <% } %>
 
-                                                <% } else if (segment.filter==='Status of the case' ) {%>
-                                                    <li><strong>Status</strong>
-                                                        <%= segment.subfilter %>
-                                                    </li>
-                                                    <% } %>
-                                                        <% } %>
+      </div>
 
-                                                            <li class=""><strong>Year</strong>
-                                                                <%= statement.year %>
-                                                            </li>
+    </div>
+  </div>
+  <!-- teste accordion com filtros juntos -->
+  <div class="col-9 mb-5 mt-3">
+    <div class="accordion mb-5" id="segments-accordion">
+      <% const existingFilters=[]; %>
+      <% for (let segment of statement.segments) { %>
+      <% existingFilters.push(segment.filter) %>
+      <% } %>
 
-                                </ul>
-                            </div>
+      <% for(filter in filters){ %>
 
-                            <h4 class="summary-tag mb-3">Summary</h4>
-                            <p class="card-text statement-summary">
-                                <%= statement.summary %>
-                            </p>
-                </div>
+      <div class="accordion-item" filter-name="<%= filters[filter].filterName %>" <%=existingFilters.includes(filters[filter].filterName) ? "" : "hidden" %>>
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= filter%>" aria-expanded="false" aria-controls="collapse<%= filter%>">
+            <%= filters[filter].filterName %>
+          </button>
+        </h2>
+        <% for(let segment of statement.segments){ %>
+        <% if(segment.filter===filters[filter].filterName) {%>
+        <div id="collapse<%= filter%>" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <h5 class="subfilter-accordion-text">
+              <%= segment.subfilter %>
+            </h5>
+            <p><i>
+                <%= segment.body %>
+              </i></p>
 
-                <div class="card-body">
-                    <% if(currentUser) { %>
-                        <a class="btn btn-info" href="/statements/<%= statement._id %>/edit">Edit</a>
-
-                        <form class="d-inline" action="/statements/<%= statement._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Delete Statement</button>
-                        </form>
-                        <% } %>
-
-                </div>
-
-            </div>
+            <% if(currentUser) { %>
+            <form action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-sm btn-danger">DELETE
+                SEGMENT</button>
+            </form>
+            <% } %>
+          </div>
         </div>
-        <!-- teste accordion com filtros juntos -->
-        <div class="col-9 mb-5 mt-3">
-            <div class="accordion mb-5" id="segments-accordion">
-                <% const existingFilters=[]; %>
-                    <% for (let segment of statement.segments) { %>
-                        <% existingFilters.push(segment.filter) %>
-                            <% } %>
-                                <%- console.log(existingFilters) %>
-                                    <% for(filter in filters){ %>
+        <% } %>
+        <% } %>
+      </div>
 
-                                        <div class="accordion-item" filter-name="<%= filters[filter].filterName %>"
-                                            <%=existingFilters.includes(filters[filter].filterName) ? "" : "hidden" %>>
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapse<%= filter%>"
-                                                    aria-expanded="false" aria-controls="collapse<%= filter%>">
-                                                    <%= filters[filter].filterName %>
-                                                </button>
-                                            </h2>
-                                            <% for(let segment of statement.segments){ %>
-                                                <% if(segment.filter===filters[filter].filterName) {%>
-                                                    <div id="collapse<%= filter%>" class="accordion-collapse collapse">
-                                                        <div class="accordion-body">
-                                                            <h5 class="subfilter-accordion-text">
-                                                                <%= segment.subfilter %>
-                                                            </h5>
-                                                            <p><i>
-                                                                    <%= segment.body %>
-                                                                </i></p>
-
-                                                            <% if(currentUser) { %>
-                                                                <form
-                                                                    action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE"
-                                                                    method="POST">
-                                                                    <button class="btn btn-sm btn-danger">DELETE
-                                                                        SEGMENT</button>
-                                                                </form>
-                                                                <% } %>
-                                                        </div>
-                                                    </div>
-                                                    <% } %>
-                                                        <% } %>
-                                        </div>
-
-                                        <% } %>
-            </div>
-
-
-
-
-
-            <% if(currentUser) {%>
-                <h2>Add a Segment</h2>
-                <form action="/statements/<%= statement._id %>/segments" method="POST" class="mb-3 validated-form"
-                    novalidate>
-
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label" for="filter"><strong>Filter:</strong></label>
-                        <select class="form-select" aria-label="Default select example" id="filter"
-                            name="segment[filter]">
-                            <option value="" selected></option>
-                            <% for (filter in filters) { %>
-                                <option value="<%= filters[filter].filterName %>" filter-key="<%= filter %>">
-                                    <%= filters[filter].filterName %>
-                                </option>
-                                <% } %>
-                        </select>
-
-
-                    </div>
-                    <div class="mb-3">
-
-                        <label class="form-label" for="subfilter"><strong>Sub-Filter:</strong></label>
-                        <select class="form-select" aria-label="Default select example" id="subfilter"
-                            name="segment[subfilter]">
-                            <!-- Options will be dynamically populated based on user selection -->
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="body">Segment text:</label>
-                        <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="10"
-                            required></textarea>
-                    </div>
-
-                    <button class="btn btn-success">Submit</button>
-                </form>
-
-                <% } %>
-
-
-        </div>
+      <% } %>
     </div>
 
-    <script>
-        const filters = `<%- JSON.stringify(filters).replace(/'/g, "\\'") %>`;
-        const statement = `<%- JSON.stringify(statement)%>`;
 
-    </script>
 
-    <!-- JavaScript to handle dynamic options in the second select field -->
-    <script src="/javascripts/populateSubfilters.js"></script>
-    <!-- <script src="/javascripts/hideUnusedAccordion.js"></script> -->
+
+
+    <% if(currentUser) {%>
+    <h2>Add a Segment</h2>
+    <form action="/statements/<%= statement._id %>/segments" method="POST" class="mb-3 validated-form" novalidate>
+
+
+
+      <div class="mb-3">
+
+        <label class="form-label" for="filter"><strong>Filter:</strong></label>
+        <select class="form-select" aria-label="Default select example" id="filter" name="segment[filter]">
+          <option value="" selected></option>
+          <% for (filter in filters) { %>
+          <option value="<%= filters[filter].filterName %>" filter-key="<%= filter %>">
+            <%= filters[filter].filterName %>
+          </option>
+          <% } %>
+        </select>
+
+
+      </div>
+      <div class="mb-3">
+
+        <label class="form-label" for="subfilter"><strong>Sub-Filter:</strong></label>
+        <select class="form-select" aria-label="Default select example" id="subfilter" name="segment[subfilter]">
+          <!-- Options will be dynamically populated based on user selection -->
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="body">Segment text:</label>
+        <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="10" required></textarea>
+      </div>
+
+      <button class="btn btn-success">Submit</button>
+    </form>
+
+    <% } %>
+
+
+  </div>
+</div>
+
+<script>
+  const filters = `<%- JSON.stringify(filters).replace(/'/g, "\\'") %>`;
+  const statement = `<%- JSON.stringify(statement)%>`;
+</script>
+
+<!-- JavaScript to handle dynamic options in the second select field -->
+<script src="/javascripts/populateSubfilters.js"></script>
+<!-- <script src="/javascripts/hideUnusedAccordion.js"></script> -->

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const { filterCategories } = require('../utils/filters')
 
 const FileSchema = new Schema({
+    originalname: String,
     url: String,
     filename: String
 });
@@ -33,7 +34,7 @@ const StatementSchema = new Schema({
     },
 
     // PDF will be included after setting up cloudinary
-    // pdfFile: [FileSchema],
+    pdfFile: [FileSchema],
 
     // Check if there will be a Location parameter
     // location: String,

@@ -143,6 +143,10 @@ h3,
     border-radius: 10px;
 }
 
+.delete-files-div {
+    background-color: rgb(241, 172, 172);
+}
+
 .info-box-ul {
     columns: 2;
     list-style: none;

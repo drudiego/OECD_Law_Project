@@ -2,45 +2,61 @@
 
 
 
-    <div class="row mb-5 mt-5">
-        <h1 class="text-center">Edit Statement</h1>
-        <div class="col-8 offset-2">
+<div class="row mb-5 mt-5">
+  <h1 class="text-center">Edit Statement</h1>
+  <div class="col-8 offset-2">
 
-            <form action="/statements/<%= statement._id %>?_method=PUT" method="POST" novalidate class="validated-form">
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="statement[title]"
-                        value="<%= statement.title  %>" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Title can't be empty</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" rows="4" type="text" id="description" name="statement[description]"
-                        maxlength="300" required><%= statement.description  %></textarea>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Summary can't be empty</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="year">Year</label>
-                    <input class="form-control" type="text" id="year" name="statement[year]"
-                        value="<%= statement.year  %>" required>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Location can't be empty</div>
-                </div>
+    <form action="/statements/<%= statement._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" id="title" name="statement[title]" value="<%= statement.title  %>" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Title can't be empty</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" rows="4" type="text" id="description" name="statement[description]" maxlength="300" required><%= statement.description  %></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Summary can't be empty</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="year">Year</label>
+        <input class="form-control" type="text" id="year" name="statement[year]" value="<%= statement.year  %>" required>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Location can't be empty</div>
+      </div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="summary">Summary</label>
-                    <textarea class="form-control" rows="12" type="text" id="summary" name="statement[summary]"
-                        required><%= statement.summary  %></textarea>
-                    <div class="valid-feedback">Looks good!</div>
-                    <div class="invalid-feedback">Summary can't be empty</div>
-                </div>
+      <div class="mb-3">
+        <label class="form-label" for="summary">Summary</label>
+        <textarea class="form-control" rows="12" type="text" id="summary" name="statement[summary]" required><%= statement.summary  %></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Summary can't be empty</div>
+      </div>
 
-                <div class="mb-3"><button class="btn btn-info">Update Statement</button></div>
+      <div class="mb-3 custom-file">
+        <label class="form-label" for="summary">Upload Files</label>
+        <input class="form-control" type="file" id="pdfFile" name="pdfFile" multiple>
+        <label for="" class="custom-file-label"></label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Summary can't be empty</div>
+      </div>
 
-            </form>
-            <a href="/statements/<%= statement._id %>">
-                < Back to Statement</a>
+      <div class="mb-3 delete-files-div">
+        <h4>Delete existing files</h4>
+        <h5>Select files to delete</h5>
+        <% statement.pdfFile.forEach((file, i) => { %>
+        <div>
+          <input type="checkbox" id="file-<%=i %>" name="deleteFiles[<%=i %>]" value="<%= file.filename %>">
+          <label for="file-<%=i %>">File <%= i + 1 %>: <%= file.originalname %></label>
         </div>
-    </div>
+        <% }) %>
+      </div>
+
+      <div class="mb-3"><button class="btn btn-info">Update Statement</button></div>
+
+    </form>
+    <a href="/statements/<%= statement._id %>">
+
+      < Back to Statement</a>
+  </div>
+</div>
