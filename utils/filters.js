@@ -33,71 +33,6 @@ module.exports.filterCategories = {
         ]
     },
 
-    corporateInvolvementToTheHarmsAndAbuses: {
-        filterName: "Corporate involvement to harm/abuse",
-        subfilters: [
-            "Causing/Contributing",
-            "Direct/non-direct control",
-            "Directly linked"
-        ]
-    },
-
-
-    definingRisksHarmsAndAbuse: {
-        filterName: "Defining risk/harm/abuses",
-        subfilters: []
-    },
-
-    corporateResponsibilityInUNGPsFramework: {
-        filterName: "Corporate human rights responsibility in the UNGPs",
-        subfilters: [
-            "Human rights due diligence",
-            "Corporate human rights policy/Code of conduct",
-            "Stakeholder engagement",
-            "Mitigation/Leverage",
-            "Remedy/corporate grievance mechanism",
-            "Transparency/communication/disclosure"
-        ]
-    },
-
-    specificCorporateHumanRightsResponsibilities: {
-        filterName: "Other specific responsibilities for human rights/environment",
-        subfilters: [
-            "parent companies managerial responsibility",
-            "Responsibility regarding the domestic laws",
-            "Responsibility in conflict-affected areas",
-            "Responsibility in supply chain",
-            "Responsibility towards local development/SDGs",
-            "Corporate responsibility towards environmental/climate impact",
-            "Collective action/Shared responsibility"
-        ]
-    },
-
-    actors: {
-        filterName: "Actors - Human rights responsibility",
-        subfilters: [
-            "Consultant cpmpanies",
-            "Audit",
-            "SMEs",
-            "Non-profit organisations",
-            "Tech companies",
-            "Parent/Group company",
-            "Investor/financial institutions",
-            "State responsibility/involvement",
-            "Supplier(s)"
-        ]
-    },
-
-    otherSubstantialMatters: {
-        filterName: "Other substantial matters",
-        subfilters: [
-            "Conflict between the legislations/regulations",
-            "Corporate governance",
-            "Gap in the Guidelines/BHR regulations",
-            "SLAPP"
-        ]
-    },
-
     hostCountry: {
         filterName: "Host country (Where the violations conducted)",
         subfilters: [
@@ -201,6 +136,73 @@ module.exports.filterCategories = {
             "🇿🇲 Zambia",
         ]
     },
+
+    corporateInvolvementToTheHarmsAndAbuses: {
+        filterName: "Corporate involvement to harm/abuse",
+        subfilters: [
+            "Causing/Contributing",
+            "Direct/non-direct control",
+            "Directly linked"
+        ]
+    },
+
+
+    definingRisksHarmsAndAbuse: {
+        filterName: "Defining risk/harm/abuses",
+        subfilters: []
+    },
+
+    corporateResponsibilityInUNGPsFramework: {
+        filterName: "Corporate human rights responsibility in the UNGPs",
+        subfilters: [
+            "Human rights due diligence",
+            "Corporate human rights policy/Code of conduct",
+            "Stakeholder engagement",
+            "Mitigation/Leverage",
+            "Remedy/corporate grievance mechanism",
+            "Transparency/communication/disclosure"
+        ]
+    },
+
+    specificCorporateHumanRightsResponsibilities: {
+        filterName: "Other specific responsibilities for human rights/environment",
+        subfilters: [
+            "parent companies managerial responsibility",
+            "Responsibility regarding the domestic laws",
+            "Responsibility in conflict-affected areas",
+            "Responsibility in supply chain",
+            "Responsibility towards local development/SDGs",
+            "Corporate responsibility towards environmental/climate impact",
+            "Collective action/Shared responsibility"
+        ]
+    },
+
+    actors: {
+        filterName: "Actors - Human rights responsibility",
+        subfilters: [
+            "Consultant cpmpanies",
+            "Audit",
+            "SMEs",
+            "Non-profit organisations",
+            "Tech companies",
+            "Parent/Group company",
+            "Investor/financial institutions",
+            "State responsibility/involvement",
+            "Supplier(s)"
+        ]
+    },
+
+    otherSubstantialMatters: {
+        filterName: "Other substantial matters",
+        subfilters: [
+            "Conflict between the legislations/regulations",
+            "Corporate governance",
+            "Gap in the Guidelines/BHR regulations",
+            "SLAPP"
+        ]
+    },
+
+    
 
     
 
