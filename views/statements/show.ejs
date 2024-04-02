@@ -64,28 +64,37 @@
           <%= statement.summary %>
         </p>
       </div>
+      <% if(statement.pdfFile[0]) {%>
+      <h4 class="summary-tag mb-3">Documents</h4>
+      <div class="download-container d-flex flex-row flex-wrap row-gap-3 column-gap-4">
+        <% for (let i = 0; i < statement.pdfFile.length; i++) {%>
 
-      <div class="card-body mt-5">
-        <h4 class="summary-tag mb-3">Analysis</h4>
+        <a href="<%= statement.pdfFile[i].url %>" target="_blank" class="download-link col-5 ">
+          <div class="download-btn-container d-flex flex-row align-items-center justify-content-between">
+            <h6 class=""><%= statement.pdfFile[i].originalname %></h6>
 
+            <h2 class="download-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill" viewBox="0 0 16 16">
+                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0" />
+              </svg>
+            </h2>
+          </div>
+        </a>
 
-
+        <% } %>
       </div>
+      <% } %>
+
+
 
     </div>
   </div>
-  <div class="download-btn-container col-3 px-5 mt-5">
-    <% if(statement.pdfFile[0]) {%>
-    <h4 class="summary-tag mb-3">Documents</h4>
-    <% for (let i = 0; i < statement.pdfFile.length; i++) {%>
-    <h6 class="mb-3"><%= statement.pdfFile[i].originalname %></h6>
-    <a href="<%= statement.pdfFile[i].url %>" target="_blank" class="btn btn-primary mb-3">
-      Download File
-    </a>
-    <% }}%>
-  </div>
+
   <!-- teste accordion com filtros juntos -->
   <div class="col-9 mb-5 mt-3">
+    <div class="card-body">
+      <h4 class="summary-tag mb-3">Analysis</h4>
+    </div>
     <div class="accordion mb-5" id="segments-accordion">
       <% const existingFilters=[]; %>
       <% for (let segment of statement.segments) { %>
