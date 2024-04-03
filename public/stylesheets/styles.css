@@ -3,7 +3,11 @@ body {
     font-family:Georgia, 'Times New Roman', Times, serif
 }
 
-main {
+#content {
+    border-radius: 10px;
+}
+
+.nav-side-menu {
     border-radius: 10px;
 }
 
