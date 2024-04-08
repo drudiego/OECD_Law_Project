@@ -1,0 +1,117 @@
+ <!-- Functions for map, data entry and pagination -->
+ <script>
+   const entriesPerPage = 4; // Number of entries to display per page
+   let currentPage = 1; // Current page number
+
+   const statements = <%- JSON.stringify(statements) %>; // Array of statements
+   // console.log(statements);
+   const countryCount = <%- JSON.stringify(countryCount) %>;
+   const data = <%- JSON.stringify(data) %>; // Array of countryCount
+   // console.log(countryCount);
+
+   // Function to display the entries for the current page
+   function displayEntries() {
+     const entriesContainer = document.getElementById('entriesContainer');
+     entriesContainer.innerHTML = ''; // Clear previous entries
+
+     // Calculate the starting and ending indexes for the current page
+     const start = (currentPage - 1) * entriesPerPage;
+     const end = start + entriesPerPage;
+
+     // Display entries for the current page
+     for (let i = start; i < end && i < statements.length; i++) {
+       const statement = statements[i];
+
+
+       // Create DOM elements to display the statement's content
+       const statementElement = document.createElement('a');
+       statementElement.href = `/statements/${statement._id}`;
+       statementElement.classList.add('link-container', 'col-12');
+       // Card for the entries from the database
+       statementElement.innerHTML = `
+              <%-include('./entryCard') %>
+            `;
+
+       entriesContainer.appendChild(statementElement);
+     }
+   }
+
+   // Function to handle pagination button clicks
+   function handlePaginationClick(page) {
+     if (page === 'Previous') {
+       if (currentPage > 1) {
+         currentPage--;
+       }
+     } else if (page === 'Next') {
+       if (currentPage < Math.ceil(statements.length / entriesPerPage)) {
+         currentPage++;
+       }
+     } else {
+       currentPage = page;
+     }
+
+     displayEntries();
+     updatePagination();
+   }
+
+   // Function to create a pagination button
+   function createPaginationButton(label, isCurrentPage) {
+     const listItem = document.createElement('li');
+     listItem.classList.add('page-item');
+     if (isCurrentPage) {
+       listItem.classList.add('active');
+       listItem.setAttribute('aria-current', 'page');
+     }
+
+     const link = document.createElement('a');
+     link.classList.add('page-link');
+     link.href = `#paginationContainer`;
+     link.textContent = label;
+     link.addEventListener('click', () => {
+       handlePaginationClick(label);
+     });
+
+     if (label === 'Previous' && currentPage === 1) {
+       listItem.classList.add('disabled');
+       link.removeAttribute('href');
+     }
+
+     const totalPages = Math.ceil(statements.length / entriesPerPage);
+     if (label === 'Next' && currentPage === totalPages) {
+       listItem.classList.add('disabled');
+       link.removeAttribute('href');
+     }
+
+     listItem.appendChild(link);
+     return listItem;
+   }
+
+   // Function to update the pagination buttons
+   function updatePagination() {
+     const paginationContainer = document.getElementById('paginationContainer');
+     paginationContainer.innerHTML = ''; // Clear the existing pagination buttons
+
+     const paginationList = document.createElement('ul');
+     paginationList.classList.add('pagination');
+
+     // Add "Previous" button
+     const previousButton = createPaginationButton('Previous', currentPage === 1);
+     paginationList.appendChild(previousButton);
+
+     // Add page buttons
+     for (let i = 1; i <= Math.ceil(statements.length / entriesPerPage); i++) {
+       const pageButton = createPaginationButton(i, i === currentPage);
+       paginationList.appendChild(pageButton);
+     }
+
+     // Add "Next" button
+     const nextButton = createPaginationButton('Next', currentPage === Math.ceil(statements.length / entriesPerPage));
+     paginationList.appendChild(nextButton);
+
+     paginationContainer.appendChild(paginationList);
+   }
+
+   // Initial display of entries and pagination buttons
+   displayEntries();
+   updatePagination();
+ </script>
