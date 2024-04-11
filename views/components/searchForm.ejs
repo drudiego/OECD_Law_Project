@@ -1,13 +1,14 @@
 <form action="/statements/search" method="GET">
   <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
   <div class=" d-flex flex-row flex-wrap mb-3">
+    <!-- Search input -->
     <div class="col-12 me-auto">
-
       <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Search...">
     </div>
+    <!-- Button to submit the form was left hidden for now -->
     <button class="btn btn-dark-blue col-2" type="submit" hidden>Search</button>
   </div>
-
+  <!-- Filters selects -->
   <div class="d-flex flex-row flex-wrap">
     <% for (filter in filters) { %>
     <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-4 p-2">
@@ -20,6 +21,7 @@
     </select>
     <% } %>
   </div>
+  <!-- Collapsable filters which are hidden for now - MAYBE REMOVE LATER -->
   <div class="collapse " id="collapsedFilters" hidden>
     <div class="d-flex flex-row flex-wrap">
 
