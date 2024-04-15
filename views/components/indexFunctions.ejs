@@ -4,7 +4,7 @@
    let currentPage = 1; // Current page number
 
    const statements = <%- JSON.stringify(statements) %>; // Array of statements
-   // console.log(statements);
+   //  console.log(statements);
    const countryCount = <%- JSON.stringify(countryCount) %>;
    const data = <%- JSON.stringify(data) %>; // Array of countryCount
    // console.log(countryCount);
@@ -21,6 +21,31 @@
      // Display entries for the current page
      for (let i = start; i < end && i < statements.length; i++) {
        const statement = statements[i];
+       const segments = statement.segments;
+       let status = ""
+       //  let hostCountries = []
+       //  console.log(statement._id)
+       //  const tagStyle = document.getElementById(`${statement._id}`);
+
+       //  console.log(tagStyle)
+       for (let segment of segments) {
+         if (segment.filter === 'Status of the case') {
+           status = segment.subfilter
+         }
+       }
+
+       // TENTATIVA DE IMPLEMENTAR AS TAGS DE HOSTCOUNTRY
+       //    } else if (segment.filter === 'Host country (Where the violations conducted)') {
+       //      hostCountries.push(segment.subfilter)
+       //    }
+
+       //  }
+       //  hostCountries.forEach(element => {
+       //    const countryElement = document.createElement('p')
+       //    countryElement.classList.add('tagStyle');
+       //    countryElement.textContent = element;
+       //    //  tagStyle.appendChild(countryElement);
+       //  });
 
 
        // Create DOM elements to display the statement's content

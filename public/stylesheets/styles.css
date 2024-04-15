@@ -14,6 +14,16 @@ a {
   /* Set the text color (customize as needed) */
 }
 
+.card-header {
+  background-color: #04316a;
+  color: #fff;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px rgba(161, 161, 161, 0.5);
+  transition: box-shadow 0.2s ease;
+}
+
 .link-container {
   display: inline-block;
 }
@@ -26,6 +36,7 @@ a {
 /* Style the h5 element when the parent div is hovered */
 .link-container:hover h5 {
   text-decoration: underline;
+
   /* Underline the h5 when the parent div is hovered */
 }
 
@@ -36,6 +47,15 @@ a {
   margin-top: 20px;
   margin-bottom: 4px;
   color: #06489b;
+}
+
+.card-tag {
+  display: inline;
+  font-size: smaller;
+  background-color: #06489b;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .return-link {
