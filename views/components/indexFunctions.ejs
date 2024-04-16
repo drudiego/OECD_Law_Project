@@ -46,15 +46,19 @@
            statusElement.textContent = status;
            tagStyle.appendChild(statusElement);
          } else if (segment.filter === 'Host country (Where the violations conducted)') {
-           hostCountries.push(segment.subfilter)
+           country = segment.subfilter
+           const countryElement = document.createElement('p')
+           countryElement.classList.add('card-tag');
+           countryElement.textContent = country;
+           tagStyle.appendChild(countryElement);
          }
        }
-       hostCountries.forEach(element => {
-         const countryElement = document.createElement('p')
-         countryElement.classList.add('card-tag');
-         countryElement.textContent = element;
-         tagStyle.appendChild(countryElement);
-       });
+       //  hostCountries.forEach(element => {
+       //    const countryElement = document.createElement('p')
+       //    countryElement.classList.add('card-tag');
+       //    countryElement.textContent = element;
+       //    tagStyle.appendChild(countryElement);
+       //  });
      }
    }
 
