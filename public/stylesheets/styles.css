@@ -19,9 +19,13 @@ a {
   color: #fff;
 }
 
+.card-title {
+  margin-bottom: 0;
+}
+
 .card:hover {
-  box-shadow: 0 0 10px rgba(161, 161, 161, 0.5);
-  transition: box-shadow 0.2s ease;
+  box-shadow: 0 0 10px rgba(131, 131, 131, 0.5);
+  transition: box-shadow 0.3s ease;
 }
 
 .link-container {
@@ -30,32 +34,45 @@ a {
 
 .link-container h5 {
   font-weight: 600;
-  /* Underline the h5 when the parent div is hovered */
 }
 
 /* Style the h5 element when the parent div is hovered */
-.link-container:hover h5 {
-  text-decoration: underline;
-
+.link-container:hover .card-title {
+  /* text-decoration: underline; */
+  transition: text-decoration 0.3s ease;
   /* Underline the h5 when the parent div is hovered */
 }
 
-.issue-tag,
+.issue-tag {
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #0b458b;
+}
+
 .title-tag,
 .summary-tag {
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 4px;
-  color: #06489b;
+  color: #0b458b;
 }
 
+.tagStyle {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  /* margin-bottom: 5px; */
+}
 .card-tag {
   display: inline;
   font-size: smaller;
-  background-color: #06489b;
+  background-color: #2172d4;
   color: #fff;
   border-radius: 5px;
   padding: 5px;
+  margin-bottom: 3px;
 }
 
 .return-link {

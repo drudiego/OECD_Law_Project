@@ -1,23 +1,20 @@
 <!-- Card showing the entry from the database -->
 <div class="card mt-3 ">
-  <div class="card-header"></div>
+  <div class="card-header">
+    <h5 class="card-title">${statement.title}</h5>
+  </div>
   <div class="card-info d-flex flex-row ">
-    <div class="card-info-text col-9">
+    <div class="card-info-text col-8">
       <div class="card-body">
-        <h5 class="card-title">${statement.title}</h5>
+
         <p class="issue-tag">ISSUE</p>
         <p class="card-text"><i>${statement.description}</i></p>
       </div>
     </div>
-    <div class="card-info-tags col-3">
-      <div class="card-body tagStyle" id=${statement._id}>
+    <div class="card-info-tags col-4">
+      <div class="card-body tagStyle" id="tagStyle-${statement._id}">
         <p class="card-tag">${statement.year}</p>
-        <p class="card-tag">${status}</p>
-      </div>
-      <div card-body tagStyle>
-
-
-
+        <!-- More tags are added dinamically here by the indexFunctions.ejs file -->
       </div>
     </div>
   </div>
