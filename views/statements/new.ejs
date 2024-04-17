@@ -1,53 +1,49 @@
 <% layout('layouts/boilerplate') %>
 
 
-<div class="row">
+<div class="row mb-5 mt-5">
   <h1 class="text-center">New Statement</h1>
-  <div class="col-8 offset-2">
+  <div class="col-7 mx-auto">
 
     <form action="/statements" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label class="form-label" for="title">Title</label>
+      <div class="mb-4">
+        <label class="form-label" for="title"><b>TITLE OF THE STATEMENT</b></label>
         <input class="form-control" type="text" id="title" name="statement[title]" required>
         <div class="valid-feedback">Looks good!</div>
         <div class="invalid-feedback">Title can't be empty</div>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="description">Description (max 300 char)</label>
+      <div class="mb-4">
+        <label class="form-label" for="description"><b>DESCRIPTION (short description of the statement with a maximum of 300 characters)</b></label>
         <textarea class="form-control" rows="4" type="text" id="description" name="statement[description]" maxlength="300" required></textarea>
         <div class="valid-feedback">Looks good!</div>
         <div class="invalid-feedback">Summary can't be empty</div>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="year">Year</label>
+      <div class="mb-4">
+        <label class="form-label" for="year"><b>YEAR</b></label>
         <input class="form-control" type="text" id="year" name="statement[year]" required>
         <div class="valid-feedback">Looks good!</div>
         <div class="invalid-feedback">Location can't be empty</div>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="summary">Summary</label>
+      <div class="mb-4">
+        <label class="form-label" for="summary"><b>SUMMARY (full summary of the statement)</b></label>
         <textarea class="form-control" rows="12" type="text" id="summary" name="statement[summary]" required></textarea>
         <div class="valid-feedback">Looks good!</div>
         <div class="invalid-feedback">Summary can't be empty</div>
       </div>
 
-
-
       <div class="mb-3 custom-file">
-        <label class="form-label" for="pdfFile">Upload Files</label>
+        <label class="form-label" for="pdfFile"><b>UPLOAD NEW FILES RELATED TO THE STATEMENT</b></label>
         <input class="form-control" type="file" id="pdfFile" name="pdfFile" multiple>
         <label for="" class="custom-file-label"></label>
         <div class="valid-feedback">Looks good!</div>
         <div class="invalid-feedback">Summary can't be empty</div>
       </div>
 
-
-
-
-
-      <div class="mb-3"><button class="btn btn-success">Add new Statement</button></div>
+      <div class="mb-5"><button class="btn btn-success">Add new Statement</button></div>
 
     </form>
-    <a href="/statements">Back to All Statements</a>
+    <a href="/statements" class="return-link">
+
+      < Back to All Statements</a>
   </div>
 </div>
