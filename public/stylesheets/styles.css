@@ -194,7 +194,8 @@ h3,
 }
 
 .delete-files-div {
-  background-color: rgb(241, 172, 172);
+  background-color: rgb(236, 180, 180);
+  padding: 10px;
 }
 
 .info-box-ul {
