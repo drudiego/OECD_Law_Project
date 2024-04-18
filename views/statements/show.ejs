@@ -15,25 +15,32 @@
         <h2 class="card-title mb-4 statement-title">
           <%= statement.title %>
         </h2>
-        <% if(currentUser) { %>
-        <p class="card-text text-body-secondary">
-          Included in the database by <%= statement.author.username %>
-        </p>
-        <% } %>
-        <% if(currentUser) { %>
-        <a class="btn btn-info" href="/statements/<%= statement._id %>/edit">Edit</a>
 
-        <form class="d-inline" action="/statements/<%= statement._id %>?_method=DELETE" method="POST">
-          <button class="btn btn-danger">Delete Statement</button>
-        </form>
+        <!-- ADMIN AREA showing the edit and delete buttons -->
+        <% if(currentUser) { %>
+        <div class="admin-area-div mb-4">
+          <p>ADMIN AREA</p>
+          <h3 class="mb-3">Edit or Delete this Statement</h3>
+          <p>These buttons only appear for the staff of the project, when they are logged in. <br>Use those buttons to edit or delete the current statement. <br> <br><b>THE DELETE ACTION IS IRREVERSIBLE.</b></p>
+          <p class="card-text text-body-primary">
+            Current Statement was included in the database by <b><%= statement.author.username %></b>
+          </p>
+          <% } %>
+          <% if(currentUser) { %>
+          <a class="btn btn-primary" href="/statements/<%= statement._id %>/edit">EDIT STATEMENT</a>
+          <form class="d-inline" action="/statements/<%= statement._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger">DELETE</button>
+          </form>
+        </div>
         <% } %>
+
         <h5 class="card-text statement-description">
           <%= statement.description %>
         </h5>
 
+        <!-- Info box of the statement, containing year, country, linked human rights, status -->
         <div class="info-box p-3 p-3 my-5">
           <ul class="mt-3 info-box-ul">
-
 
             <% for (let segment of statement.segments) { %>
             <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
@@ -44,7 +51,6 @@
             <li><strong>Linked human rights/issues</strong>
               <%= segment.subfilter %>
             </li>
-
             <% } else if (segment.filter==='Status of the case' ) {%>
             <li><strong>Status</strong>
               <%= segment.subfilter %>
@@ -85,12 +91,10 @@
       </div>
       <% } %>
 
-
-
     </div>
   </div>
 
-  <!-- teste accordion com filtros juntos -->
+  <!-- Analysis Section with accordion -->
   <div class="col-9 mb-5 mt-3">
     <div class="card-body">
       <h4 class="summary-tag mb-3">Analysis</h4>
@@ -119,12 +123,19 @@
             <p><i>
                 <%= segment.body %>
               </i></p>
+            <!-- ADMIN AREA with delete button for the segment -->
 
             <% if(currentUser) { %>
-            <form action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE" method="POST">
-              <button class="btn btn-sm btn-danger">DELETE
-                SEGMENT</button>
-            </form>
+            <div class="admin-area-div">
+              <p>ADMIN AREA</p>
+              <h4 class="mb-3">Delete this Segment</h4>
+              <p>This button only appear for the staff of the project, when they are logged in.<br><b>THE DELETE ACTION IS IRREVERSIBLE.</b></p>
+
+              <form action="/statements/<%= statement._id %>/segments/<%= segment._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger">DELETE
+                  SEGMENT</button>
+              </form>
+            </div>
             <% } %>
           </div>
         </div>
@@ -135,46 +146,44 @@
       <% } %>
     </div>
 
-
-
-
+    <!-- Admin area for adding a new segment -->
 
     <% if(currentUser) {%>
-    <h2>Add a Segment</h2>
-    <form action="/statements/<%= statement._id %>/segments" method="POST" class="mb-3 validated-form" novalidate>
+    <div class="admin-area-div">
+      <p>ADMIN AREA</p>
+      <h2 class="mb-3">Add a Segment</h2>
+      <p>This form only appears for the staff of the project, when they are logged in. <br>Use this form to add new segments to the current statement.</p>
+      <form action="/statements/<%= statement._id %>/segments" method="POST" class="mb-3 validated-form" novalidate>
 
+        <div class="mb-3">
 
+          <label class="form-label" for="filter"><strong>Filter:</strong></label>
+          <select class="form-select" aria-label="Default select example" id="filter" name="segment[filter]">
+            <option value="" selected></option>
+            <% for (filter in filters) { %>
+            <option value="<%= filters[filter].filterName %>" filter-key="<%= filter %>">
+              <%= filters[filter].filterName %>
+            </option>
+            <% } %>
+          </select>
 
-      <div class="mb-3">
+        </div>
+        <div class="mb-3">
 
-        <label class="form-label" for="filter"><strong>Filter:</strong></label>
-        <select class="form-select" aria-label="Default select example" id="filter" name="segment[filter]">
-          <option value="" selected></option>
-          <% for (filter in filters) { %>
-          <option value="<%= filters[filter].filterName %>" filter-key="<%= filter %>">
-            <%= filters[filter].filterName %>
-          </option>
-          <% } %>
-        </select>
+          <label class="form-label" for="subfilter"><strong>Sub-Filter:</strong></label>
+          <select class="form-select" aria-label="Default select example" id="subfilter" name="segment[subfilter]">
+            <!-- Options will be dynamically populated based on user selection -->
+          </select>
+        </div>
 
+        <div class="mb-3">
+          <label class="form-label" for="body">Segment text:</label>
+          <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="10" required></textarea>
+        </div>
 
-      </div>
-      <div class="mb-3">
-
-        <label class="form-label" for="subfilter"><strong>Sub-Filter:</strong></label>
-        <select class="form-select" aria-label="Default select example" id="subfilter" name="segment[subfilter]">
-          <!-- Options will be dynamically populated based on user selection -->
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="body">Segment text:</label>
-        <textarea class="form-control" name="segment[body]" id="body" cols="30" rows="10" required></textarea>
-      </div>
-
-      <button class="btn btn-success">Submit</button>
-    </form>
-
+        <button class="btn btn-success">Submit</button>
+      </form>
+    </div>
     <% } %>
 
 

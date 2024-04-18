@@ -195,6 +195,8 @@ h3,
 
 .delete-files-div {
   background-color: rgb(236, 180, 180);
+  border-radius: 10px;
+  border: 1px solid #04316a;
   padding: 10px;
 }
 
@@ -202,6 +204,13 @@ h3,
   columns: 2;
   list-style: none;
   margin-bottom: 0;
+}
+
+.admin-area-div {
+  background-color: #cecece;
+  border-radius: 10px;
+  border: 1px solid #04316a;
+  padding: 10px;
 }
 
 li {

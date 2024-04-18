@@ -1,80 +1,77 @@
 <% layout('layouts/boilerplate') %>
 
 
-    <div class="container-fluid col-9 mx-auto mt-5 mb-5">
-        <h1><b>OECD Cases</b></h1>
-        <h3>Please scroll down and use the search box and/or filters below to find a specific Statement.</h3>
-        <div class="mt-5" id="map" style="height: 400px"></div>
-        <div class="mt-5 ">
+<div class="container-fluid col-9 mx-auto mt-5 mb-5">
+  <h1><b>OECD Cases</b></h1>
+  <h3>Please scroll down and use the search box and/or filters below to find a specific Statement.</h3>
+  <div class="mt-5" id="map" style="height: 400px"></div>
+  <div class="mt-5 ">
 
-            <div class="mb-5">
-                <form action="/statements/search" method="GET">
-                    <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
-                    <div class=" d-flex flex-row flex-wrap mb-3">
-                        <div class="col-11 me-auto">
+    <div class="mb-5">
+      <form action="/statements/search" method="GET">
+        <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
+        <div class=" d-flex flex-row flex-wrap mb-3">
+          <div class="col-11 me-auto">
 
-                            <input class="form-control" id="searchTerm" type="text" name="searchTerm"
-                                placeholder="Search..." value="<%= searchTerm%>">
-                        </div>
-                        <button class="btn btn-dark-blue" type="submit">Search</button>
-                    </div>
-                    <div class="card" id="filters-container">
-                        <button class="btn bg-primary-subtle" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
-                            Show/Hide Filters
-                        </button>
-                        <div class="collapse " id="collapsedFilters">
-                            <div class="d-flex flex-row flex-wrap">
-
-                                <% for (filter in filters) { %>
-
-                                    <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple
-                                        data-placeholder="<%= filters[filter].filterName%>"
-                                        class="select form-select-sm col-6 p-1">
-                                        <% for (subfilter of filters[filter].subfilters) { %>
-                                            <option value="<%=subfilter %>" <%=selectedFilters &&
-                                                selectedFilters[filter] && selectedFilters[filter].includes(subfilter)
-                                                ? 'selected' : '' %>>
-                                                <%= subfilter %>
-                                            </option>
-
-                                            <% } %>
-                                    </select>
-
-                                    <% } %>
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+            <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Search..." value="<%= searchTerm%>">
+          </div>
+          <button class="btn btn-dark-blue" type="submit">Search</button>
+        </div>
+        <div class="card" id="filters-container">
+          <button class="btn bg-primary-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
+            Show/Hide Filters
+          </button>
+          <div class="collapse " id="collapsedFilters">
             <div class="d-flex flex-row flex-wrap">
 
-                <% if (results.length> 0) { %>
-                    <% for (let result of results){ %>
-                        <a href="/statements/<%= result.item._id %>" class="link-container">
-                            <div class="card mt-3 col-10">
-                                <div class="card-header">
-                                    <%= result.item.location %>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <%= result.item.title %>
-                                    </h5>
-                                    <p class="issue-tag">ISSUE</p>
-                                    <p class="card-text"><i>
-                                            <%= result.item.description %>
-                                        </i></p>
+              <% for (filter in filters) { %>
 
-                                </div>
-                            </div>
-                        </a>
-                        <% } %>
+              <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-6 p-1">
+                <% for (subfilter of filters[filter].subfilters) { %>
+                <option value="<%=subfilter %>" <%=selectedFilters &&
+                                                selectedFilters[filter] && selectedFilters[filter].includes(subfilter)
+                                                ? 'selected' : '' %>>
+                  <%= subfilter %>
+                </option>
 
-                            <% } else { %>
-                                <p>No results found.</p>
-                                <% } %>
+                <% } %>
+              </select>
+
+              <% } %>
 
             </div>
+          </div>
         </div>
+      </form>
+    </div>
+
+    <div class="d-flex flex-row flex-wrap">
+
+      <% if (results.length> 0) { %>
+      <% for (let result of results){ %>
+      <a href="/statements/<%= result.item._id %>" class="link-container">
+        <div class="card mt-3 col-10">
+          <div class="card-header">
+            <%= result.item.location %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= result.item.title %>
+            </h5>
+            <p class="issue-tag">ISSUE</p>
+            <p class="card-text"><i>
+                <%= result.item.description %>
+              </i></p>
+
+          </div>
+        </div>
+      </a>
+      <% } %>
+
+      <% } else { %>
+      <p>No results found.</p>
+      <% } %>
+
+    </div>
+
+  </div>
