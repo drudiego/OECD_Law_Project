@@ -39,30 +39,65 @@
         </h5>
 
         <!-- Info box of the statement, containing year, country, linked human rights, status -->
-        <div class="info-box p-3 p-3 my-5">
-          <ul class="mt-3 info-box-ul">
+        <div class="info-box ">
 
-            <% for (let segment of statement.segments) { %>
-            <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
-            <li><strong>Country</strong>
-              <%= segment.subfilter %>
-            </li>
-            <% } else if (segment.filter==='Linked human rights/issues' ) {%>
-            <li><strong>Linked human rights/issues</strong>
-              <%= segment.subfilter %>
-            </li>
-            <% } else if (segment.filter==='Status of the case' ) {%>
-            <li><strong>Status</strong>
-              <%= segment.subfilter %>
-            </li>
-            <% } %>
-            <% } %>
+          <% const hostCountryList = []%>
+          <% const linkedHumanRightsList = []%>
+          <% let statusString = ''%>
 
-            <li class=""><strong>Year</strong>
-              <%= statement.year %>
-            </li>
+          <% for (let segment of statement.segments) { %>
+          <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
+          <% hostCountryList.push(segment.subfilter)%>
+          <% } else if (segment.filter==='Linked human rights/issues' ) {%>
+          <% linkedHumanRightsList.push(segment.subfilter)%>
+          <% } else if (segment.filter==='Status of the case' ) {%>
+          <% statusString = segment.subfilter %>
+          <% } %>
+          <% } %>
 
-          </ul>
+          <div class="info-box-left-div ">
+            <label class="info-box-label"><strong>Linked human rights/issues</strong></label>
+            <div class=" info-box-linked-human">
+
+              <% for (let i = 0; i < linkedHumanRightsList.length; i++) {%>
+              <div class="tag-span">
+                <span class=""><%= linkedHumanRightsList[i] %></span>
+              </div>
+              <% } %>
+            </div>
+
+            <label class="info-box-label"><strong>Status</strong></label>
+            <div class="info-box-status">
+
+              <div class="tag-span">
+                <span><%= statusString %></span>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <div class="info-box-right-div ">
+            <label class="info-box-label"><strong>Host country</strong></label>
+            <div class="info-box-countries">
+              <% for (let i = 0; i < hostCountryList.length; i++) {%>
+              <div class="tag-span">
+                <span><%= hostCountryList[i] %></span>
+              </div>
+              <% } %>
+            </div>
+
+            <label class="info-box-label"><strong>Year</strong></label>
+            <div class="info-box-year">
+              <div class="tag-span">
+                <span><%= statement.year %></span>
+              </div>
+            </div>
+
+
+
+          </div>
         </div>
 
         <h4 class="summary-tag mb-3">Summary</h4>

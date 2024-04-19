@@ -5,6 +5,7 @@ body {
 
 main {
   border-radius: 10px;
+  margin: 50px 50px;
 }
 
 a {
@@ -12,6 +13,10 @@ a {
   /* Remove default underline from text */
   color: #000;
   /* Set the text color (customize as needed) */
+}
+
+.content-div {
+  margin: 50px 0;
 }
 
 .card-header {
@@ -73,6 +78,10 @@ a {
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 5px;
 }
 
 .return-link {
@@ -191,6 +200,71 @@ h3,
   background-color: #dfeafd;
   border: 1px solid #04316a;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 30px;
+  margin: 30px 0;
+}
+
+.info-box-label {
+  margin-bottom: 0px;
+}
+
+.info-box-left-div {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-box-right-div {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-box-countries {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.info-box-linked-human {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.info-box-status {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.info-box-year {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag-span {
+  display: inline;
+  font-size: smaller;
+  background-color: #2172d4;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .delete-files-div {
@@ -279,6 +353,7 @@ li strong {
 .footer-container {
   display: flex;
   justify-content: space-between;
+  margin: 50px 50px;
 }
 
 .footer-col {
@@ -326,5 +401,33 @@ li strong {
 @media (max-width: 767px) {
   #map {
     display: none;
+  }
+
+  main,
+  .footer-container {
+    margin: 40px 20px;
+  }
+
+  .content-div {
+    margin: 30px 0;
+  }
+
+  .footer-col {
+    margin-top: 30px;
+  }
+
+  .footer-first-col {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  main,
+  .footer-container {
+    margin: 30px 20px;
+  }
+
+  .content-div {
+    margin: 15px 0;
   }
 }
