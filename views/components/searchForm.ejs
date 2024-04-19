@@ -9,9 +9,9 @@
     <button class="btn btn-dark-blue col-2" type="submit" hidden>Search</button>
   </div>
   <!-- Filters selects -->
-  <div class="d-flex flex-row flex-wrap">
+  <div class=" d-flex flex-row flex-wrap">
     <% for (filter in filters) { %>
-    <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-4 p-2">
+    <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-12 col-sm-6 col-md-4 p-2">
       <% for (subfilter of filters[filter].subfilters) { %>
       <option value="<%=subfilter %>">
         <%= subfilter %>

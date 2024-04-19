@@ -3,18 +3,21 @@
   <div class="card-header">
     <h5 class="card-title">${statement.title}</h5>
   </div>
-  <div class="card-info d-flex flex-row ">
-    <div class="card-info-text col-8">
-      <div class="card-body">
+  <div class=" card-info d-flex flex-row ">
+    <div class="row">
 
-        <p class="issue-tag">ISSUE</p>
-        <p class="card-text"><i>${statement.description}</i></p>
+      <div class="card-info-text col-12 col-md-8">
+        <div class="card-body">
+
+          <p class="issue-tag">ISSUE</p>
+          <p class="card-text"><i>${statement.description}</i></p>
+        </div>
       </div>
-    </div>
-    <div class="card-info-tags col-4">
-      <div class="card-body tagStyle" id="tagStyle-${statement._id}">
-        <p class="card-tag">${statement.year}</p>
-        <!-- More tags are added dinamically here by the indexFunctions.ejs file -->
+      <div class="card-info-tags col-12 col-md-4">
+        <div class="card-body tagStyle" id="tagStyle-${statement._id}">
+          <p class="card-tag">${statement.year}</p>
+          <!-- More tags are added dinamically here by the indexFunctions.ejs file -->
+        </div>
       </div>
     </div>
   </div>
