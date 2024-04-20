@@ -1,12 +1,12 @@
 <% layout('layouts/boilerplate') %>
 
 
-<div class="row col-9 mx-auto">
-  <div class="mt-5 mb-3"><a href="/statements" class="return-link">
+<div class="row col-12 col-md-11 col-xl-9 mx-auto">
+  <div class=" mb-3 back-link"><a href="/statements" class="return-link">
 
       < Back to All Statements</a>
   </div>
-  <div class="col-9">
+  <div class="col-12  col-xl-9">
 
     <div class="mb-3">
 
@@ -54,47 +54,49 @@
           <% statusString = segment.subfilter %>
           <% } %>
           <% } %>
+          <div class="row">
 
-          <div class="info-box-left-div ">
-            <label class="info-box-label"><strong>Linked human rights/issues</strong></label>
-            <div class=" info-box-linked-human">
+            <div class="info-box-left-div col-12 col-md-8">
+              <label class="info-box-label"><strong>Linked human rights/issues</strong></label>
+              <div class=" info-box-linked-human">
 
-              <% for (let i = 0; i < linkedHumanRightsList.length; i++) {%>
-              <div class="tag-span">
-                <span class=""><%= linkedHumanRightsList[i] %></span>
+                <% for (let i = 0; i < linkedHumanRightsList.length; i++) {%>
+                <div class="tag-span">
+                  <span class=""><%= linkedHumanRightsList[i] %></span>
+                </div>
+                <% } %>
               </div>
-              <% } %>
+
+              <label class="info-box-label"><strong>Status</strong></label>
+              <div class="info-box-status">
+
+                <div class="tag-span">
+                  <span><%= statusString %></span>
+                </div>
+              </div>
+
+
+
             </div>
 
-            <label class="info-box-label"><strong>Status</strong></label>
-            <div class="info-box-status">
-
-              <div class="tag-span">
-                <span><%= statusString %></span>
+            <div class="info-box-right-div col-12 col-md-4">
+              <label class="info-box-label"><strong>Host country</strong></label>
+              <div class="info-box-countries">
+                <% for (let i = 0; i < hostCountryList.length; i++) {%>
+                <div class="tag-span">
+                  <span><%= hostCountryList[i] %></span>
+                </div>
+                <% } %>
               </div>
-            </div>
 
-
-
-          </div>
-
-          <div class="info-box-right-div ">
-            <label class="info-box-label"><strong>Host country</strong></label>
-            <div class="info-box-countries">
-              <% for (let i = 0; i < hostCountryList.length; i++) {%>
-              <div class="tag-span">
-                <span><%= hostCountryList[i] %></span>
+              <label class="info-box-label"><strong>Year</strong></label>
+              <div class="info-box-year">
+                <div class="tag-span">
+                  <span><%= statement.year %></span>
+                </div>
               </div>
-              <% } %>
-            </div>
 
-            <label class="info-box-label"><strong>Year</strong></label>
-            <div class="info-box-year">
-              <div class="tag-span">
-                <span><%= statement.year %></span>
-              </div>
             </div>
-
 
 
           </div>
@@ -107,10 +109,10 @@
       </div>
       <% if(statement.pdfFile[0]) {%>
       <h4 class="summary-tag mb-3">Documents</h4>
-      <div class="download-container d-flex flex-row flex-wrap row-gap-3 column-gap-4">
+      <div class="download-container row gy-3">
         <% for (let i = 0; i < statement.pdfFile.length; i++) {%>
 
-        <a href="<%= statement.pdfFile[i].url %>" target="_blank" class="download-link col-5 ">
+        <a href="<%= statement.pdfFile[i].url %>" target="_blank" class="download-link col-12 col-md-6 ">
           <div class="download-btn-container d-flex flex-row align-items-center justify-content-between">
             <h6 class=""><%= statement.pdfFile[i].originalname %></h6>
 
@@ -130,11 +132,11 @@
   </div>
 
   <!-- Analysis Section with accordion -->
-  <div class="col-9 mb-5 mt-3">
+  <div class="col-12  col-xl-9 mb-2">
     <div class="card-body">
       <h4 class="summary-tag mb-3">Analysis</h4>
     </div>
-    <div class="accordion mb-5" id="segments-accordion">
+    <div class="accordion mb-4" id="segments-accordion">
       <% const existingFilters=[]; %>
       <% for (let segment of statement.segments) { %>
       <% existingFilters.push(segment.filter) %>
