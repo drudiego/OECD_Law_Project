@@ -438,7 +438,20 @@ li strong {
 @media (max-width: 576px) {
   main,
   .footer-container {
-    margin: 30px 20px;
+    margin: 20px 10px;
+  }
+
+  main p {
+    font-size: 14px;
+  }
+
+  main h1 {
+    line-height: 140%;
+  }
+
+  main h3 {
+    font-size: 18px;
+    line-height: 130%;
   }
 
   .content-div {
