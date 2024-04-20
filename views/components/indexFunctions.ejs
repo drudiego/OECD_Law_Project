@@ -58,11 +58,11 @@
 
    // Function to handle pagination button clicks
    function handlePaginationClick(page) {
-     if (page === '<') {
+     if (page === '«') {
        if (currentPage > 1) {
          currentPage--;
        }
-     } else if (page === '>') {
+     } else if (page === '»') {
        if (currentPage < Math.ceil(statements.length / entriesPerPage)) {
          currentPage++;
        }
@@ -85,19 +85,19 @@
 
      const link = document.createElement('a');
      link.classList.add('page-link');
-     link.href = `#entriesContainer`;
+     link.href = `#`;
      link.textContent = label;
      link.addEventListener('click', () => {
        handlePaginationClick(label);
      });
 
-     if (label === '...' || label === '<' && currentPage === 1) {
+     if (label === '...' || label === '«' && currentPage === 1) {
        listItem.classList.add('disabled');
        link.removeAttribute('href');
      }
 
      const totalPages = Math.ceil(statements.length / entriesPerPage);
-     if (label === '>' && currentPage === totalPages) {
+     if (label === '»' && currentPage === totalPages) {
        listItem.classList.add('disabled');
        link.removeAttribute('href');
      }
@@ -121,7 +121,7 @@
      paginationList.classList.add('pagination', 'pagination-sm');
 
      // Add "Previous" button
-     const previousButton = createPaginationButton('<', currentPage === 1);
+     const previousButton = createPaginationButton('«', currentPage === 1);
      paginationList.appendChild(previousButton);
 
      // Add "First" button
@@ -156,7 +156,7 @@
      paginationList.appendChild(lastButton);
 
      // Add "Next" button
-     const nextButton = createPaginationButton('>', currentPage === Math.ceil(statements.length / entriesPerPage));
+     const nextButton = createPaginationButton('»', currentPage === Math.ceil(statements.length / entriesPerPage));
      paginationList.appendChild(nextButton);
      paginationContainer.appendChild(paginationList);
    }
