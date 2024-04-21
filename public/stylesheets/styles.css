@@ -446,6 +446,10 @@ li strong {
     margin: 20px 10px;
   }
 
+  .nav-container {
+    margin: 0 10px;
+  }
+
   main p {
     font-size: 14px;
   }
