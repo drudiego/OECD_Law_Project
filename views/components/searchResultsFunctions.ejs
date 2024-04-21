@@ -4,7 +4,7 @@
    let currentPage = 1; // Current page number
 
    const results = <%- JSON.stringify(results) %>; // Array of statements
-   console.log("results aqui", results);
+   //  console.log("results aqui", results);
    const countryCount = <%- JSON.stringify(countryCount) %>;
    const data = <%- JSON.stringify(data) %>; // Array of countryCount
    // console.log(countryCount);
@@ -22,7 +22,7 @@
      for (let i = start; i < end && i < results.length; i++) {
        const result = results[i];
        const segments = result.item.segments;
-       console.log("segments aqui", segments);
+       //  console.log("segments aqui", segments);
        let status = ""
        const hostCountries = []
 

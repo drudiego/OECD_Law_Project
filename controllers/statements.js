@@ -43,7 +43,7 @@ module.exports.createStatement = async (req, res) => {
   const statement = new Statement(req.body.statement);
   statement.author = req.user._id;
 
-  console.log(req.files);
+  // console.log(req.files);
   statement.pdfFile = req.files.map((f) => ({
     url: f.path,
     filename: f.filename,
@@ -68,7 +68,7 @@ module.exports.search = async (req, res, next) => {
     { $group: { _id: "$subfilter", count: { $sum: 1 } } },
   ]);
 
-  console.log(countryCount);
+  // console.log(countryCount);
 
   // Initialize arrays to store the results, matching segments, and matching segment IDs
   const results = [];
@@ -132,7 +132,7 @@ module.exports.search = async (req, res, next) => {
       results.push({ item: entry });
     });
   }
-  console.log("resultados: ", results);
+  // console.log("resultados: ", results);
   // Render the search results page with the results, filters, selected filters, and search term
   res.render("statements/searchResults", {
     results,
@@ -168,7 +168,7 @@ module.exports.renderEditForm = async (req, res) => {
 };
 
 module.exports.renderEditSegmentsForm = async (req, res) => {
-  console.log("Your params:", req.params);
+  // console.log("Your params:", req.params);
 
   const statement = await Statement.findById(req.params.id)
     .populate("segments")
@@ -185,7 +185,7 @@ module.exports.updateStatement = async (req, res) => {
   const statement = await Statement.findByIdAndUpdate(req.params.id, {
     ...req.body.statement,
   });
-  console.log(req.body);
+  // console.log(req.body);
   // console.log(req.files)
   const files = req.files.map((f) => ({
     url: f.path,

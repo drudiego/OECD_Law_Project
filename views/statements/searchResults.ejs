@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 
 
-<div class="container-fluid col-9 mx-auto content-div">
+<div class="container-fluid col-md-9 mx-auto content-div">
   <h1><b>OECD Human Rights Statements</b></h1>
   <h3 class="mb-4">Explore our database of human rights statements. <br>Use the search box and the filters below to narrow your search.</h3>
 
@@ -31,7 +31,6 @@
         </div>
 
         <% let collapser %>
-        <% console.log(selectedFilters) %>
         <% if (selectedFilters ) { %>
         <% collapser = "show" %>
         <% } else { %>
@@ -44,7 +43,7 @@
 
             <% for (filter in filters) { %>
 
-            <select id=" select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-6 p-1">
+            <select id=" select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-12 col-sm-6 col-md-4 p-2">
               <% for (subfilter of filters[filter].subfilters) { %>
               <option value="<%=subfilter %>" <%=selectedFilters &&
                                                 selectedFilters[filter] && selectedFilters[filter].includes(subfilter)
