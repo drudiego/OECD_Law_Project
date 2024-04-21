@@ -1,27 +1,38 @@
 <form action="/statements/search" method="GET">
   <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
-  <div class=" d-flex flex-row flex-wrap mb-3">
+  <div class=" row gy-3 mb-3">
     <!-- Search input -->
-    <div class="col-12 me-auto">
-      <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Search...">
+    <div class="col-12 col-md-6 me-3">
+      <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Type to search...">
     </div>
     <!-- Button to submit the form was left hidden for now -->
-    <button class="btn btn-dark-blue col-2" type="submit" hidden>Search</button>
+    <div class="col-12 col-md-2">
+      <button class="btn btn-dark-blue col-12" type="submit">Search</button>
+    </div>
+    <div class="col-12 col-md-3">
+      <button class="btn bg-primary-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
+        Show/Hide Filters
+      </button>
+    </div>
   </div>
   <!-- Filters selects -->
-  <div class=" d-flex flex-row flex-wrap">
-    <% for (filter in filters) { %>
-    <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-12 col-sm-6 col-md-4 p-2">
-      <% for (subfilter of filters[filter].subfilters) { %>
-      <option value="<%=subfilter %>">
-        <%= subfilter %>
-      </option>
+  <div class="collapse " id="collapsedFilters">
 
+    <div class=" d-flex flex-row flex-wrap">
+      <% for (filter in filters) { %>
+      <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-12 col-sm-6 col-md-4 p-2">
+        <% for (subfilter of filters[filter].subfilters) { %>
+        <option value="<%=subfilter %>">
+          <%= subfilter %>
+        </option>
+
+        <% } %>
+      </select>
       <% } %>
-    </select>
-    <% } %>
+    </div>
   </div>
   <!-- Collapsable filters which are hidden for now - MAYBE REMOVE LATER -->
+
   <div class="collapse " id="collapsedFilters" hidden>
     <div class="d-flex flex-row flex-wrap">
 
