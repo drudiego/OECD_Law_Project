@@ -9,6 +9,11 @@
    const data = <%- JSON.stringify(data) %>; // Array of countryCount
    // console.log(countryCount);
 
+   function scrollToResults() {
+     const searchBar = document.getElementById('results-container');
+     searchBar.scrollIntoView();
+   }
+
    // Function to display the entries for the current page
    function displayEntries() {
      const entriesContainer = document.getElementById('entriesContainer');
@@ -74,10 +79,7 @@
      displayEntries();
      updatePagination();
 
-     function scrollToResults() {
-       const searchBar = document.getElementById('results-container');
-       searchBar.scrollIntoView();
-     }
+
    }
 
    // Function to create a pagination button
@@ -169,8 +171,12 @@
 
 
    window.addEventListener('DOMContentLoaded', function() {
-     const searchBar = document.getElementById('searchForm');
-     searchBar.scrollIntoView();
+     if (window.innerWidth <= 576) {
+       scrollToResults();
+     } else {
+       const searchBar = document.getElementById('searchForm');
+       searchBar.scrollIntoView();
+     }
    });
 
    // Initial display of entries and pagination buttons
