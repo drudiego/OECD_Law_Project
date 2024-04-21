@@ -170,6 +170,10 @@ h3,
 
 .ts-dropdown,
 .active {
+  z-index: 10000;
+}
+
+.ts-dropdown {
   border-radius: 6px;
   z-index: 10000;
   border: 1px solid #04316a;
@@ -183,6 +187,7 @@ h3,
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-size: 20px;
+  min-height: 40px;
 }
 
 .ts-wrapper.multi .ts-control > div {
