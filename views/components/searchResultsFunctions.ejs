@@ -73,6 +73,11 @@
 
      displayEntries();
      updatePagination();
+
+     function scrollToResults() {
+       const searchBar = document.getElementById('results-container');
+       searchBar.scrollIntoView();
+     }
    }
 
    // Function to create a pagination button
@@ -86,7 +91,7 @@
 
      const link = document.createElement('a');
      link.classList.add('page-link');
-     link.href = `#`;
+     link.href = `#results-container`;
      link.textContent = label;
      link.addEventListener('click', () => {
        handlePaginationClick(label);
