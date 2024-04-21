@@ -31,3 +31,15 @@ document.querySelectorAll(".select").forEach((el) => {
     },
   });
 });
+
+// Tom Select behavior on mobile
+const selectDivs = document.querySelectorAll(".ts-control");
+
+selectDivs.forEach(function (selectDiv) {
+  selectDiv.addEventListener("click", function () {
+    if (window.innerWidth <= 576) {
+      // Check if the viewport width is less than or equal to 576px (mobile breakpoint)
+      selectDiv.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
