@@ -1,77 +1,87 @@
 <% layout('layouts/boilerplate') %>
 
 
-<div class="container-fluid col-9 mx-auto mt-5 mb-5">
-  <h1><b>OECD Cases</b></h1>
-  <h3>Please scroll down and use the search box and/or filters below to find a specific Statement.</h3>
-  <div class="mt-5" id="map" style="height: 400px"></div>
-  <div class="mt-5 ">
+<div class="container-fluid col-9 mx-auto content-div">
+  <h1><b>OECD Human Rights Statements</b></h1>
+  <h3 class="mb-4">Explore our database of human rights statements. <br>Use the search box and the filters below to narrow your search.</h3>
 
-    <div class="mb-5">
-      <form action="/statements/search" method="GET">
-        <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
-        <div class=" d-flex flex-row flex-wrap mb-3">
-          <div class="col-11 me-auto">
+  <!-- Leaflet Map -->
+  <%- include('../components/map') %>
 
-            <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Search..." value="<%= searchTerm%>">
-          </div>
-          <button class="btn btn-dark-blue" type="submit">Search</button>
+  <div class="mb-4 mt-4 " id="searchForm">
+
+
+    <form action="/statements/search" method="GET">
+      <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
+      <div class=" row gy-3 mb-3">
+        <!-- Search input -->
+        <div class="order-1 order-md-1 col-12 col-md-6 me-3">
+          <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Type to search..." value="<%= searchTerm %>">
         </div>
-        <div class="card" id="filters-container">
-          <button class="btn bg-primary-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
-            Show/Hide Filters
+
+        <div class="order-2 order-md-2 col-12 col-md-2">
+          <button class="btn bg-primary-subtle col-12" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
+            <span class="filter-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+              </svg>
+            </span>
+            Filters
           </button>
-          <div class="collapse " id="collapsedFilters">
-            <div class="d-flex flex-row flex-wrap">
+        </div>
 
-              <% for (filter in filters) { %>
+        <% let collapser %>
+        <% console.log(selectedFilters) %>
+        <% if (selectedFilters ) { %>
+        <% collapser = "show" %>
+        <% } else { %>
+        <% collapser = '' %>
+        <% } %>
 
-              <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-6 p-1">
-                <% for (subfilter of filters[filter].subfilters) { %>
-                <option value="<%=subfilter %>" <%=selectedFilters &&
+
+        <div class="order-3 order-md-4 col-12 collapse <%=collapser%>" id="collapsedFilters">
+          <div class="d-flex flex-row flex-wrap">
+
+            <% for (filter in filters) { %>
+
+            <select id=" select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-6 p-1">
+              <% for (subfilter of filters[filter].subfilters) { %>
+              <option value="<%=subfilter %>" <%=selectedFilters &&
                                                 selectedFilters[filter] && selectedFilters[filter].includes(subfilter)
                                                 ? 'selected' : '' %>>
-                  <%= subfilter %>
-                </option>
-
-                <% } %>
-              </select>
+                <%= subfilter %>
+              </option>
 
               <% } %>
+            </select>
 
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div class="d-flex flex-row flex-wrap">
-
-      <% if (results.length> 0) { %>
-      <% for (let result of results){ %>
-      <a href="/statements/<%= result.item._id %>" class="link-container">
-        <div class="card mt-3 col-10">
-          <div class="card-header">
-            <%= result.item.location %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= result.item.title %>
-            </h5>
-            <p class="issue-tag">ISSUE</p>
-            <p class="card-text"><i>
-                <%= result.item.description %>
-              </i></p>
+            <% } %>
 
           </div>
         </div>
-      </a>
-      <% } %>
-
-      <% } else { %>
-      <p>No results found.</p>
-      <% } %>
-
-    </div>
-
+        <div class=" order-4 order-md-3 col-12 col-md-2">
+          <button class="btn btn-dark-blue col-12" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
   </div>
+
+  <div class=" ">
+    <h4><b>Results</b></h4>
+
+    <div class="d-flex flex-row flex-wrap" id="entriesContainer">
+
+
+    </div>
+    <% if (results.length < 1) { %>
+    <p>No results found.</p>
+    <% }%>
+
+
+
+    <%- include('../components/paginationNav') %>
+  </div>
+</div>
+</div>
+
+<%- include('../components/searchResultsFunctions') %>

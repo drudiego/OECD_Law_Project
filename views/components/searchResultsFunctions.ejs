@@ -3,8 +3,8 @@
    const entriesPerPage = 4; // Number of entries to display per page
    let currentPage = 1; // Current page number
 
-   const statements = <%- JSON.stringify(statements) %>; // Array of statements
-   console.log(statements);
+   const results = <%- JSON.stringify(results) %>; // Array of statements
+   console.log("results aqui", results);
    const countryCount = <%- JSON.stringify(countryCount) %>;
    const data = <%- JSON.stringify(data) %>; // Array of countryCount
    // console.log(countryCount);
@@ -19,24 +19,25 @@
      const end = start + entriesPerPage;
 
      // Display entries for the current page
-     for (let i = start; i < end && i < statements.length; i++) {
-       const statement = statements[i];
-       const segments = statement.segments;
+     for (let i = start; i < end && i < results.length; i++) {
+       const result = results[i];
+       const segments = result.item.segments;
+       console.log("segments aqui", segments);
        let status = ""
        const hostCountries = []
 
        // Create DOM elements to display the statement's content
        const statementElement = document.createElement('a');
-       statementElement.href = `/statements/${statement._id}`;
+       statementElement.href = `/statements/${result.item._id}`;
        statementElement.classList.add('link-container', 'col-12');
        // Card for the entries from the database
        statementElement.innerHTML = `
-              <%-include('./entryCard') %>
+              <%-include('./entryCardSearchResults') %>
             `;
        entriesContainer.appendChild(statementElement);
 
        // Create div for the tags in the entry card
-       const tagStyle = document.getElementById(`tagStyle-${statement._id}`);
+       const tagStyle = document.getElementById(`tagStyle-${result.item._id}`);
        for (let segment of segments) {
          // Status and host country tags
          if (segment.filter === 'Status of the case') {
@@ -63,7 +64,7 @@
          currentPage--;
        }
      } else if (page === '»') {
-       if (currentPage < Math.ceil(statements.length / entriesPerPage)) {
+       if (currentPage < Math.ceil(results.length / entriesPerPage)) {
          currentPage++;
        }
      } else {
@@ -96,7 +97,7 @@
        link.removeAttribute('href');
      }
 
-     const totalPages = Math.ceil(statements.length / entriesPerPage);
+     const totalPages = Math.ceil(results.length / entriesPerPage);
      if (label === '»' && currentPage === totalPages) {
        listItem.classList.add('disabled');
        link.removeAttribute('href');
@@ -135,7 +136,7 @@
      }
 
      // Add page buttons
-     const totalPages = Math.ceil(statements.length / entriesPerPage);
+     const totalPages = Math.ceil(results.length / entriesPerPage);
      const maxPagesToShow = 5; // Number of pages to show in the pagination
 
      for (let i = currentPage - 2; i <= currentPage + 2 && i <= totalPages; i++) {
@@ -156,10 +157,16 @@
      paginationList.appendChild(lastButton);
 
      // Add "Next" button
-     const nextButton = createPaginationButton('»', currentPage === Math.ceil(statements.length / entriesPerPage));
+     const nextButton = createPaginationButton('»', currentPage === Math.ceil(results.length / entriesPerPage));
      paginationList.appendChild(nextButton);
      paginationContainer.appendChild(paginationList);
    }
+
+
+   window.addEventListener('DOMContentLoaded', function() {
+     const searchBar = document.getElementById('searchForm');
+     searchBar.scrollIntoView();
+   });
 
    // Initial display of entries and pagination buttons
    displayEntries();

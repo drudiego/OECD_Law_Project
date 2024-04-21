@@ -56,11 +56,19 @@ module.exports.createStatement = async (req, res) => {
 
 module.exports.search = async (req, res, next) => {
   // Extract the search term and selected filters from the request query
+  const statements = await Statement.find({}).populate("segments");
   const searchTerm = req.query.searchTerm;
   const selectedFilters = req.query.selectedFilters;
 
   // Define the filter categories
   const filters = filterCategories;
+  const data = countriesData;
+  const countryCount = await Segment.aggregate([
+    { $match: { filter: "Host country (Where the violations conducted)" } },
+    { $group: { _id: "$subfilter", count: { $sum: 1 } } },
+  ]);
+
+  console.log(countryCount);
 
   // Initialize arrays to store the results, matching segments, and matching segment IDs
   const results = [];
@@ -93,10 +101,12 @@ module.exports.search = async (req, res, next) => {
       segments: { $in: ids },
     }));
     // Find statements that match the final query using the $and operator to ensure that all filters are met
-    entries = await Statement.find({ $and: finalQuery }).lean();
+    entries = await Statement.find({ $and: finalQuery })
+      .populate("segments")
+      .lean();
   } else {
     // If there are no matching segments, find all statements
-    entries = await Statement.find().lean();
+    entries = await Statement.find().populate("segments").lean();
   }
 
   // If a search term is provided, perform a fuzzy search using Fuse.js
@@ -122,13 +132,16 @@ module.exports.search = async (req, res, next) => {
       results.push({ item: entry });
     });
   }
-
+  console.log("resultados: ", results);
   // Render the search results page with the results, filters, selected filters, and search term
   res.render("statements/searchResults", {
     results,
     filters,
     selectedFilters,
     searchTerm,
+    data,
+    countryCount,
+    statements,
   });
 };
 

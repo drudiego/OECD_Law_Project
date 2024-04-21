@@ -1,0 +1,24 @@
+<!-- Card showing the entry from the database -->
+<div class="card mt-3 ">
+  <div class="card-header">
+    <h5 class="card-title">${result.item.title}</h5>
+  </div>
+  <div class=" card-info">
+    <div class="row">
+
+      <div class="card-info-text col-12 col-md-8">
+        <div class="card-body">
+
+          <p class="issue-tag">ISSUE</p>
+          <p class="card-text"><i>${result.item.description}</i></p>
+        </div>
+      </div>
+      <div class="card-info-tags col-12 col-md-4">
+        <div class="card-body tagStyle" id="tagStyle-${result.item._id}">
+          <p class="card-tag">${result.item.year}</p>
+          <!-- More tags are added dinamically here by the indexFunctions.ejs file -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
