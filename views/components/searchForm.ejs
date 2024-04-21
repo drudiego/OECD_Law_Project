@@ -2,15 +2,12 @@
   <label class="form-label fw-bold" hidden for="searchTerm">Search</label>
   <div class=" row gy-3 mb-3">
     <!-- Search input -->
-    <div class="col-12 col-md-6 me-3">
+    <div class="order-1 order-md-1 col-12 col-md-6 me-3">
       <input class="form-control" id="searchTerm" type="text" name="searchTerm" placeholder="Type to search...">
     </div>
-    <!-- Button to submit the form was left hidden for now -->
-    <div class="col-12 col-md-2">
-      <button class="btn btn-dark-blue col-12" type="submit">Search</button>
-    </div>
-    <div class="col-12 col-md-3">
-      <button class="btn bg-primary-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
+
+    <div class="order-2 order-md-2 col-12 col-md-2">
+      <button class="btn bg-primary-subtle col-12" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedFilters" aria-expanded="false" aria-controls="collapseExample">
         <span class="filter-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
             <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
@@ -19,24 +16,28 @@
         Filters
       </button>
     </div>
-  </div>
-  <!-- Filters selects -->
-  <div class="collapse " id="collapsedFilters">
+    <!-- Button to submit the form was left hidden for now -->
+    <!-- Filters selects -->
+    <div class="order-3 order-md-4 col-12 collapse" id="collapsedFilters">
 
-    <div class=" d-flex flex-row flex-wrap">
-      <% for (filter in filters) { %>
-      <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-12 col-sm-6 col-md-4 p-2">
-        <% for (subfilter of filters[filter].subfilters) { %>
-        <option value="<%=subfilter %>">
-          <%= subfilter %>
-        </option>
+      <div class=" d-flex flex-row flex-wrap">
+        <% for (filter in filters) { %>
+        <select id="select-<%= filter %>" name="selectedFilters[<%= filter%>]" multiple data-placeholder="<%= filters[filter].filterName%>" class="select form-select-sm col-12 col-sm-6 col-md-4 p-2">
+          <% for (subfilter of filters[filter].subfilters) { %>
+          <option value="<%=subfilter %>">
+            <%= subfilter %>
+          </option>
 
+          <% } %>
+        </select>
         <% } %>
-      </select>
-      <% } %>
+      </div>
+    </div>
+    <!-- Collapsable filters which are hidden for now - MAYBE REMOVE LATER -->
+    <div class=" order-4 order-md-3 col-12 col-md-2">
+      <button class="btn btn-dark-blue col-12" type="submit">Search</button>
     </div>
   </div>
-  <!-- Collapsable filters which are hidden for now - MAYBE REMOVE LATER -->
 
   <div class="collapse " id="collapsedFilters" hidden>
     <div class="d-flex flex-row flex-wrap">
