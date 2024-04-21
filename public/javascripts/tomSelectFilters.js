@@ -5,13 +5,13 @@ document.querySelectorAll(".select").forEach((el) => {
       { name: "remove_button", options: { title: "Remove option" } },
       { name: "dropdown_header", options: { title: "Select options" } },
       { name: "dropdown_input", options: { title: "Select options" } },
-      {
-        name: "checkbox_options",
-        options: {
-          checkedClassNames: ["ts-checked"],
-          uncheckedClassNames: ["ts-unchecked"],
-        },
-      },
+      //   {
+      //     name: "checkbox_options",
+      //     options: {
+      //       checkedClassNames: ["ts-checked"],
+      //       uncheckedClassNames: ["ts-unchecked"],
+      //     },
+      //   },
     ],
     persist: false,
     create: false,
