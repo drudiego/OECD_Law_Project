@@ -4,6 +4,7 @@ document.querySelectorAll(".select").forEach((el) => {
     plugins: [
       { name: "remove_button", options: { title: "Remove option" } },
       { name: "dropdown_header", options: { title: "Select options" } },
+      { name: "dropdown_input", options: { title: "Select options" } },
       {
         name: "checkbox_options",
         options: {

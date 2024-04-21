@@ -172,6 +172,8 @@ h3,
 .active {
   border-radius: 6px;
   z-index: 10000;
+  border: 1px solid #04316a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .ts-control {
