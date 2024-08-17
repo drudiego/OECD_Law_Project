@@ -1,16 +1,3 @@
-Code handbook
-
-This code handbook is divided into two main parts: 
-
-1. The substantive analysis of NCPs on corporate human rights responsibilities.
-2. NCP procedural analysis.
-
-The MAXQDA qualitative data analysis encompasses a total of 14 parent codes.
-
-It is important to note that some sentences from NCP statements are coded under multiple categories, leading to overlaps. Researchers have done this intentionally to facilitate research-focused or comprehensive searches, reflecting different concepts of corporate human rights responsibility.
-
-Part 1: The Substantive Analysis of NCPs on Corporate Human Rights Responsibilities
-
 Parent code 1: Linked Human Rights/Environmental Issues
 
 All violated human rights or environmental issues stated in the complaint are coded under this category.
@@ -168,8 +155,6 @@ This code deals with Strategic Lawsuits Against Public Participation (SLAPP) and
 
 9.9 Other Substantial Matters >> Gap in the Guidelines/BHR Regulations
 This code is about identifying and addressing gaps in the OECD Guidelines and Business and Human Rights (BHR) regulations.
-
-Part 2: NCP procedural analysis
 
 Parent code 10: Host Country (Where the Harm Occurred)
 
