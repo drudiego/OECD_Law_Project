@@ -1,0 +1,270 @@
+Code handbook
+
+This code handbook is divided into two main parts: 
+
+1. The substantive analysis of NCPs on corporate human rights responsibilities.
+2. NCP procedural analysis.
+
+The MAXQDA qualitative data analysis encompasses a total of 14 parent codes.
+
+It is important to note that some sentences from NCP statements are coded under multiple categories, leading to overlaps. Researchers have done this intentionally to facilitate research-focused or comprehensive searches, reflecting different concepts of corporate human rights responsibility.
+
+Part 1: The Substantive Analysis of NCPs on Corporate Human Rights Responsibilities
+
+Parent code 1: Linked Human Rights/Environmental Issues
+
+All violated human rights or environmental issues stated in the complaint are coded under this category.
+Parent Code 2: Corporate involvements to harm/abuse
+This category is about how NCPs determine the company’s involvement or participation in related human rights risks. It includes whether the NCP defines that the company has caused, contributed to, or is directly linked with human rights violations.
+2.1 Corporate involvement to harm/abuse >> Caused/Contributed
+This code is about NCP’s assessment on whether the company has caused or contributed to human rights violations.
+2.2 Corporate involvement to harm/abuse >> Directly linked
+This code is about NCP’s evaluation on whether the company is directly linked to human rights violations through its business relationships.
+2.2.1 Corporate involvement to harm/abuse >> Directly linked >> Directly linked through investment
+This code is about NCP analysing the business relationships to determine direct links to human rights abuses through investment/loan.
+
+2.2.2 Corporate involvement to harm/abuse >> Directly linked >> Analysis of business relationship within supply chain
+This code is about NCP analysing the business relationships to determine direct links to human rights abuses in supply chain relationship.
+2.2.2 Corporate involvement to harm/abuse >> Directly linked >> Analysis of business relationship in corporate level
+This code is about NCP analysing the extent of control or lack thereof that the company has over the entities involved in human rights abuses.
+
+
+Parent code 3: Risk-Based Due Diligence Process under OECD Guidelines
+
+This category covers corporate responsibility under the UNGPs and the OECD Guidelines, focusing on the processes of identifying, preventing, and mitigating adverse impacts, as outlined in the UNGPs Pillar 2 – Corporate Responsibility to Respect Human Rights, and the OECD Guidelines Chapter 2: General Principles, paragraph 10.
+
+3.1 Risk-Based Due Diligence Process under OECD Guidelines >> Embedding Responsible Business Conduct
+This code is about integrating responsible business conduct into company policies and management systems.
+
+3.2 Risk-Based Due Diligence Process under OECD Guidelines >> Identification/Assessment of Adverse Impacts
+This code is about identifying and assessing actual and potential adverse impacts on human rights and the environment.
+
+3.3 Risk-Based Due Diligence Process under OECD Guidelines >> Cease, Prevention, and Mitigation
+This code covers the actions taken to cease, prevent, and mitigate adverse impacts.
+
+3.3.1 Risk-Based Due Diligence Process under OECD Guidelines >> Mitigation/Prevention Measures
+This code is about specific measures taken to mitigate or prevent adverse impacts.
+
+3.3.2 Risk-Based Due Diligence Process under OECD Guidelines >> Leverage/Influence
+This code addresses how companies use their leverage to influence others to prevent or mitigate adverse impacts.
+
+3.3.3 Risk-Based Due Diligence Process under OECD Guidelines >> Cease/Disengagement/Divestment
+This code is about actions taken to cease harmful activities, disengage from harmful business relationships, or divest from problematic assets.
+
+
+3.4 Risk-Based Due Diligence Process under OECD Guidelines >> Monitoring/Tracking the Implementation
+This code covers the processes for monitoring and tracking the effectiveness of the implemented due diligence measures.
+
+3.5 Risk-Based Due Diligence Process under OECD Guidelines >> Communication about Adverse Impacts
+This code is about how companies communicate their findings and actions regarding adverse impacts to stakeholders.
+
+3.6 Risk-Based Due Diligence Process under OECD Guidelines >> Provide for or Cooperate in Remediation
+This code covers the provision of or cooperation in remediation processes for those affected by adverse impacts.
+
+Parent code 4: Concept of Human Rights Due Diligence
+
+This category examines the NCPs' analysis of human rights due diligence (HRDD) by companies as outlined in the OECD Guidelines and the UN Guiding Principles on Business and Human Rights (UNGPs). It explores how NCPs interpret and implement these guidelines, focusing on the definition, scope, and practical application of HRDD, including best practices and common challenges. Clarification of what constitutes HRDD under the OECD Guidelines and UNGPs, and exploration of the various elements and steps involved in conducting HRDD, including identifying, preventing, mitigating, and accounting for human rights impacts, are also covered.
+
+This category can overlap and duplicate with the Parent code 4. However, it is separately categorized to facilitate a focused exploration of the HRDD concept.
+Parent code 5: Stakeholder Engagement
+This category addresses how companies identify and engage with stakeholders, focusing on the effectiveness and sufficiency of these engagements.
+
+5.1 Stakeholder Engagement >> Definition/Identification of Stakeholders
+This code is about how companies define and identify their stakeholders.
+
+5.2 Stakeholder Engagement >> Engagement between Employer and Employees
+This code covers the interactions and engagement between employers and employees.
+
+5.3 Stakeholder Engagement >> Effectiveness of Stakeholder Engagement
+This code addresses instances of effective stakeholder engagement.
+Parent code 6: Corporate responsibilities for groups/human rights/environment
+This category covers other corporate human rights responsibilities in specific circumstances, such as high-risk or conflict areas, or specific sectors like the global supply chain. It also includes specific responsibilities like contributing to local developments under the Guidelines.
+6.1 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities in Supply Chain
+This code is about the responsibilities companies must ensure human rights and environmental standards are upheld throughout their supply chain.
+6.2 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities related to Gender Issues
+This code is about addressing gender-related responsibilities, ensuring non-discrimination and promoting gender equality in corporate practices.
+6.3 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities related to Workers’ Rights
+This code is about upholding and promoting workers’ rights, including fair labour practices, safe working conditions, and freedom of association.
+6.4 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities towards Environment/Climate Change
+This code is about the corporate responsibilities related to environmental protection and addressing climate change impacts.
+6.5 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities towards Minorities/Indigenous People
+This code is about the responsibilities companies have towards respecting and protecting the rights of minorities and indigenous peoples.
+6.6 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities in Conflict-Affected Areas
+This code is about corporate responsibilities of companies operating in conflict-affected and high risk areas.
+6.7 Corporate Responsibilities for Groups/Human Rights/Environment >> Responsibilities towards Local Development/SDGs
+This code is about corporate responsibilities in contributing to local development and supporting the Sustainable Development Goals (SDGs).
+6.8 Corporate Responsibilities for Groups/Human Rights/Environment >> Shared Responsibility/Collective Action
+This code is about the importance of shared responsibility and collective action among companies and stakeholders to address human rights and environmental issues.
+Parent code 7: Responsibilities of Different Corporate Actors
+
+This parent code encompasses the various responsibilities that different types of corporate actors have in relation to human rights, environmental standards, and ethical business practices. It covers a range of actors including auditors, consultants, investors, financial institutions, non-profit organizations, parent companies, small and medium-sized enterprises (SMEs), state-owned entities, suppliers, and technology companies. The focus is on how each type of actor contributes to upholding and promoting responsible business conduct, as well as their specific roles in preventing and addressing human rights violations and environmental harms.
+
+7.1 Responsibilities of Different Corporate Actors >> Audit/Consultancy
+This code is about the responsibilities of audit and consultancy firms regarding human rights and environmental standards.
+
+7.2 Responsibilities of Different Corporate Actors >> Investor/Financial Institutions
+This code covers the responsibilities of investors and financial institutions in upholding human rights and environmental standards.
+
+7.3 Responsibilities of Different Corporate Actors >> Non-Profit Organizations
+This code is about the responsibilities of non-profit organizations in promoting human rights and environmental standards.
+
+7.4 Responsibilities of Different Corporate Actors >> Parent/Group Company
+This code addresses the responsibilities of parent or group companies for the actions of their subsidiaries.
+
+7.5 Responsibilities of Different Corporate Actors >> SMEs/Domestic Companies
+This code is about the responsibilities of small and medium-sized enterprises (SMEs) and domestic companies.
+
+7.6 Responsibilities of Different Corporate Actors >> State-owned Entities
+This code covers the responsibilities of state-owned entities regarding human rights and environmental practices.
+
+7.7 Responsibilities of Different Corporate Actors >> Suppliers
+This code addresses the responsibilities of suppliers, but not multinational enterprises in the supply chain.
+
+7.8 Responsibilities of Different Corporate Actors >> ICT Companies
+This code is about the specific responsibilities of tech companies in upholding human rights and environmental standards.
+
+Parent code 8: State Responsibility/Involvement
+
+This category examines the role and responsibility of states in human rights violations/issues in NCP cases, and how NCPs view state practices and commitments. It exclusively includes all state involvement in the NCP proceedings, covering both substantive and procedural aspects.
+
+8.1 State Responsibility/Involvement >> State Engagement in the NCP Proceedings
+This code is about the state’s involvement in the NCP proceedings.
+
+8.2 State Responsibility/Involvement >> NCPs’ Advises to Government/Authorities to Act
+This code covers recommendations made by NCPs to states to take action.
+
+8.3 State Responsibility/Involvement >> State Guidance to Businesses
+This code addresses the guidance provided by states to businesses regarding human rights and environmental standards.
+
+8.4 State Responsibility/Involvement >> State Involvement in the Abuse/Harm
+This code is about instances where the state itself is involved in or contributes to the harm or abuse.
+
+8.5 State Responsibility/Involvement >> NCPs Reference to State Regulation/View
+This code covers references made by NCPs to state regulations or views during the proceedings.
+
+Parent code 9: Other Substantial Matters
+This category includes various other significant issues related to the NCPs and their processes.
+
+9.1 Other Substantial Matters >> Conflict Between the Laws/Regulations
+This code is about conflicts that arise between different laws or regulations during NCP proceedings.
+
+9.2 Other Substantial Matters >> Corporate Governance
+This code addresses issues related to corporate governance and how it impacts human rights and environmental practices.
+
+9.3 Other Substantial Matters >> Mandatory Human Rights Due Diligence Legislation
+This code is about the mandatory requirements for companies to conduct human rights due diligence.
+
+9.4 Other Substantial Matters >> NAP on Business and Human Rights
+This code covers issues related to National Action Plans (NAP) on Business and Human Rights.
+
+9.5 Other Substantial Matters >> Responsibility under Domestic Laws
+This code is about the responsibilities of companies under domestic laws concerning human rights and environmental standards.
+
+9.7 Other Substantial Matters >> Responsibility under the Franchise Contract
+This code addresses the responsibilities outlined in franchise contracts related to human rights and environmental practices.
+
+9.8 Other Substantial Matters >> SLAPP/Retaliations
+This code deals with Strategic Lawsuits Against Public Participation (SLAPP) and other forms of retaliation against complainants or activists.
+
+9.9 Other Substantial Matters >> Gap in the Guidelines/BHR Regulations
+This code is about identifying and addressing gaps in the OECD Guidelines and Business and Human Rights (BHR) regulations.
+
+Part 2: NCP procedural analysis
+
+Parent code 10: Host Country (Where the Harm Occurred)
+
+This category indicates the geographical location where the harm or human rights violations took place.
+
+
+Parent code 11: Analysis of Context of the NCP Statements
+11.1 Analysis of Context of the NCP Statements >> Determination of compliance/non-compliance
+This code analyses when the NCP determines whether the enterprise has complied with its responsibilities under the OECD Guidelines.
+11.2 Analysis of Context of the NCP Statements >> Reference/Analysis of Relevant Laws/Regulations
+This code is about whether the NCP has used or referred to international laws, instruments, legal principles, or policies in its reasoning.
+11.3 Analysis of Context of the NCP Statements >> Reference to Previous Similar NCP Statements
+This code is about when NCPs refer to other previous NCP statements in their case analysis.
+11.4 Analysis of Context of the NCP Statements >> Explanation of OECD Guidelines on Certain Matters
+This code is about how NCPs analyse the applicability of the OECD Guidelines on certain matters. It also covers how the NCP determines whether different versions of the OECD Guidelines, such as those from 2000, 2011, and 2023, apply in certain cases.
+Parent Code 12: Challenges in NCP Proceeding
+This is about challenges that prevent the NCP from effectively resolving the case, such as delays, parallel procedures, breach of confidentiality requirements, etc.
+12.1 Challenges in NCP Proceeding >> Difficulty in Verification/Validation of Evidence/Link
+This code is about the challenges in verifying the authenticity and relevance of evidence in NCP proceedings to determine whether the issue is substantiated and establish a link between harm and corporate involvement.
+12.2 Challenges in NCP Proceeding >> Issues with Parallel Proceedings
+This code is about the complications arising from parallel legal or administrative proceedings in NCP cases.
+12.3 Challenges in NCP Proceeding >> Delays
+This code is about the various factors that can cause significant delays in NCP proceedings.
+12.4 Challenges in NCP Proceeding >> Challenges regarding NCP mandate/role
+This code is about the ambiguities and disputes related to the NCP's mandate and role.
+12.5 Challenges in NCP Proceeding >> Issues with Confidentiality
+This code is about the difficulties in maintaining confidentiality in NCP proceedings, the potential for breaches, and how it affects trust between the parties.
+12.6 Challenges in NCP Proceeding >> Challenges for individual complainants
+This code is about the resource limitations and procedural complexities faced by individual complainants in NCP cases.
+12.7 Challenges in NCP Proceeding >> Alleged Impartiality of NCPs
+This code is about the allegations of NCP impartiality that can undermine the legitimacy of the proceedings.
+12.8 Challenges in NCP proceeding >> Language barriers
+This code is about the language differences that can impede effective communication and understanding in NCP proceedings.
+12.9 Challenges in NCP proceeding >> Burden of Costs (Travel, translation, Expert Fees)
+This code is about the high costs associated with travel, translation, and expert fees that can be a burden in NCP proceedings.
+
+Parent code 13: NCPs Investigation and Mediation Approaches
+
+This category covers the various methods and strategies employed by NCPs during their investigation and mediation processes to effectively resolve the case.
+
+13.1 NCPs Investigation and Mediation Approaches >> Approaches/Penalties for Corporate Non-Participation
+
+This is about how NCPs seek to involve businesses in their mediation processes and the penalties for non-participation.
+
+13.2 NCPs Investigation and Mediation Approaches >> Effective Cooperation Between NCPs
+This code is about the effectiveness of the cooperation and coordination between different NCPs during investigations and the mediation process, including both effective and ineffective cooperation.
+
+13.3 NCPs Investigation and Mediation Approaches >> Field Investigation
+This code is about conducting on-site investigations to gather information and evidence.
+
+13.4 NCPs Investigation and Mediation Approaches >> Hired Legal Experts/Consultants
+This code is about the involvement of legal experts or consultants to aid in the investigation or mediation process.
+
+13.5 NCPs Investigation and Mediation Approaches >> Hired Professional Mediators
+This code is about the use of professional mediators to facilitate the mediation process between parties.
+
+13.6 NCPs Investigation and Mediation Approaches >> Hired Translators
+
+This code is about hiring translators to assist in communication during the investigation and mediation processes.
+
+13.7 NCPs Investigation and Mediation Approaches >> Inclusion of Victims in the Mediation Process
+This code is about ensuring the participation and inclusion of victims in the mediation process.
+
+13.8 NCPs Investigation and Mediation Approaches >> Independent Research/Fact-Finding
+
+This code is about conducting independent research and fact-finding to gather information relevant to the case.
+
+13.9 NCPs Investigation and Mediation Approaches >> NCP Cooperation with Other Organizations
+This code is about the cooperation between NCPs and other organizations to enhance the investigation and mediation process.
+
+Parent code 14: Outcome/Result of the NCP Case
+
+This parent code captures the various possible outcomes and results of cases handled by National Contact Points (NCPs). It includes a range of resolutions, agreements, and actions that may arise from the NCP process, highlighting the effectiveness and impact of NCP interventions. The outcomes may include formal agreements, cessation of harmful activities, policy changes, acknowledgments, financial compensation, and other forms of resolution. Each sub-code under this parent code provides specific insights into the types of results that can emerge from the NCP's mediation and investigative efforts.
+
+14.1 Outcome/Result of the NCP Case >> Agreement Outside the NCP Proceeding
+This code is about cases where an agreement was reached outside the formal NCP proceedings.
+
+14.2 Outcome/Result of the NCP Case >> Cease of Activity/Disengagement
+This code is about cases where the company ceased certain activities as a result of the NCP proceedings and also about the cases where the company disengaged from certain business activities or suppliers following the NCP proceedings.
+
+14.3 Outcome/Result of the NCP Case >> No Agreement
+This code is about cases where no agreement was reached during the NCP proceedings.
+
+14.4 Outcome/Result of the NCP Case >> Acknowledgements/Apologies
+This code is about cases where the company issued acknowledgements or apologies as a result of the NCP proceedings.
+
+14.5 Outcome/Result of the NCP Case >> Changes of Actions/Policy Made by the Result of NCP Proceedings
+This code is about policy or action changes in company management as a result of NCP proceedings.
+
+14.6 Outcome/Result of the NCP Case >> Written Agreement Resulted by the NCP Proceeding
+This code is about cases where a written agreement, memorandum, mandate, or other contract was concluded at the end of the NCP procedure.
+
+14.7 Outcome/Result of the NCP Case >> Financial Compensation/Refund
+This code is about cases where financial compensation was provided as a result of the NCP proceedings.
+
+
+
+
