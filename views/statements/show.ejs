@@ -48,16 +48,16 @@
           <% for (let segment of statement.segments) { %>
           <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
           <% hostCountryList.push(segment.subfilter)%>
-          <% } else if (segment.filter==='Linked human rights/issues' ) {%>
+          <% } else if (segment.filter==='Linked Human Rights/Environmental Issues' ) {%>
           <% linkedHumanRightsList.push(segment.subfilter)%>
-          <% } else if (segment.filter==='Status of the case' ) {%>
+          <% } else if (segment.filter==='Status of the Case' ) {%>
           <% statusString = segment.subfilter %>
           <% } %>
           <% } %>
           <div class="row">
 
             <div class="info-box-left-div col-12 col-md-8">
-              <label class="info-box-label"><strong>Linked human rights/issues</strong></label>
+              <label class="info-box-label"><strong>Linked Human Rights/Environmental Issues</strong></label>
               <div class=" info-box-linked-human">
 
                 <% for (let i = 0; i < linkedHumanRightsList.length; i++) {%>
