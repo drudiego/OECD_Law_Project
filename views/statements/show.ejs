@@ -6,6 +6,7 @@
 
       < Back to All Statements</a>
   </div>
+  <%= statement.segments %>
   <div class="col-12  col-xl-9">
 
     <div class="mb-3">
@@ -139,8 +140,11 @@
     <div class="accordion mb-4" id="segments-accordion">
       <% const existingFilters=[]; %>
       <% for (let segment of statement.segments) { %>
+
       <% existingFilters.push(segment.filter) %>
       <% } %>
+
+
 
       <% for(filter in filters){ %>
 
