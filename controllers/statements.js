@@ -11,7 +11,7 @@ module.exports.index = async (req, res) => {
 	const data = countriesData;
 	const segments = await Segment.find({});
 	const countryCount = await Segment.aggregate([
-		{ $match: { filter: "Host country (Where the violations conducted)" } },
+		{ $match: { filter: "Host country (Where the Harm Occurred)" } },
 		{ $group: { _id: "$subfilter", count: { $sum: 1 } } },
 	]);
 	// console.log(countryCount)
@@ -68,7 +68,7 @@ module.exports.search = async (req, res, next) => {
 	const filters = filterCategories;
 	const data = countriesData;
 	const countryCount = await Segment.aggregate([
-		{ $match: { filter: "Host country (Where the violations conducted)" } },
+		{ $match: { filter: "Host country (Where the Harm Occurred)" } },
 		{ $group: { _id: "$subfilter", count: { $sum: 1 } } },
 	]);
 

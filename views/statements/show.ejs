@@ -6,7 +6,7 @@
 
       < Back to All Statements</a>
   </div>
-  <%= statement.segments %>
+
   <div class="col-12  col-xl-9">
 
     <div class="mb-3">
@@ -47,7 +47,7 @@
           <% let statusString = ''%>
 
           <% for (let segment of statement.segments) { %>
-          <% if(segment.filter==='Host country (Where the violations conducted)' ) {%>
+          <% if(segment.filter==='Host country (Where the Harm Occurred)' ) {%>
           <% hostCountryList.push(segment.subfilter)%>
           <% } else if (segment.filter==='Linked Human Rights/Environmental Issues' ) {%>
           <% linkedHumanRightsList.push(segment.subfilter)%>

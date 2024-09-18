@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { names, location } = require("./seedHelper");
 const { filterCategories } = require("../utils/filters");
-const { seg } = require("./csvprep-NOTFINAL");
+const { seg } = require("./2024-09-18-segments");
 const Statement = require("../models/statement");
 const Segment = require("../models/segment");
 
@@ -24,7 +24,7 @@ const seedDB = async () => {
 			filter: s.filter,
 			subfilter: s.subfilter,
 			statementTitle: statement.title,
-			// page: s.page,
+			page: s.page,
 		});
 		statement.segments.push(segment);
 		await segment.save();

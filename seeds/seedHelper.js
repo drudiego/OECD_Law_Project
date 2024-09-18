@@ -97,6 +97,7 @@ module.exports.names = [
 	"Canada NCP_Former employees vs. Banro II",
 	"Canada NCP_FIDH, CEDHU and Mining Watch vs. Corriente",
 	"Canada NCP_Former employees vs. Flemish Investment Limited",
+	"Canada NCP_Haycore vs. Klöckner Pentaplast ",
 	"Chilean NCP_Individual vs. ICT company",
 	"Chilean NCP_UNI vs. Ripley Corp",
 	"Chilean NCP_Trade Union vs. Teck & Quebrada Blanca",
