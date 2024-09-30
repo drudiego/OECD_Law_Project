@@ -441,6 +441,14 @@ li strong {
 	margin-bottom: 0;
 }
 
+#table-of-contents ul {
+	padding-left: 0px;
+}
+
+#table-of-contents ul ul {
+	padding-left: 20px;
+}
+
 @media (max-width: 767px) {
 	#map {
 		display: none;

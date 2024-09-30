@@ -7,9 +7,16 @@ var mymap = L.map("map", {
 	zoom: 2,
 	scrollWheelZoom: false, // Disable zooming with the scroll wheel
 });
+
 // Add a tile layer to the map (using OpenStreetMap as the source)
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-	attribution: "© OpenStreetMap contributors",
+// L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+// 	attribution: "© OpenStreetMap contributors",
+// }).addTo(mymap);
+
+//CARTO tiles, that may be paid after many requests. In case it stops working, I should use the tiles above.
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+	attribution:
+		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 }).addTo(mymap);
 
 // Iterate over the countryCount data
