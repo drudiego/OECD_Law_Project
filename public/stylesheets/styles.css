@@ -466,6 +466,13 @@ ol li {
 	padding-left: 20px;
 }
 
+@media (max-width: 992px) {
+	#table-of-contents {
+		margin-left: 0;
+		margin-bottom: 1.5rem;
+	}
+}
+
 @media (max-width: 767px) {
 	#map {
 		display: none;
@@ -473,7 +480,7 @@ ol li {
 
 	main,
 	.footer-container {
-		margin: 40px 20px;
+		margin: 20px 20px;
 	}
 
 	.nav-container {
@@ -500,7 +507,7 @@ ol li {
 @media (max-width: 576px) {
 	main,
 	.footer-container {
-		margin: 20px 10px;
+		margin: 5px 10px;
 	}
 
 	.nav-container {
