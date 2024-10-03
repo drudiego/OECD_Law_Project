@@ -134,6 +134,16 @@ a {
 	text-wrap: wrap;
 }
 
+#segments-accordion {
+	border: 1.5px solid #cecece;
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+#segments-accordion p {
+	margin-bottom: 5px;
+}
+
 .accordion-button {
 	font-weight: 500;
 	font-size: 20px;
