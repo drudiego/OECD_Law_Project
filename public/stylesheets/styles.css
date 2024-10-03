@@ -6,6 +6,14 @@ body {
 body {
 	background-color: #04316a;
 	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #333333;
+}
+
+pre {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #333333;
+	white-space: pre-wrap;
+	text-wrap: auto;
 }
 
 main {
@@ -20,7 +28,7 @@ main {
 a {
 	text-decoration: none;
 	/* Remove default underline from text */
-	color: #000;
+	color: #333333;
 	/* Set the text color (customize as needed) */
 }
 
@@ -97,7 +105,7 @@ a {
 .return-link {
 	text-decoration: none;
 	/* Remove default underline from text */
-	color: #000;
+	color: #333333;
 }
 
 .return-link:hover {
@@ -120,6 +128,10 @@ a {
 	font-size: large;
 	font-weight: 400;
 	line-height: 28px;
+}
+
+.statement-summary pre {
+	text-wrap: wrap;
 }
 
 .accordion-button {
@@ -160,13 +172,10 @@ a {
 	text-decoration: underline;
 }
 
-p,
-h3,
-.statement-summary,
-.statement-description,
-.statement-title {
+/* p,
+h3 {
 	text-align: justify;
-}
+} */
 
 .ts-dropdown,
 .active {
@@ -314,6 +323,14 @@ li strong {
 	display: block;
 }
 
+ul li {
+	list-style: none;
+}
+
+ol li {
+	margin-bottom: 1.2rem;
+}
+
 .staff-card {
 	transition: box-shadow 0.3s ease;
 }
@@ -364,7 +381,7 @@ li strong {
 
 .staff-name a {
 	text-decoration: none;
-	color: #000;
+	color: #333333;
 	font-weight: 600;
 }
 

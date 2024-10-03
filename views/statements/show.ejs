@@ -104,9 +104,7 @@
         </div>
 
         <h4 class="summary-tag mb-3">Summary</h4>
-        <p class="card-text statement-summary">
-          <%= statement.summary %>
-        </p>
+        <pre class="card-text statement-summary"><%= statement.summary %></pre>
       </div>
       <% if(statement.pdfFile[0]) {%>
       <h4 class="summary-tag mb-3">Documents</h4>
